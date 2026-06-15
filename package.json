@@ -1,0 +1,30 @@
+{
+  "name": "luraloop",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@portabletext/react": "^6.2.0",
+    "@sanity/client": "^7.22.1",
+    "@sanity/image-url": "^2.1.1",
+    "framer-motion": "^12.40.0",
+    "lucide-react": "^1.18.0",
+    "next": "14.2.29",
+    "next-sanity": "^9.12.3",
+    "puppeteer": "^25.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sanity": "^3.99.0",
+    "styled-components": "^6.4.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^3.4.19"
+  }
+}

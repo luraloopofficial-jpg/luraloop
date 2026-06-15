@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+
+# Anthropic / Claude
+User-agent: ClaudeBot
+Allow: /
+
+# Grok / xAI
+User-agent: Omgilibot
+Allow: /
+User-agent: omgili
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Google Generative Search & Web
+User-agent: Google-Extended
+Allow: /
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://luraloop.com/sitemap.xml

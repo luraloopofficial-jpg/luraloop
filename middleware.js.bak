@@ -1,0 +1,63 @@
+import { NextResponse } from 'next/server'
+
+// Edge-compatible in-memory store for basic rate limiting and DDoS mitigation
+const rateLimitMap = new Map()
+
+export function middleware(request) {
+  const ip = request.headers.get('x-forwarded-for') || request.ip || '127.0.0.1'
+  
+  // Prevent memory leaks in the edge isolate by periodically sweeping the map
+  if (rateLimitMap.size > 10000) {
+    rateLimitMap.clear()
+  }
+
+  const now = Date.now()
+  const windowMs = 60 * 1000 // 1 minute timeframe
+  const maxRequests = 100 // Strict API request limit
+
+  const requestData = rateLimitMap.get(ip)
+
+  if (!requestData) {
+    rateLimitMap.set(ip, { count: 1, startTime: now })
+    return NextResponse.next()
+  }
+
+  // Evaluate current request traffic inside the window
+  if (now - requestData.startTime < windowMs) {
+    requestData.count += 1
+
+    if (requestData.count > maxRequests) {
+      // 🚨 Trigger DDoS protection block
+      return new NextResponse(
+        JSON.stringify({
+          error: 'Too Many Requests',
+          message: 'LuraLoop Cyber Security: Malicious traffic spike detected. You have been temporarily rate-limited.'
+        }),
+        { 
+          status: 429,
+          headers: { 
+            'Content-Type': 'application/json', 
+            'Retry-After': '60',
+            'X-LuraLoop-Security': 'Blocked'
+          }
+        }
+      )
+    }
+  } else {
+    // Reset window naturally
+    rateLimitMap.set(ip, { count: 1, startTime: now })
+  }
+
+  // Inject additional security tracking headers on successful requests
+  const response = NextResponse.next()
+  response.headers.set('X-LuraLoop-Edge', 'Secured')
+  return response
+}
+
+export const config = {
+  matcher: [
+    // Apply strict rate limiting to APIs and primary document routes, ignoring safe static assets
+    '/api/:path*',
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+  ],
+}

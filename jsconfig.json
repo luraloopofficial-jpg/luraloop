@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "ignoreDeprecations": "5.0",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": ["next-env.d.ts", "**/*.js", "**/*.jsx"],
+  "exclude": ["node_modules", ".next"]
+}
