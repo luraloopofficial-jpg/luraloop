@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
-import { X, ArrowUpRight, Radio } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { X, ArrowUpRight, Radio, Activity, Globe, Cpu, Database, Zap, Network, GitBranch } from 'lucide-react'
 
 // ─────────────────────────────────────────────
-// SVG Social Icons (kept as-is — zero deps)
+// SVG Social Icons
 // ─────────────────────────────────────────────
 const LinkedInIcon = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
@@ -43,58 +43,127 @@ const socialLinks = [
 ]
 
 // ─────────────────────────────────────────────
-// R&D Registry Data — Frontier AI Model Matrix
+// Expanded R&D Registry Data
 // ─────────────────────────────────────────────
-const rdModels = [
+const orchestrationNodes = [
   {
     id: 'openai',
-    org: 'OpenAI',
-    orgTag: 'GPT / o-Series',
-    badge: 'DEPLOYMENT FRONTIER',
+    name: 'OpenAI GPT-o Series',
+    category: 'FRONTIER LLM',
     badgeColor: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20',
-    accentColor: '#10B981',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" className="text-emerald-400">
-        <path d="M22.28 9.29a5.85 5.85 0 0 0-.52-4.84 6 6 0 0 0-6.44-2.85A5.86 5.86 0 0 0 10.93.76 6 6 0 0 0 5.2 3.45a5.86 5.86 0 0 0-3.93 2.83 6 6 0 0 0 .74 7 5.86 5.86 0 0 0 .52 4.84 6 6 0 0 0 6.44 2.85 5.85 5.85 0 0 0 4.39 1.95 6 6 0 0 0 5.72-4.14 5.85 5.85 0 0 0 3.93-2.83 6 6 0 0 0-.73-7.06zM13.1 21.5a4.48 4.48 0 0 1-2.88-1.04l.14-.08 4.78-2.76a.77.77 0 0 0 .39-.68v-6.73l2.02 1.17a.07.07 0 0 1 .04.05v5.58a4.51 4.51 0 0 1-4.49 4.49zm-9.65-4.13a4.48 4.48 0 0 1-.54-3.01l.14.09 4.78 2.76a.77.77 0 0 0 .78 0l5.84-3.37v2.33a.08.08 0 0 1-.03.06L9.6 19.01a4.5 4.5 0 0 1-6.15-1.64zm-1.26-10.4a4.47 4.47 0 0 1 2.34-1.97v5.68a.77.77 0 0 0 .39.67l5.83 3.37-2.01 1.16a.08.08 0 0 1-.07 0L4.2 12.74a4.5 4.5 0 0 1-2.01-5.77zm16.55 3.86-5.84-3.38 2.01-1.16a.08.08 0 0 1 .07 0l4.48 2.58a4.5 4.5 0 0 1-.69 8.12v-5.68a.78.78 0 0 0-.03-.48zm2.01-3.04-.14-.08-4.78-2.75a.78.78 0 0 0-.78 0L9.21 8.33V6a.08.08 0 0 1 .03-.06l4.48-2.58a4.49 4.49 0 0 1 6.03 4.93zm-12.63 4.15L6.11 10.77a.08.08 0 0 1-.04-.06V5.13a4.49 4.49 0 0 1 7.36-3.45l-.14.08-4.78 2.76a.78.78 0 0 0-.39.68v6.74zm1.09-2.35 2.6-1.5 2.6 1.5v2.99l-2.6 1.5-2.6-1.5v-2.99z"/>
-      </svg>
-    ),
-    context: 'Advanced Multi-Modal Logic & Reasoning Engine — frontier LLM architecture powering enterprise-grade cognitive automation pipelines.',
-    link: 'https://openai.com/news/',
-    linkLabel: 'Verify Model Release Capabilities',
+    icon: <Globe className="text-emerald-400" size={16} />,
+    desc: 'Advanced reasoning engine powering enterprise cognitive pipelines.'
   },
   {
     id: 'anthropic',
-    org: 'Anthropic',
-    orgTag: 'Claude Series',
-    badge: 'INTELLIGENCE LAYER',
+    name: 'Anthropic Claude 3.5',
+    category: 'INTELLIGENCE LAYER',
     badgeColor: 'text-violet-400 bg-violet-400/10 border-violet-400/20',
-    accentColor: '#8B5CF6',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" className="text-violet-400">
-        <path d="M13.827 3.52h-3.654L5.828 20h3.3l.874-2.498h4.952L15.829 20h3.3L13.827 3.52zm-3.044 11.434 1.738-5.164 1.737 5.164H10.783z"/>
-      </svg>
-    ),
-    context: 'Deep Artifact Processing & High-Context Enterprise Automation — Constitutional AI layer enabling safe, structured B2B2B workflow reasoning at scale.',
-    link: 'https://www.anthropic.com/news',
-    linkLabel: 'Inspect Claude Architecture Notes',
+    icon: <Cpu className="text-violet-400" size={16} />,
+    desc: 'Deep artifact processing and Constitutional AI for safe reasoning.'
   },
   {
-    id: 'deepmind',
-    org: 'Google DeepMind',
-    orgTag: 'Gemini / Gemma Series',
-    badge: 'MATRIX REGISTRY',
-    badgeColor: 'text-sky-400 bg-sky-400/10 border-sky-400/20',
-    accentColor: '#38BDF8',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" className="text-sky-400">
-        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c1.93 0 3.733.572 5.243 1.556L3.556 17.243A9.964 9.964 0 0 1 2 12C2 6.477 6.477 2 12 2zm0 20c-1.93 0-3.733-.572-5.243-1.556L20.444 6.757A9.964 9.964 0 0 1 22 12c0 5.523-4.477 10-10 10z"/>
-      </svg>
-    ),
-    context: 'Massive Token Context Windows & Native Video-to-Code Pipeline Syncing — multi-modal foundation model registry driving real-time media and data intelligence.',
-    link: 'https://deepmind.google/technologies/',
-    linkLabel: 'View Live Model Registry',
+    id: 'llama',
+    name: 'Meta Llama 3 / Mistral',
+    category: 'OPEN-WEIGHTS NODE',
+    badgeColor: 'text-blue-400 bg-blue-400/10 border-blue-400/20',
+    icon: <Database className="text-blue-400" size={16} />,
+    desc: 'Local deployment models for maximum data privacy and on-premise execution.'
   },
+  {
+    id: 'groq',
+    name: 'Groq LPU API',
+    category: 'SPEED LAYER',
+    badgeColor: 'text-orange-400 bg-orange-400/10 border-orange-400/20',
+    icon: <Zap className="text-orange-400" size={16} />,
+    desc: 'Microsecond routing and ultra-low latency inference engine.'
+  },
+  {
+    id: 'n8n',
+    name: 'n8n Automation',
+    category: 'WORKFLOW ENGINE',
+    badgeColor: 'text-pink-400 bg-pink-400/10 border-pink-400/20',
+    icon: <Network className="text-pink-400" size={16} />,
+    desc: 'Advanced agent frameworks and secure webhook orchestration.'
+  },
+  {
+    id: 'langchain',
+    name: 'LangChain',
+    category: 'WORKFLOW ENGINE',
+    badgeColor: 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20',
+    icon: <GitBranch className="text-yellow-400" size={16} />,
+    desc: 'Modular automation infrastructure and cognitive memory mapping.'
+  }
 ]
+
+// ─────────────────────────────────────────────
+// Live News Feed Component
+// ─────────────────────────────────────────────
+function LiveNewsFeed() {
+  const [news, setNews] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    let isMounted = true
+    const fetchNews = async () => {
+      setLoading(true)
+      // Simulate real-time fetch to a global news wire
+      await new Promise(r => setTimeout(r, 800))
+      if (!isMounted) return
+      setNews([
+        { id: 1, badge: 'LIVE WIRE', type: 'wire', title: 'Groq LPU Architecture Achieves 800 T/s Inference Speeds on Open-Weights Models', time: '12 mins ago' },
+        { id: 2, badge: 'COMPLIANCE ARTICLE', type: 'compliance', title: 'EU AI Act Final Draft: Implications for Autonomous Agent Deployment', time: '1 hour ago' },
+        { id: 3, badge: 'MARKET ANALYSIS', type: 'market', title: 'Enterprise Adoption of Local LLM Deployment Surpasses 45% in Q3', time: '3 hours ago' },
+        { id: 4, badge: 'LIVE WIRE', type: 'wire', title: 'n8n Releases Advanced Webhooks for Asynchronous multi-agent Tasks', time: '5 hours ago' },
+        { id: 5, badge: 'COMPLIANCE ARTICLE', type: 'compliance', title: 'HIPAA-Aligned LLM Wrappers: New Architecture Standards Published', time: '12 hours ago' },
+      ])
+      setLoading(false)
+    }
+    fetchNews()
+    return () => { isMounted = false }
+  }, [])
+
+  const getBadgeColor = (type) => {
+    if (type === 'wire') return 'text-red-400 bg-red-400/10 border-red-400/20'
+    if (type === 'compliance') return 'text-blue-400 bg-blue-400/10 border-blue-400/20'
+    return 'text-purple-400 bg-purple-400/10 border-purple-400/20'
+  }
+
+  return (
+    <div className="flex flex-col h-full rounded-xl border border-white/6 bg-[#141414] overflow-hidden">
+      <div className="p-3.5 border-b border-white/6 bg-white/4 flex items-center gap-2">
+        <Activity size={13} className="text-white/40" />
+        <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/50">Global Intelligence Wire</span>
+      </div>
+      
+      <div className="p-4 flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-white/10 flex flex-col gap-4">
+        {loading ? (
+          <div className="flex flex-col gap-4 animate-pulse">
+            {[1, 2, 3, 4].map(i => (
+              <div key={i} className="flex flex-col gap-2">
+                <div className="h-4 w-20 bg-white/5 rounded" />
+                <div className="h-7 w-full bg-white/5 rounded" />
+                <div className="h-2 w-12 bg-white/5 rounded" />
+              </div>
+            ))}
+          </div>
+        ) : (
+          news.map((item) => (
+            <article key={item.id} className="group relative border-l-[3px] border-transparent hover:border-white/20 pl-3 transition-colors">
+              <span className={`inline-block mb-1.5 rounded border px-1.5 py-[2px] text-[8px] font-bold uppercase tracking-widest ${getBadgeColor(item.type)}`}>
+                {item.badge}
+              </span>
+              <h4 className="text-xs font-semibold text-white/80 leading-relaxed group-hover:text-white transition-colors">
+                {item.title}
+              </h4>
+              <p className="text-[9px] text-white/30 mt-1.5 font-mono">{item.time}</p>
+            </article>
+          ))
+        )}
+      </div>
+    </div>
+  )
+}
 
 // ─────────────────────────────────────────────
 // R&D Modal Component
@@ -115,13 +184,12 @@ function RdModal({ onClose }) {
       />
 
       {/* Panel */}
-      <div className="relative z-10 w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl border border-white/8 bg-[#0D0D0D] shadow-2xl">
+      <div className="relative z-10 w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-2xl border border-white/8 bg-[#0D0D0D] shadow-2xl flex flex-col">
         
         {/* ── Header ── */}
-        <div className="sticky top-0 z-20 flex items-start justify-between gap-4 rounded-t-2xl border-b border-white/8 bg-[#0D0D0D] px-6 py-5">
+        <div className="sticky top-0 z-20 flex items-start justify-between gap-4 rounded-t-2xl border-b border-white/8 bg-[#0D0D0D] px-6 py-5 shrink-0">
           <div>
             <div className="flex items-center gap-2.5 mb-1.5">
-              {/* Pulsing Live Indicator */}
               <span className="relative flex h-2.5 w-2.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
@@ -134,7 +202,7 @@ function RdModal({ onClose }) {
               R&D Intelligence Hub
             </h2>
             <p className="mt-1 text-xs text-white/35">
-              Frontier AI Model Architecture Registry · Monitored Hourly
+              Live Enterprise AI Newsroom & Tooling Ecosystem
             </p>
           </div>
 
@@ -148,70 +216,47 @@ function RdModal({ onClose }) {
           </button>
         </div>
 
-        {/* ── Model Grid ── */}
-        <div className="flex flex-col gap-px p-6 pt-5">
-
-          {/* Section label */}
-          <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/25">
-            Deep Authority Routing Grid — 3 Frontier Registries
-          </p>
-
-          {rdModels.map((model, idx) => (
-            <article
-              key={model.id}
-              className="group relative mb-3 overflow-hidden rounded-xl border border-white/6 bg-[#141414] p-5 transition-all duration-300 hover:border-white/12 hover:bg-[#181818]"
-            >
-              {/* Faint left accent bar */}
-              <div
-                className="absolute left-0 top-0 h-full w-0.5 rounded-l-xl opacity-60"
-                style={{ backgroundColor: model.accentColor }}
-              />
-
-              {/* Row index */}
-              <div className="absolute right-4 top-4 text-[10px] font-mono text-white/15">
-                {String(idx + 1).padStart(2, '0')}
-              </div>
-
-              {/* Top row — icon + name + badge */}
-              <div className="mb-3 flex items-start gap-3">
-                <div className="flex-shrink-0 rounded-lg border border-white/8 bg-white/4 p-2.5">
-                  {model.icon}
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-2 mb-0.5">
-                    <h3 className="text-sm font-bold text-white">{model.org}</h3>
-                    <span className="text-[10px] text-white/30 font-mono">{model.orgTag}</span>
+        {/* ── Body ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 p-6 pt-5 overflow-y-auto">
+          
+          {/* Left: Ecosystem */}
+          <div className="lg:col-span-3 flex flex-col gap-3">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/25 ml-1">
+              Orchestration Ecosystem & Tooling
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {orchestrationNodes.map((node) => (
+                <div key={node.id} className="group relative overflow-hidden rounded-xl border border-white/6 bg-[#141414] p-4 transition-all hover:border-white/15 hover:bg-[#181818]">
+                  <div className="flex items-start gap-3 mb-2.5">
+                    <div className="flex-shrink-0 rounded-lg border border-white/8 bg-white/4 p-2">
+                      {node.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-xs font-bold text-white mb-1.5">{node.name}</h3>
+                      <span className={`inline-block rounded border px-1.5 py-[2px] text-[8px] font-bold uppercase tracking-widest ${node.badgeColor}`}>
+                        {node.category}
+                      </span>
+                    </div>
                   </div>
-                  <span
-                    className={`inline-block rounded border px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-widest ${model.badgeColor}`}
-                  >
-                    {model.badge}
-                  </span>
+                  <p className="text-[10px] leading-relaxed text-white/45">
+                    {node.desc}
+                  </p>
                 </div>
-              </div>
+              ))}
+            </div>
+          </div>
 
-              {/* Context */}
-              <p className="mb-4 text-xs leading-relaxed text-white/45 pl-0.5">
-                {model.context}
-              </p>
-
-              {/* Action link */}
-              <a
-                href={model.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                id={`rd-link-${model.id}`}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/4 px-3.5 py-2 text-[11px] font-semibold text-white/60 transition-all duration-200 hover:border-white/20 hover:bg-white/8 hover:text-white"
-              >
-                {model.linkLabel}
-                <ArrowUpRight size={12} className="flex-shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-            </article>
-          ))}
+          {/* Right: Live Feed */}
+          <div className="lg:col-span-2 flex flex-col gap-3 h-[400px] lg:h-auto">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/25 ml-1">
+              Live Network Monitor
+            </p>
+            <LiveNewsFeed />
+          </div>
         </div>
 
         {/* ── Institutional Alignment Sync Banner ── */}
-        <div className="mx-6 mb-6 rounded-xl border border-orange-500/20 bg-gradient-to-r from-orange-500/8 via-orange-400/5 to-transparent p-5">
+        <div className="mx-6 mb-6 rounded-xl border border-orange-500/20 bg-gradient-to-r from-orange-500/8 via-orange-400/5 to-transparent p-5 shrink-0">
           <div className="mb-2 flex items-center gap-2">
             <Radio size={13} className="text-orange-400" />
             <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-orange-400">
@@ -291,7 +336,7 @@ export default function Footer() {
                               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
                               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
                             </span>
-                            R&amp;D
+                            R&amp;D Intelligence Hub
                           </button>
                         </li>
                       )
