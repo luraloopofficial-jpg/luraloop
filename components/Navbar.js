@@ -533,7 +533,7 @@ export default function Navbar() {
               className="text-sm font-semibold text-white px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95"
               style={{ background: '#FF6B00', boxShadow: '0 0 20px rgba(255,107,0,0.35)' }}
             >
-              Book a Call
+              Sign Up
             </button>
           </div>
 
@@ -568,7 +568,7 @@ export default function Navbar() {
                   <button onClick={() => openAuth('signup')}
                     className="flex-1 py-2.5 rounded-xl text-sm font-semibold text-white transition-all"
                     style={{ background: '#FF6B00' }}>
-                    Book a Call
+                    Sign Up
                   </button>
                 </div>
               </motion.div>
