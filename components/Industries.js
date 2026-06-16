@@ -2,104 +2,174 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, CheckCircle, X, Shield, Zap, DollarSign, Activity, MessageCircle, FileText, Share2, Database, Network, Globe, Briefcase, GraduationCap, ShoppingBag, Building, Lock, Users, Cpu } from 'lucide-react'
+import {
+  ArrowRight, CheckCircle, X, Shield, Zap, Activity,
+  Heart, GraduationCap, ShoppingBag, Home, Factory, Truck,
+  Network, Globe, Lock, Users, Cpu, Database, GitBranch, MessageSquare
+} from 'lucide-react'
 
 const industries = [
   {
     tag: 'HEALTHCARE',
     name: 'ZIYA Healthcare',
-    subtitle: 'AI Receptionist for Hospitals & Clinics',
+    subtitle: 'Intelligent Front-Office Layer for Hospitals & Clinics',
     accent: '#3B82F6',
-    features: ['Appointment Booking', 'HMS Integration', 'Doctor Availability', '24/7 Patient Support'],
-    bg: '/industry-healthcare.jpg',
-    emoji: '🏥',
+    Icon: Heart,
     id: 'industry-healthcare',
+    capabilities: [
+      '24/7 OP Appointment Booking via WhatsApp',
+      'Real-time HMS & EMR Integration',
+      'Doctor Availability & Token Management',
+      'Multilingual Patient Communication',
+      'HIPAA-aligned ephemeral data processing',
+      'Automated Follow-up & Reminder Workflows',
+    ],
     modalData: {
-      problem: 'Traditional receptions face limited 8-hour availability, missed calls leading to lost patients, human double-bookings, and high monthly staff salaries (₹15,000 - ₹20,000).',
-      solution: 'A 24/7 WhatsApp-based virtual receptionist that automates OP booking, instant token generation, and real-time doctor schedules in Malayalam + English.',
-      architecture: '100% data privacy. Zero permanent server storage; acts strictly as a secure processing layer syncing directly with the Hospital Management System (HMS).',
-      pricing: 'One-time setup of ₹75,000 and ₹15,000/month operations. Handles 10,000+ monthly interactions and improves front desk efficiency by 2X.',
+      problem: 'Hospital front offices are constrained to 8-hour availability windows. Missed calls lead to lost patients, manual double-bookings create operational friction, and high-volume enquiry periods overwhelm reception staff.',
+      solution: 'A 24/7 AI receptionist layer deployed on WhatsApp, automating OP booking, instant token generation, and real-time doctor schedule queries. Operates in parallel with existing HMS without disruption.',
+      architecture: 'Designed for HIPAA-aligned environments. Data processed ephemerally — no patient information is stored permanently. Syncs directly with the Hospital Management System via secure encrypted API adapters.',
+      delivery: 'Standard module deployment in 48 hours. Custom HMS integration completed within 2 weeks. Ongoing managed operations and performance monitoring included.',
     }
   },
   {
     tag: 'EDUCATION',
     name: 'ZIYA Education',
-    subtitle: 'AI Assistant for Schools & Colleges',
+    subtitle: 'AI Admissions & Student Engagement Layer',
     accent: '#8B5CF6',
-    features: ['Admission Automation', 'LMS Integration', 'Student Enquiries', 'Fee Automation'],
-    bg: '/industry-education.jpg',
-    emoji: '🎓',
+    Icon: GraduationCap,
     id: 'industry-education',
+    capabilities: [
+      'Automated Admission Enquiry Handling',
+      'LMS / SIS Integration & Sync',
+      'Eligibility Checking & Course Guidance',
+      'Fee Structure Automation',
+      'Student Onboarding Workflow Orchestration',
+      '24/7 Parent & Student Support Agent',
+    ],
     modalData: {
-      problem: 'Admissions staff overwhelmed during peak seasons, delayed email/call responses to parents, manual seat tracking errors, and high operational management overhead.',
-      solution: '24/7 automated handling of admission enquiries, instant eligibility checking, course/fee structure guidance, and fast student registration over WhatsApp.',
-      architecture: 'Syncs securely in real-time with the school/college Learning Management System (LMS) or Student Information System (SIS). No external student databases stored.',
-      pricing: 'Transparent enterprise plans to optimize institutional workflows and eliminate entry bottlenecks.',
+      problem: 'Admissions staff are overwhelmed during peak intake periods. Delayed responses to parent and student enquiries result in lost conversions. Manual seat tracking introduces errors and compliance risk.',
+      solution: '24/7 AI agent handling admission enquiries, eligibility verification, course and fee guidance, and student registration — all over WhatsApp without additional staff.',
+      architecture: 'Built for GDPR-conscious data workflows. Syncs securely with the institution\'s LMS or SIS in real-time. No external student databases created or maintained by LuraLoop.',
+      delivery: 'Deployable within 5 business days for standard LMS connectors. Complex multi-system integrations scoped on discovery.',
     }
   },
   {
-    tag: 'REAL ESTATE',
-    name: 'ZIYA Estate',
-    subtitle: 'AI Agent for Real Estate Businesses',
-    accent: '#10B981',
-    features: ['Lead Qualification', 'Property Matching', 'Site Visit Scheduling', 'CRM Integration'],
-    bg: '/industry-realestate.jpg',
-    emoji: '🏢',
-    id: 'industry-estate',
-    modalData: {
-      problem: 'Property leads coming from multiple ad channels at midnight go cold, manual property matching is slow, and sales agents waste time on unverified calls.',
-      solution: 'AI instant lead qualification on WhatsApp. Collects budget/location preferences, matches properties automatically, and schedules real-time site visits seamlessly.',
-      architecture: 'Direct secure API connection with the agency\'s Central Customer Relationship Management (CRM) platform with encrypted end-to-end user communication.',
-      pricing: 'Scales conversion rates instantly, slashes agent workload, and ensures zero midnight lead loss.',
-    }
-  },
-  {
-    tag: 'E-COMMERCE',
+    tag: 'COMMERCE',
     name: 'ZIYA Commerce',
-    subtitle: 'AI Shopping Assistant for Online Stores',
+    subtitle: 'AI Shopping & Customer Operations Agent',
     accent: '#FF6B00',
-    features: ['AI Personal Shopper', 'Order Tracking', 'Customer Support', 'Product Recommendations'],
-    bg: '/industry-ecommerce.jpg',
-    emoji: '🛒',
+    Icon: ShoppingBag,
     id: 'industry-commerce',
+    capabilities: [
+      'AI Personal Shopper on WhatsApp',
+      'Real-time Order Tracking & Status Updates',
+      'Automated Return & Refund Processing',
+      'Shopify / WooCommerce / ERP Sync',
+      'Abandoned Cart Recovery Workflows',
+      'Product Recommendation Engine',
+    ],
     modalData: {
-      problem: 'Cart abandonment due to slow support, complex product discovery, manual sorting of return/refund tickets, and constant customer frustration.',
-      solution: 'Acts as an AI Personal Shopper on WhatsApp. Handles automated order tracking, answers product size queries, and processes instant return requests natively.',
-      architecture: 'Connects live with the E-Commerce platform API (Shopify, WooCommerce, ERP) to pull order statuses and inventory dynamically without local data logging.',
-      pricing: 'Drives repetitive buying behavior, maintains higher retention, and significantly reduces ticket queues.',
+      problem: 'Cart abandonment driven by slow customer support response times. Manual handling of returns and refund requests consumes agent capacity. Complex product discovery leads to drop-off.',
+      solution: 'An AI personal shopper deployed on WhatsApp handling order tracking, product queries, size guidance, and return requests natively — without routing to human agents for standard queries.',
+      architecture: 'Connects live with e-commerce platform APIs (Shopify, WooCommerce, ERP) to pull order statuses and inventory data dynamically. No customer purchase history logged on LuraLoop infrastructure.',
+      delivery: 'Standard Shopify and WooCommerce modules deploy in 48 hours. Custom ERP integrations scoped per engagement.',
+    }
+  },
+  {
+    tag: 'PROPERTY',
+    name: 'ZIYA Property',
+    subtitle: 'AI Lead Qualification & Site Scheduling Agent',
+    accent: '#10B981',
+    Icon: Home,
+    id: 'industry-property',
+    capabilities: [
+      'Instant Lead Qualification on WhatsApp',
+      'Budget & Location Preference Mapping',
+      'Property Matching & Brochure Delivery',
+      'Automated Site Visit Scheduling',
+      'CRM Integration & Lead Routing',
+      'After-Hours Lead Capture — Zero Loss',
+    ],
+    modalData: {
+      problem: 'Property leads arriving from digital ad channels outside office hours go cold immediately. Manual property matching is slow and agent-dependent. Sales teams waste capacity on unverified or low-intent enquiries.',
+      solution: 'An AI agent that instantly qualifies inbound leads on WhatsApp — collecting budget, location, and preference data, matching available properties, and booking site visits without agent involvement.',
+      architecture: 'Direct encrypted API integration with the agency\'s CRM platform. All lead data is routed to existing client systems without being stored on LuraLoop servers.',
+      delivery: 'CRM-connected module live within 5 business days. Operates 24/7 from day one of deployment.',
+    }
+  },
+  {
+    tag: 'INDUSTRIAL',
+    name: 'ZIYA Industrial',
+    subtitle: 'AI Operations & Compliance Workflow Layer',
+    accent: '#F59E0B',
+    Icon: Factory,
+    id: 'industry-industrial',
+    capabilities: [
+      'Maintenance Request Routing & Escalation',
+      'Compliance Documentation Automation',
+      'Shift Scheduling & Workforce Notification',
+      'ERP / MES Integration',
+      'Incident Reporting & Audit Trail Generation',
+      'Supplier Communication Workflow Automation',
+    ],
+    modalData: {
+      problem: 'Industrial operations require rapid internal communication, accurate compliance documentation, and real-time escalation of maintenance and safety events — all currently handled manually with high error risk.',
+      solution: 'An AI operations layer that automates maintenance request routing, compliance form generation, shift change notifications, and supplier communication directly within existing ERP and MES environments.',
+      architecture: 'Built with enterprise security controls. Integrates with ERP and Manufacturing Execution Systems via secure API adapters. Supports on-premise deployment for regulated industrial environments.',
+      delivery: 'Modular deployment approach. Core operational workflows live within 2 weeks. Full MES integration scoped on discovery.',
+    }
+  },
+  {
+    tag: 'LOGISTICS',
+    name: 'ZIYA Logistics',
+    subtitle: 'AI Shipment Tracking & Coordination Agent',
+    accent: '#06B6D4',
+    Icon: Truck,
+    id: 'industry-logistics',
+    capabilities: [
+      'Real-time Shipment Status Notifications',
+      'Courier API Integration & Tracking Sync',
+      'Automated Delivery Exception Handling',
+      'Customer-facing WhatsApp Tracking Agent',
+      'Warehouse Coordination Workflow Automation',
+      'Last-Mile Delivery Confirmation Loops',
+    ],
+    modalData: {
+      problem: 'High-volume logistics operations generate thousands of customer shipment enquiries daily. Manual tracking responses consume agent hours. Delivery exceptions and delays require real-time coordination across teams.',
+      solution: 'An AI logistics agent providing customers with real-time shipment status via WhatsApp, automating exception handling notifications, and coordinating internally with warehouse and delivery teams.',
+      architecture: 'Integrates with courier APIs and warehouse management systems. All tracking data pulled live — no shipment records persisted on LuraLoop infrastructure.',
+      delivery: 'Standard courier API connector modules deploy in 48 hours. Custom WMS integrations scoped per engagement.',
     }
   },
 ]
 
+function CapabilityBullet({ text, accent }) {
+  return (
+    <li className="flex items-start gap-2.5 text-white/60 text-xs leading-relaxed">
+      <CheckCircle size={13} style={{ color: accent }} className="shrink-0 mt-0.5" />
+      {text}
+    </li>
+  )
+}
+
 export default function Industries() {
   const [selectedIndustry, setSelectedIndustry] = useState(null)
-  const [showServicesModal, setShowServicesModal] = useState(false)
   const modalRef = useRef(null)
-  const servicesModalRef = useRef(null)
 
-  // Close modal on click outside
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (selectedIndustry && modalRef.current && !modalRef.current.contains(event.target)) {
+    const handle = (e) => {
+      if (selectedIndustry && modalRef.current && !modalRef.current.contains(e.target)) {
         setSelectedIndustry(null)
       }
-      if (showServicesModal && servicesModalRef.current && !servicesModalRef.current.contains(event.target)) {
-        setShowServicesModal(false)
-      }
     }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [selectedIndustry, showServicesModal])
+    document.addEventListener('mousedown', handle)
+    return () => document.removeEventListener('mousedown', handle)
+  }, [selectedIndustry])
 
-  // Prevent background scrolling when modal is open
   useEffect(() => {
-    if (selectedIndustry || showServicesModal) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
-    }
+    document.body.style.overflow = selectedIndustry ? 'hidden' : 'unset'
     return () => { document.body.style.overflow = 'unset' }
-  }, [selectedIndustry, showServicesModal])
+  }, [selectedIndustry])
 
   return (
     <section id="industries" className="py-28 relative">
@@ -110,316 +180,179 @@ export default function Industries() {
 
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
-          <div>
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="section-tag"
-            >
-              Industries We Serve
-            </motion.span>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="section-title"
-            >
-              AI Solutions for <span className="gradient-text">Every Industry</span>
-            </motion.h2>
-          </div>
-          <motion.button
+        <div className="text-center mb-14">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="section-tag justify-center"
+          >
+            Industry Modules
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="section-title text-center"
+          >
+            The <span className="gradient-text">ZIYA</span> Module Family
+          </motion.h2>
+          <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            onClick={(e) => { e.preventDefault(); setShowServicesModal(true); }}
-            className="flex items-center gap-2 text-orange-500 text-sm font-medium hover:gap-3 transition-all duration-300 bg-transparent border-none p-0 cursor-pointer"
+            transition={{ delay: 0.2 }}
+            className="text-white/35 mt-4 text-sm max-w-xl mx-auto leading-relaxed"
           >
-            Explore All Industries <ArrowRight size={14} />
-          </motion.button>
+            Sector-specific AI agent deployments built on the LuraLoop infrastructure layer. Each module is pre-integrated with the dominant systems of its vertical and deployable under your agency&apos;s brand.
+          </motion.p>
         </div>
 
-        {/* Cards Grid — always visible across all breakpoints */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* 6-column module grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {industries.map((ind, i) => (
             <motion.div
-              key={i}
+              key={ind.id}
               id={ind.id}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
-              whileHover={{ y: -8, scale: 1.01 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ delay: i * 0.08, duration: 0.55 }}
+              whileHover={{ y: -5 }}
               onClick={() => setSelectedIndustry(ind)}
-              className="relative rounded-2xl overflow-hidden cursor-pointer group"
-              style={{ minHeight: 420 }}
+              className="glass rounded-2xl overflow-hidden card-hover group cursor-pointer flex flex-col"
             >
-              {/* Cinematic Background with hover zoom */}
+              {/* Card header */}
               <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                style={{ backgroundImage: `url(${ind.bg})` }}
-              />
-              {/* High-contrast gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent" />
-              {/* Hover glow */}
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{ background: `radial-gradient(ellipse 80% 50% at 50% 100%, ${ind.accent}22 0%, transparent 60%)` }}
-              />
-              {/* Hover border */}
-              <div
-                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{ border: `1px solid ${ind.accent}44` }}
-              />
-
-              {/* Content */}
-              <div className="relative z-10 p-6 h-full flex flex-col justify-end" style={{ minHeight: 420 }}>
-                <div
-                  className="absolute top-5 left-5 text-[9px] font-bold tracking-widest px-2.5 py-1 rounded-full"
-                  style={{ background: `${ind.accent}22`, color: ind.accent, border: `1px solid ${ind.accent}44` }}
-                >
-                  {ind.tag}
+                className="p-5 relative"
+                style={{ background: `linear-gradient(135deg, ${ind.accent}0f 0%, rgba(17,17,17,0.95) 100%)` }}
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center"
+                    style={{ background: `${ind.accent}18`, border: `1px solid ${ind.accent}30` }}
+                  >
+                    <ind.Icon size={18} style={{ color: ind.accent }} />
+                  </div>
+                  <span
+                    className="text-[9px] font-bold px-2 py-1 rounded-full"
+                    style={{ background: `${ind.accent}15`, color: ind.accent, border: `1px solid ${ind.accent}28` }}
+                  >
+                    {ind.tag}
+                  </span>
                 </div>
-                <h3 className="text-white text-xl font-bold mb-1 drop-shadow-md">{ind.name}</h3>
-                <p className="text-white/90 font-medium text-sm mb-5 leading-relaxed drop-shadow-md">{ind.subtitle}</p>
-                <ul className="space-y-2 mb-5">
-                  {ind.features.map((feat, j) => (
-                    <li key={j} className="flex items-center gap-2 text-white font-medium text-xs drop-shadow-sm">
-                      <CheckCircle size={14} style={{ color: ind.accent }} className="shrink-0 drop-shadow-md" />
-                      {feat}
-                    </li>
+                <h3 className="text-white font-bold text-base mb-1">{ind.name}</h3>
+                <p className="text-white/40 text-xs leading-snug">{ind.subtitle}</p>
+              </div>
+
+              {/* Capabilities */}
+              <div className="p-5 flex flex-col flex-1 gap-4">
+                <ul className="space-y-2">
+                  {ind.capabilities.slice(0, 4).map((cap, j) => (
+                    <CapabilityBullet key={j} text={cap} accent={ind.accent} />
                   ))}
                 </ul>
-                <button
-                  className="w-9 h-9 rounded-xl flex items-center justify-center self-end opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0"
-                  style={{ background: ind.accent, boxShadow: `0 0 20px ${ind.accent}66` }}
-                  aria-label={`Learn more about ${ind.name}`}
-                >
-                  <ArrowRight size={14} className="text-white" />
-                </button>
+                <div className="mt-auto flex items-center justify-between pt-4 border-t border-white/5">
+                  <span className="text-white/20 text-[10px]">{ind.capabilities.length} capabilities</span>
+                  <div
+                    className="flex items-center gap-1.5 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-all duration-250 translate-x-1 group-hover:translate-x-0"
+                    style={{ color: ind.accent }}
+                  >
+                    View Module <ArrowRight size={12} />
+                  </div>
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
 
-      {/* Modal Overlay */}
+      {/* Detail Modal */}
       <AnimatePresence>
         {selectedIndustry && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-lg"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/85 backdrop-blur-lg"
           >
             <motion.div
               ref={modalRef}
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              initial={{ opacity: 0, scale: 0.96, y: 18 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto glass border rounded-2xl shadow-2xl flex flex-col md:flex-row scrollbar-thin scrollbar-thumb-white/10"
-              style={{ borderColor: `${selectedIndustry.accent}44` }}
+              exit={{ opacity: 0, scale: 0.96, y: 18 }}
+              transition={{ type: 'spring', damping: 26, stiffness: 320 }}
+              className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-[#0A0A0A]/98 backdrop-blur-xl rounded-2xl shadow-2xl"
+              style={{ border: `1px solid ${selectedIndustry.accent}30` }}
             >
-              {/* Left side: Image & Title */}
-              <div className="md:w-2/5 relative min-h-[250px] md:min-h-full">
-                <div 
-                  className="absolute inset-0 bg-cover bg-center" 
-                  style={{ backgroundImage: `url(${selectedIndustry.bg})` }} 
-                />
-                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#0B0B0B] via-[#0B0B0B]/80 to-transparent" />
-                <div className="relative z-10 h-full p-8 flex flex-col justify-end md:justify-center">
-                  <h2 className="text-3xl font-bold text-white mb-2">{selectedIndustry.name}</h2>
-                  <p className="text-white/80 font-medium text-sm leading-relaxed">{selectedIndustry.subtitle}</p>
-                </div>
-              </div>
-
-              {/* Right side: Detailed Data */}
-              <div className="md:w-3/5 p-8 md:p-10 bg-[#0B0B0B]/95 space-y-8">
+              {/* Modal Header */}
+              <div className="p-7 pb-5 border-b border-white/5">
                 <button
                   onClick={() => setSelectedIndustry(null)}
-                  className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-colors"
+                  className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-white transition-colors"
                 >
-                  <X size={18} />
+                  <X size={16} />
                 </button>
-
-                {/* Sections Array Map for 3D Float Animation */}
-                {[
-                  { title: 'The Problem', content: selectedIndustry.modalData.problem, icon: Activity, iconColor: 'text-red-400', iconBg: 'bg-red-500/10', iconBorder: 'border-red-500/20', hoverShadow: '0 10px 30px -10px rgba(239,68,68,0.3)', borderHover: 'rgba(239,68,68,0.2)' },
-                  { title: 'The Solution (Ziya AI)', content: selectedIndustry.modalData.solution, icon: Zap, iconColor: 'text-green-400', iconBg: 'bg-green-500/10', iconBorder: 'border-green-500/20', hoverShadow: '0 10px 30px -10px rgba(34,197,94,0.3)', borderHover: 'rgba(34,197,94,0.2)' },
-                  { title: 'Architecture & Security', content: selectedIndustry.modalData.architecture, icon: Shield, iconColor: 'text-blue-400', iconBg: 'bg-blue-500/10', iconBorder: 'border-blue-500/20', hoverShadow: '0 10px 30px -10px rgba(59,130,246,0.3)', borderHover: 'rgba(59,130,246,0.2)' },
-                  { title: 'Pricing & Value', content: selectedIndustry.modalData.pricing, icon: DollarSign, iconColor: 'text-orange-400', iconBg: 'bg-orange-500/10', iconBorder: 'border-orange-500/20', hoverShadow: '0 10px 30px -10px rgba(255,107,0,0.3)', borderHover: 'rgba(255,107,0,0.2)' },
-                ].map((sec, idx) => (
-                  <motion.div 
-                    key={idx}
-                    whileHover={{ 
-                      scale: 1.02, 
-                      y: -4, 
-                      boxShadow: sec.hoverShadow,
-                      borderColor: sec.borderHover,
-                      backgroundColor: 'rgba(255,255,255,0.02)'
-                    }}
-                    className="flex gap-4 p-4 -mx-4 rounded-2xl border border-transparent transition-colors duration-300 transform-gpu cursor-default"
+                <div className="flex items-center gap-3 mb-3">
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center"
+                    style={{ background: `${selectedIndustry.accent}18`, border: `1px solid ${selectedIndustry.accent}30` }}
                   >
-                    <div className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${sec.iconBg} border ${sec.iconBorder} ${sec.iconColor}`}>
-                      <sec.icon size={20} />
+                    <selectedIndustry.Icon size={18} style={{ color: selectedIndustry.accent }} />
+                  </div>
+                  <div>
+                    <span
+                      className="text-[9px] font-bold uppercase tracking-widest"
+                      style={{ color: selectedIndustry.accent }}
+                    >
+                      {selectedIndustry.tag}
+                    </span>
+                    <h2 className="text-white font-bold text-xl leading-tight">{selectedIndustry.name}</h2>
+                  </div>
+                </div>
+                <p className="text-white/40 text-sm">{selectedIndustry.subtitle}</p>
+              </div>
+
+              <div className="p-7 space-y-6">
+                {/* Full Capabilities */}
+                <div>
+                  <h4 className="text-white/55 text-[10px] font-semibold uppercase tracking-widest mb-3">Module Capabilities</h4>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {selectedIndustry.capabilities.map((cap, i) => (
+                      <CapabilityBullet key={i} text={cap} accent={selectedIndustry.accent} />
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Detail Sections */}
+                {[
+                  { label: 'Operational Problem', icon: Activity, iconClass: 'text-red-400', content: selectedIndustry.modalData.problem },
+                  { label: 'LuraLoop Solution', icon: Zap, iconClass: 'text-emerald-400', content: selectedIndustry.modalData.solution },
+                  { label: 'Architecture & Data Governance', icon: Shield, iconClass: 'text-blue-400', content: selectedIndustry.modalData.architecture },
+                  { label: 'Deployment & Delivery', icon: GitBranch, iconClass: 'text-orange-400', content: selectedIndustry.modalData.delivery },
+                ].map((sec, i) => (
+                  <div key={i} className="flex gap-4 p-4 rounded-xl border border-white/5 bg-white/[0.02]">
+                    <div className="shrink-0 mt-0.5">
+                      <sec.icon size={16} className={sec.iconClass} />
                     </div>
                     <div>
-                      <h4 className="text-white font-semibold mb-2">{sec.title}</h4>
-                      <p className="text-white/60 text-sm leading-relaxed">{sec.content}</p>
+                      <h4 className="text-white/70 font-semibold text-xs uppercase tracking-wide mb-2">{sec.label}</h4>
+                      <p className="text-white/42 text-sm leading-relaxed">{sec.content}</p>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
-                
+
                 {/* CTA */}
-                <div className="pt-6 border-t border-white/5">
-                  <button 
-                    className="w-full py-3 rounded-xl font-medium text-white transition-all hover:scale-[1.02] active:scale-[0.98]"
-                    style={{ background: selectedIndustry.accent, boxShadow: `0 0 20px ${selectedIndustry.accent}44` }}
+                <div className="pt-2">
+                  <a
+                    href="#cta"
+                    onClick={() => setSelectedIndustry(null)}
+                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl font-semibold text-white text-sm transition-all hover:scale-[1.015] active:scale-[0.985]"
+                    style={{ background: selectedIndustry.accent, boxShadow: `0 0 22px ${selectedIndustry.accent}40` }}
                   >
-                    Deploy for {selectedIndustry.name}
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Services Modal Overlay */}
-      <AnimatePresence>
-        {showServicesModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
-          >
-            <motion.div
-              ref={servicesModalRef}
-              initial={{ opacity: 0, scale: 0.95, y: 30 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 30 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative w-full max-w-6xl max-h-[90vh] overflow-y-auto bg-[#050505]/95 backdrop-blur-xl border border-zinc-900 rounded-2xl shadow-2xl p-8 md:p-12 scrollbar-thin scrollbar-thumb-zinc-800"
-            >
-              <button
-                onClick={() => setShowServicesModal(false)}
-                className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-colors"
-              >
-                <X size={18} />
-              </button>
-
-              {/* Global Header */}
-              <div className="text-center mb-16">
-                <span className="text-orange-500 text-xs font-bold uppercase tracking-widest mb-3 block">
-                  LURA LOOP | MULTI-AGENT ORCHESTRATION LAB
-                </span>
-                <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                  Enterprise Infrastructure for the <span className="text-orange-500">Agentic Era</span>
-                </h2>
-                <p className="text-zinc-300 text-xl font-medium mb-6">
-                  Smarter Workflows. Zero Latency. Absolute Precision.
-                </p>
-                <p className="text-zinc-400 text-base max-w-3xl mx-auto leading-relaxed">
-                  The exact 'Multi-Agent Cognitive Framework' used by Fortune 500 companies in Silicon Valley to 100% automate their back-office operations, now available for your business.
-                </p>
-              </div>
-
-              {/* SECTION 1: Architecture */}
-              <div className="mb-16">
-                <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
-                  <Network className="text-orange-500" />
-                  The Enterprise Multi-Agent Architecture
-                </h3>
-                <div className="grid md:grid-cols-4 gap-6">
-                  {[
-                    { title: 'The Intent Router', role: 'The Front Office', desc: 'Instantly identifies incoming leads or customer requirements within seconds and cross-references them with the database.' },
-                    { title: 'Cognitive Strategy Director', role: 'The Manager', desc: 'Formulates a strategy based on the customer\'s needs and delegates tasks to staff agents in real-time. [Powered by Anthropic Claude]' },
-                    { title: 'Specialized Autonomous Executors', role: 'The Workers', desc: 'Completes database updates, payment gateway triggers, PDF generation, and media delivery entirely without human intervention. [Powered by Meta Llama & Google Gemini]' },
-                    { title: 'The Self-Healing Audit Engine', role: 'The Auditor Loop', desc: 'A security loop running in the back-end to ensure every message and output going to the client is 100% accurate. If any error is detected, the system autonomously self-heals and corrects it.' },
-                  ].map((node, i) => (
-                    <div key={i} className="p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800/50 hover:border-orange-500/30 transition-all group">
-                      <div className="text-orange-500 text-sm font-bold mb-1">{node.role}</div>
-                      <h4 className="text-white text-lg font-semibold mb-3 group-hover:text-orange-400 transition-colors">{node.title}</h4>
-                      <p className="text-zinc-400 text-sm leading-relaxed">{node.desc}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* SECTION 2: Use Cases */}
-              <div className="mb-16">
-                <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
-                  <Globe className="text-orange-500" />
-                  Global Industry Use-Cases
-                </h3>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="p-8 rounded-2xl bg-zinc-900/30 border border-zinc-800/50">
-                    <div className="flex items-center gap-3 mb-4">
-                      <Briefcase className="text-blue-500" />
-                      <h4 className="text-white text-xl font-bold">Financial & FinTech Operations</h4>
-                    </div>
-                    <span className="inline-block px-3 py-1 bg-blue-500/10 text-blue-400 text-xs font-semibold rounded-full mb-4">Multi-Bank Group Model</span>
-                    <p className="text-zinc-400 text-sm mb-4 leading-relaxed"><strong className="text-zinc-200">How it works:</strong> This agent cluster handles customer KYC document verification, live trading database updates, and automated financial report generation.</p>
-                    <p className="text-zinc-400 text-sm leading-relaxed"><strong className="text-zinc-200">The Impact:</strong> Reduces human errors to 0%. Ensures banking-grade security and 24/7 live support.</p>
-                  </div>
-
-                  <div className="p-8 rounded-2xl bg-zinc-900/30 border border-zinc-800/50">
-                    <div className="flex items-center gap-3 mb-4">
-                      <GraduationCap className="text-purple-500" />
-                      <h4 className="text-white text-xl font-bold">Next-Gen Academic Institutions</h4>
-                    </div>
-                    <span className="inline-block px-3 py-1 bg-purple-500/10 text-purple-400 text-xs font-semibold rounded-full mb-4">Workato Education Model</span>
-                    <p className="text-zinc-400 text-sm mb-4 leading-relaxed"><strong className="text-zinc-200">How it works:</strong> Converts customer leads from advertisements entirely into admissions via AI counseling. Teaches course syllabuses and lecture recordings to students 24/7 via RAG (Knowledge Retrieval).</p>
-                    <p className="text-zinc-400 text-sm leading-relaxed"><strong className="text-zinc-200">Predictive Advantage:</strong> Live tracks new Meta/Google algorithms to predict in advance how much reach your content will get.</p>
-                  </div>
-
-                  <div className="p-8 rounded-2xl bg-zinc-900/30 border border-zinc-800/50">
-                    <div className="flex items-center gap-3 mb-4">
-                      <ShoppingBag className="text-orange-500" />
-                      <h4 className="text-white text-xl font-bold">High-Volume E-Commerce Engines</h4>
-                    </div>
-                    <span className="inline-block px-3 py-1 bg-orange-500/10 text-orange-400 text-xs font-semibold rounded-full mb-4">Amazon/Shopify Smart Model</span>
-                    <p className="text-zinc-400 text-sm mb-4 leading-relaxed"><strong className="text-zinc-200">How it works:</strong> Analyzes the customer's past purchase history to autonomously suggest products they might like via WhatsApp. Brings back users who haven't completed their purchase by providing offers through 'Abandoned Cart' loops.</p>
-                    <p className="text-zinc-400 text-sm leading-relaxed"><strong className="text-zinc-200">The Impact:</strong> Live order tracking and refund processes become 100% automated via Courier APIs.</p>
-                  </div>
-
-                  <div className="p-8 rounded-2xl bg-zinc-900/30 border border-zinc-800/50">
-                    <div className="flex items-center gap-3 mb-4">
-                      <Building className="text-green-500" />
-                      <h4 className="text-white text-xl font-bold">Real Estate & Property Developers</h4>
-                    </div>
-                    <span className="inline-block px-3 py-1 bg-green-500/10 text-green-400 text-xs font-semibold rounded-full mb-4">Smart Realty Model</span>
-                    <p className="text-zinc-400 text-sm leading-relaxed"><strong className="text-zinc-200">How it works:</strong> Collects the client's budget and location, finds exact matches from the property list, and sends photos and brochures. Autonomously schedules site visits.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* SECTION 3: Security */}
-              <div className="pt-8 border-t border-zinc-800/50">
-                <h3 className="text-2xl font-bold text-white mb-8 flex items-center justify-center gap-3">
-                  <Shield className="text-orange-500" />
-                  Silicon Valley Compliance & Security
-                </h3>
-                <div className="flex flex-col md:flex-row gap-6 justify-center">
-                  <div className="flex-1 flex flex-col items-center text-center p-6">
-                    <Lock className="text-orange-500 mb-4" size={32} />
-                    <h4 className="text-white font-bold mb-3">Zero-Data Retention</h4>
-                    <p className="text-zinc-400 text-sm leading-relaxed">Your business data is not permanently stored on AI servers. It merely acts as a Secure Processing Layer.</p>
-                  </div>
-                  <div className="flex-1 flex flex-col items-center text-center p-6">
-                    <Users className="text-orange-500 mb-4" size={32} />
-                    <h4 className="text-white font-bold mb-3">Human-In-The-Loop (HITL)</h4>
-                    <p className="text-zinc-400 text-sm leading-relaxed">A control system that ensures manual human approval over the AI for highly critical decisions or payments.</p>
-                  </div>
-                  <div className="flex-1 flex flex-col items-center text-center p-6">
-                    <Cpu className="text-orange-500 mb-4" size={32} />
-                    <h4 className="text-white font-bold mb-3">Enterprise Scalability</h4>
-                    <p className="text-zinc-400 text-sm leading-relaxed">The capacity to seamlessly converse and process data with tens of thousands of customers simultaneously without interruption.</p>
-                  </div>
+                    Deploy {selectedIndustry.name} Module <ArrowRight size={14} />
+                  </a>
                 </div>
               </div>
             </motion.div>

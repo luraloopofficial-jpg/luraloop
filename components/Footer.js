@@ -29,10 +29,11 @@ const GitHubIcon = () => (
 // Static data
 // ─────────────────────────────────────────────
 const footerLinks = {
-  Solutions: ['AI Agents', 'Workflow Automation', 'System Integration', 'Analytics'],
-  Industries: ['Healthcare', 'Education', 'Real Estate', 'E-Commerce', 'More'],
-  Resources: ['Blog', 'Templates', 'Case Studies', 'Documentation', 'R&D'],
-  Company: ['About Us', 'Careers', 'Contact Us', 'Privacy Policy'],
+  Platform: ['Architecture', 'Integration Adapters', 'API Reference', 'Changelog'],
+  'Partner Program': ['Reseller Model', 'SLA Framework', 'Partner Enablement', 'Apply as Partner'],
+  'Industry Modules': ['ZIYA Healthcare', 'ZIYA Education', 'ZIYA Commerce', 'ZIYA Property'],
+  Security: ['Data Governance', 'Zero-Retention Policy', 'Access Isolation', 'Trust Center'],
+  Company: ['About', 'Blog', 'Contact Us', 'R&D'],
 }
 
 const socialLinks = [
@@ -298,10 +299,17 @@ export default function Footer() {
 
                     let href = '/#'
                     if (link === 'Blog') href = '/blog'
-                    else if (link === 'About Us') href = '/#about'
+                    else if (link === 'About') href = '/#about'
                     else if (link === 'Contact Us') href = 'mailto:luraloop.official@gmail.com'
-                    else if (link === 'Templates') href = 'https://luraloop.gumroad.com/'
-                    else if (link === 'Case Studies') href = '/blog'
+                    else if (link === 'Apply as Partner') href = '/#partners'
+                    else if (link === 'Architecture') href = '/#architecture'
+                    else if (link === 'ZIYA Healthcare') href = '/#industries'
+                    else if (link === 'ZIYA Education') href = '/#industries'
+                    else if (link === 'ZIYA Commerce') href = '/#industries'
+                    else if (link === 'ZIYA Property') href = '/#industries'
+                    else if (link === 'Trust Center') href = 'mailto:luraloop.official@gmail.com?subject=Trust Center Request'
+                    else if (link === 'Zero-Retention Policy') href = '/#security'
+                    else if (link === 'Data Governance') href = '/#security'
 
                     return (
                       <li key={link}>
@@ -323,7 +331,7 @@ export default function Footer() {
 
           {/* Bottom bar */}
           <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-white/25 text-xs">© 2025 LuraLoop. All rights reserved. White-Label Automation Infrastructure.</p>
+            <p className="text-white/20 text-xs">© 2025 LuraLoop. All rights reserved. White-Label Automation Infrastructure for Enterprise Delivery Partners.</p>
             <div className="flex items-center gap-6">
               {['Terms of Service', 'Privacy Policy', 'Cookie Policy'].map((item) => (
                 <a key={item} href="/#" className="text-white/25 text-xs hover:text-white/50 transition-colors">

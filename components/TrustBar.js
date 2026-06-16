@@ -1,67 +1,70 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { Plug, Database, MessageSquare, BarChart3, ShieldCheck, Clock, Package, Headphones } from 'lucide-react'
 
-const brands = [
-  { name: 'Aster MIMS Hospital', abbr: 'AMH', icon: '🏥' },
-  { name: 'MES Group', abbr: 'MES', icon: '🎓' },
-  { name: 'SUGEE Group', abbr: 'SGG', icon: '🏢' },
-  { name: 'City Properties', abbr: 'CP', icon: '🏘️' },
-  { name: 'RecraCon', abbr: 'RC', icon: '💼' },
-  { name: 'TechCorp Enterprises', abbr: 'TCE', icon: '⚙️' },
-  { name: 'NovaMed Healthcare', abbr: 'NMH', icon: '⚕️' },
-  { name: 'Apex Commerce', abbr: 'ACX', icon: '🛒' },
+const integrations = [
+  { Icon: Database, label: 'HMS / EMR' },
+  { Icon: BarChart3, label: 'LMS / SIS' },
+  { Icon: Plug, label: 'ERP / CRM' },
+  { Icon: MessageSquare, label: 'WhatsApp API' },
+  { Icon: Database, label: 'Custom APIs' },
 ]
 
-const duplicated = [...brands, ...brands]
+const postures = [
+  { Icon: ShieldCheck, label: 'Zero-Retention Architecture' },
+  { Icon: ShieldCheck, label: 'TLS 1.3 Encryption' },
+  { Icon: ShieldCheck, label: 'Role-Based Access Isolation' },
+  { Icon: ShieldCheck, label: 'Ephemeral Compute Model' },
+]
 
 export default function TrustBar() {
   return (
-    <section id="trust" className="py-14 border-y border-white/5 relative overflow-hidden">
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: 'linear-gradient(180deg, rgba(255,107,0,0.02) 0%, transparent 100%)' }}
-      />
+    <section id="trust" className="py-12 border-y border-white/5 relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(180deg, rgba(255,107,0,0.018) 0%, transparent 100%)' }} />
 
-      <div className="max-w-7xl mx-auto px-6 mb-8 text-center">
+      <div className="max-w-7xl mx-auto px-6">
         <motion.p
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-white/30 text-sm uppercase tracking-widest font-medium"
+          className="text-center text-white/25 text-xs uppercase tracking-widest font-medium mb-8"
         >
-          Trusted by forward-thinking organizations
+          Integration-ready across regulated enterprise stacks
         </motion.p>
-      </div>
 
-      {/* Marquee */}
-      <div className="relative overflow-hidden">
-        {/* Fade edges */}
-        <div
-          className="absolute left-0 top-0 bottom-0 w-32 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(90deg, #0B0B0B, transparent)' }}
-        />
-        <div
-          className="absolute right-0 top-0 bottom-0 w-32 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(-90deg, #0B0B0B, transparent)' }}
-        />
+        <div className="flex flex-col gap-5">
+          {/* Integration adapters */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="flex flex-wrap justify-center gap-3"
+          >
+            {integrations.map(({ Icon, label }, i) => (
+              <div key={i} className="glass rounded-xl px-4 py-2.5 flex items-center gap-2.5">
+                <Icon size={13} className="text-orange-500/70 shrink-0" />
+                <span className="text-white/45 text-xs font-medium">{label}</span>
+              </div>
+            ))}
+          </motion.div>
 
-        <div className="marquee-track flex gap-6 w-max">
-          {duplicated.map((brand, i) => (
-            <div
-              key={i}
-              className="glass rounded-2xl px-6 py-4 flex items-center gap-3 shrink-0 hover:border-orange-500/30 transition-colors duration-300 cursor-pointer group"
-              style={{ minWidth: 190 }}
-            >
-              <div className="w-9 h-9 rounded-lg bg-dark-300 flex items-center justify-center text-lg group-hover:scale-110 transition-transform duration-300">
-                {brand.icon}
+          {/* Security postures */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="flex flex-wrap justify-center gap-3"
+          >
+            {postures.map(({ Icon, label }, i) => (
+              <div key={i} className="flex items-center gap-2">
+                <div className="w-1 h-1 rounded-full bg-orange-500/50" />
+                <span className="text-white/25 text-xs">{label}</span>
               </div>
-              <div>
-                <div className="text-white font-semibold text-sm">{brand.abbr}</div>
-                <div className="text-white/30 text-xs">{brand.name}</div>
-              </div>
-            </div>
-          ))}
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>
