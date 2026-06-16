@@ -59,7 +59,7 @@ const compliance = [
 
 function ShieldSVG() {
   return (
-    <div className="relative flex items-center justify-center" aria-label="Security shield">
+    <div role="img" aria-label="Security shield" className="relative flex items-center justify-center">
       {[220, 180, 140].map((size, i) => (
         <div key={i} className="absolute rounded-full" style={{
           width: size, height: size,

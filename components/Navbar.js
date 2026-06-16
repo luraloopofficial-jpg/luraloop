@@ -236,7 +236,7 @@ function LoginForm({ onSwitch }) {
         </div>
 
         <button type="submit" disabled={loading || googleLoading}
-          className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl font-bold text-white text-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60"
+          className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl font-bold text-[#0B0B0B] text-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60"
           style={{ background: '#FF6B00', boxShadow: '0 0 25px rgba(255,107,0,0.3)' }}>
           {loading ? <Loader2 size={16} className="animate-spin" /> : 'Sign In'}
         </button>
@@ -363,7 +363,7 @@ function SignupForm({ onSwitch }) {
           error={errors.password} placeholder="Min. 8 characters" autoComplete="new-password" />
 
         <button type="submit" disabled={loading || googleLoading}
-          className="w-full flex items-center justify-center gap-2 py-3.5 mt-2 rounded-xl font-bold text-white text-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60"
+          className="w-full flex items-center justify-center gap-2 py-3.5 mt-2 rounded-xl font-bold text-[#0B0B0B] text-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60"
           style={{ background: '#FF6B00', boxShadow: '0 0 25px rgba(255,107,0,0.3)' }}>
           {loading ? <Loader2 size={16} className="animate-spin" /> : 'Create Account'}
         </button>
@@ -442,7 +442,7 @@ function ForgotForm({ onSwitch }) {
               error={errors.email} placeholder="you@company.com" autoComplete="email" />
               
             <button type="submit" disabled={loading}
-              className="w-full flex items-center justify-center gap-2 py-3.5 mt-2 rounded-xl font-bold text-white text-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60"
+              className="w-full flex items-center justify-center gap-2 py-3.5 mt-2 rounded-xl font-bold text-[#0B0B0B] text-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60"
               style={{ background: '#FF6B00', boxShadow: '0 0 25px rgba(255,107,0,0.3)' }}>
               {loading ? <Loader2 size={16} className="animate-spin" /> : 'Send Recovery Link'}
             </button>
@@ -502,8 +502,8 @@ export default function Navbar() {
         >
           {/* Logo */}
           <a href="/" className="flex items-center group" aria-label="LuraLoop Home">
-            <Image src="/Logo.svg" alt="LuraLoop Official Corporate Logo"
-              width={140} height={40} priority
+            <img src="/Logo.svg" alt="LuraLoop Official Corporate Logo"
+              width={150} height={32}
               className="h-8 w-auto group-hover:opacity-90 transition-opacity duration-300" />
           </a>
 
@@ -530,7 +530,7 @@ export default function Navbar() {
             <button
               onClick={() => openAuth('signup')}
               id="nav-signup-btn"
-              className="text-sm font-semibold text-white px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95"
+              className="text-sm font-semibold text-[#0B0B0B] px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95"
               style={{ background: '#FF6B00', boxShadow: '0 0 20px rgba(255,107,0,0.35)' }}
             >
               Sign Up
@@ -566,7 +566,7 @@ export default function Navbar() {
                     Login
                   </button>
                   <button onClick={() => openAuth('signup')}
-                    className="flex-1 py-2.5 rounded-xl text-sm font-semibold text-white transition-all"
+                    className="flex-1 py-2.5 rounded-xl text-sm font-semibold text-[#0B0B0B] transition-all"
                     style={{ background: '#FF6B00' }}>
                     Sign Up
                   </button>

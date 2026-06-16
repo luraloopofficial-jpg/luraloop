@@ -294,6 +294,8 @@ export default function Footer() {
                   <img
                     src="/Logo.svg"
                     alt="LuraLoop Official Corporate Logo"
+                    width={150}
+                    height={32}
                     className="h-8 w-auto opacity-90 hover:opacity-100 transition-opacity"
                   />
                 </a>
@@ -320,7 +322,7 @@ export default function Footer() {
             {/* Link columns */}
             {Object.entries(footerLinks).map(([category, links]) => (
               <div key={category}>
-                <h4 className="text-white text-xs font-semibold uppercase tracking-wider mb-4">{category}</h4>
+                <p className="text-white text-xs font-semibold uppercase tracking-wider mb-4">{category}</p>
                 <ul className="space-y-3">
                   {links.map((link) => {
                     // R&D triggers modal — render as a button
@@ -330,8 +332,7 @@ export default function Footer() {
                           <button
                             id="footer-rd-trigger"
                             onClick={() => setShowRd(true)}
-                            className="flex items-center gap-1 text-white/35 text-sm hover:text-orange-400 transition-colors duration-200 group"
-                          >
+                            className="flex items-center gap-1 text-white/60 text-sm hover:text-orange-400 transition-colors duration-200 group"                          >
                             <span className="relative flex h-1.5 w-1.5 mr-0.5">
                               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
                               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
@@ -362,7 +363,7 @@ export default function Footer() {
                           href={href}
                           target={href.startsWith('http') ? '_blank' : undefined}
                           rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                          className="text-white/35 text-sm hover:text-orange-400 transition-colors duration-200"
+                          className="text-white/60 text-sm hover:text-orange-400 transition-colors duration-200"
                         >
                           {link}
                         </a>

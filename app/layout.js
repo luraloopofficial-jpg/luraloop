@@ -1,5 +1,8 @@
 import './globals.css'
 import Chatbot from '@/components/Chatbot'
+import { Inter } from 'next/font/google'
+
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   metadataBase: new URL('https://luraloopofficial.vercel.app'),
@@ -160,7 +163,7 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="bg-[#0B0B0B] text-white antialiased overflow-x-hidden">
+      <body className={`${inter.className} bg-[#0B0B0B] text-white antialiased overflow-x-hidden`}>
         {children}
         <Chatbot />
       </body>
