@@ -3,8 +3,11 @@ import Chatbot from '@/components/Chatbot'
 
 export const metadata = {
   metadataBase: new URL('https://luraloopofficial.vercel.app'),
-  title: 'LuraLoop — Intelligent AI Automation Layer for Modern Enterprises',
-  description: 'LuraLoop engineers advanced, budget-friendly enterprise AI workflows and 24/7 custom virtual agents (ZIYA AI) for Healthcare, Education, Real Estate, and E-Commerce. 100% secure processing with zero permanent data storage.',
+  title: 'LuraLoop — White-Label Enterprise Automation Infrastructure',
+  description: 'The Intelligent Operational Layer Behind Modern Automation Providers.',
+  verification: {
+    google: 'K-ZmHpU-hx-_4TvJ7sI5v3PuCmIRYQN1c3rXAn66wPs',
+  },
   keywords: 'Enterprise AI Automation, LuraLoop ZIYA, WhatsApp AI Agent, Business Workflow Automation India, Budget-friendly AI consulting',
   alternates: {
     canonical: 'https://luraloopofficial.vercel.app',
