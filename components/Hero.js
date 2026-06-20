@@ -104,10 +104,10 @@ export default function Hero() {
               initial={{ opacity: 0, y: 26 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.62, delay: 0.24 }}
-              className="text-4xl md:text-5xl lg:text-[52px] font-bold text-white leading-[1.17] tracking-tight mb-5"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight md:leading-none mb-5"
             >
-              White-Label Automation<br className="hidden md:block" />
-              <span className="gradient-text">Infrastructure</span> for<br className="hidden md:block" />
+              White-Label Automation <br className="hidden md:block" />
+              <span className="gradient-text">Infrastructure</span> for <br className="hidden md:block" />
               Enterprise Delivery Partners
             </motion.h1>
 
