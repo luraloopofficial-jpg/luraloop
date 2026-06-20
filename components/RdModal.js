@@ -126,6 +126,50 @@ function LiveNewsFeed() {
 }
 
 // ─────────────────────────────────────────────
+// Frontier Performance Index
+// ─────────────────────────────────────────────
+const performanceLeaders = [
+  { category: 'TOP OPEN SOURCE ENGINE', model: 'GLM-5.2', metric: 'Peak architectural efficiency on decentralised parameters.', color: 'text-blue-400' },
+  { category: 'COST EFFICIENCY / TOP 10 INDEX', model: 'Qwen-3.7 Max', metric: 'Lowest token cost-to-performance ratio globally across multi-agent workflows.', color: 'text-emerald-400' },
+  { category: 'MASSIVE CONTEXT MEMORY WINDOW', model: 'Grok 4 Fast', metric: 'Extreme multi-million token retrieval accuracy for deep legal/financial operations.', color: 'text-purple-400' },
+  { category: 'COMPUTE SPEED / GENERATION LATENCY', model: 'MiniMax M2.1', metric: 'Fastest operational output velocity for instant exception routing layers.', color: 'text-orange-400' },
+  { category: 'FRONTIER INTELLIGENCE PLATFORM', model: 'Claude Mythos Preview', metric: 'Apex dynamic reasoning and advanced schema compliance index score.', color: 'text-rose-400' }
+]
+
+function FrontierPerformanceIndex() {
+  return (
+    <div className="flex flex-col h-full rounded-xl border border-white/6 bg-[#141414] overflow-hidden">
+      <div className="p-3.5 border-b border-white/6 bg-white/4 flex items-center gap-2">
+        <Activity size={13} className="text-white/40" />
+        <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/50">Performance Index</span>
+      </div>
+      <div className="p-4 flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-white/10 flex flex-col">
+        <div className="mb-5 pb-4 border-b border-white/6">
+          <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-white/30 mb-2.5">Monitored Global Labs</p>
+          <div className="flex flex-wrap gap-x-2 gap-y-1.5 text-[10px] font-medium text-white/50">
+            <span>Google</span><span className="text-white/10">|</span>
+            <span>Anthropic</span><span className="text-white/10">|</span>
+            <span>OpenAI</span><span className="text-white/10">|</span>
+            <span>Alibaba</span><span className="text-white/10">|</span>
+            <span>DeepSeek</span><span className="text-white/10">|</span>
+            <span>xAI</span>
+          </div>
+        </div>
+        <div className="flex flex-col gap-4">
+          {performanceLeaders.map((item, idx) => (
+            <div key={idx} className="flex flex-col gap-1">
+              <span className={`text-[8px] font-bold uppercase tracking-widest ${item.color}`}>{item.category}</span>
+              <h4 className="text-xs font-bold text-white/90">{item.model}</h4>
+              <p className="text-[10px] leading-relaxed text-white/40 mt-0.5">{item.metric}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ─────────────────────────────────────────────
 // R&D Modal Component
 // ─────────────────────────────────────────────
 function RdModal({ onClose }) {
@@ -144,7 +188,7 @@ function RdModal({ onClose }) {
       />
 
       {/* Panel */}
-      <div className="relative z-10 w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-2xl border border-white/8 bg-[#0D0D0D] shadow-2xl flex flex-col">
+      <div className="relative z-10 w-full max-w-6xl max-h-[90vh] overflow-y-auto rounded-2xl border border-white/8 bg-[#0D0D0D] shadow-2xl flex flex-col">
         
         {/* ── Header ── */}
         <div className="sticky top-0 z-20 flex items-start justify-between gap-4 rounded-t-2xl border-b border-white/8 bg-[#0D0D0D] px-6 py-5 shrink-0">
@@ -177,10 +221,10 @@ function RdModal({ onClose }) {
         </div>
 
         {/* ── Body ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 p-6 pt-5 overflow-y-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 pt-5 overflow-y-auto">
           
           {/* Left: Ecosystem */}
-          <div className="lg:col-span-3 flex flex-col gap-3">
+          <div className="lg:col-span-5 flex flex-col gap-3">
             <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/25 ml-1">
               Orchestration Ecosystem & Tooling
             </p>
@@ -206,8 +250,16 @@ function RdModal({ onClose }) {
             </div>
           </div>
 
+          {/* Middle: Performance Index */}
+          <div className="lg:col-span-4 flex flex-col gap-3 h-[400px] lg:h-auto">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/25 ml-1">
+              Frontier Capability Allocation
+            </p>
+            <FrontierPerformanceIndex />
+          </div>
+
           {/* Right: Live Feed */}
-          <div className="lg:col-span-2 flex flex-col gap-3 h-[400px] lg:h-auto">
+          <div className="lg:col-span-3 flex flex-col gap-3 h-[400px] lg:h-auto">
             <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/25 ml-1">
               Live Network Monitor
             </p>
