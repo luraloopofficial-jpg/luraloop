@@ -12,7 +12,8 @@ const orchestrationNodes = [
     category: 'FRONTIER LLM',
     badgeColor: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20',
     icon: <Globe className="text-emerald-400" size={16} />,
-    desc: 'Advanced reasoning engine powering enterprise cognitive pipelines.'
+    desc: 'Advanced reasoning engine powering enterprise cognitive pipelines.',
+    url: 'https://openai.com/news/'
   },
   {
     id: 'anthropic',
@@ -20,7 +21,17 @@ const orchestrationNodes = [
     category: 'INTELLIGENCE LAYER',
     badgeColor: 'text-violet-400 bg-violet-400/10 border-violet-400/20',
     icon: <Cpu className="text-violet-400" size={16} />,
-    desc: 'Deep artifact processing and Constitutional AI for safe reasoning.'
+    desc: 'Deep artifact processing and Constitutional AI for safe reasoning.',
+    url: 'https://www.anthropic.com/news'
+  },
+  {
+    id: 'gemini',
+    name: 'Google Gemini Enterprise',
+    category: 'FRONTIER MULTIMODAL',
+    badgeColor: 'text-cyan-400 bg-cyan-400/10 border-cyan-400/20',
+    icon: <Database className="text-cyan-400" size={16} />,
+    desc: 'Long-context native multimodal processing engine featuring native 2M+ token reasoning windows.',
+    url: 'https://deepmind.google/discover/'
   },
   {
     id: 'llama',
@@ -28,7 +39,8 @@ const orchestrationNodes = [
     category: 'OPEN-WEIGHTS NODE',
     badgeColor: 'text-blue-400 bg-blue-400/10 border-blue-400/20',
     icon: <Database className="text-blue-400" size={16} />,
-    desc: 'Local deployment models for maximum data privacy and on-premise execution.'
+    desc: 'Local deployment models for maximum data privacy and on-premise execution.',
+    url: 'https://ai.meta.com/blog/'
   },
   {
     id: 'groq',
@@ -36,7 +48,8 @@ const orchestrationNodes = [
     category: 'SPEED LAYER',
     badgeColor: 'text-orange-400 bg-orange-400/10 border-orange-400/20',
     icon: <Zap className="text-orange-400" size={16} />,
-    desc: 'Microsecond routing and ultra-low latency inference engine.'
+    desc: 'Microsecond routing and ultra-low latency inference engine.',
+    url: 'https://groq.com/newsroom/'
   },
   {
     id: 'n8n',
@@ -44,7 +57,8 @@ const orchestrationNodes = [
     category: 'WORKFLOW ENGINE',
     badgeColor: 'text-pink-400 bg-pink-400/10 border-pink-400/20',
     icon: <Network className="text-pink-400" size={16} />,
-    desc: 'Advanced agent frameworks and secure webhook orchestration.'
+    desc: 'Advanced agent frameworks and secure webhook orchestration.',
+    url: 'https://n8n.io/blog/'
   },
   {
     id: 'langchain',
@@ -52,7 +66,8 @@ const orchestrationNodes = [
     category: 'WORKFLOW ENGINE',
     badgeColor: 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20',
     icon: <GitBranch className="text-yellow-400" size={16} />,
-    desc: 'Modular automation infrastructure and cognitive memory mapping.'
+    desc: 'Modular automation infrastructure and cognitive memory mapping.',
+    url: 'https://blog.langchain.dev/'
   }
 ]
 
@@ -230,7 +245,13 @@ function RdModal({ onClose }) {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {orchestrationNodes.map((node) => (
-                <div key={node.id} className="group relative overflow-hidden rounded-xl border border-white/6 bg-[#141414] p-4 transition-all hover:border-white/15 hover:bg-[#181818]">
+                <a 
+                  key={node.id} 
+                  href={node.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative overflow-hidden rounded-xl border border-white/6 bg-[#141414] p-4 transition-all hover:border-white/15 hover:bg-[#181818] block"
+                >
                   <div className="flex items-start gap-3 mb-2.5">
                     <div className="flex-shrink-0 rounded-lg border border-white/8 bg-white/4 p-2">
                       {node.icon}
@@ -245,7 +266,7 @@ function RdModal({ onClose }) {
                   <p className="text-[10px] leading-relaxed text-white/45">
                     {node.desc}
                   </p>
-                </div>
+                </a>
               ))}
             </div>
           </div>
