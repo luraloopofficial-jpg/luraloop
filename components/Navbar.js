@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ChevronDown } from 'lucide-react'
@@ -10,7 +11,18 @@ import { Menu, X, ChevronDown } from 'lucide-react'
 const navLinks = [
   { label: 'Platform', href: '/#architecture' },
   { label: 'Partner Program', href: '/#partners' },
-  { label: 'Industry Modules', href: '/#industries' },
+  { 
+    label: 'Industry Modules', 
+    href: '/#industries',
+    hasDropdown: true,
+    children: [
+      { label: 'AI Employees', href: '/ai-employees' },
+      { label: 'AI Operating Layer', href: '/ai-operating-systems' },
+      { label: 'Multi-Agent Infrastructure', href: '/multi-agent-infrastructure' },
+      { label: 'Business Process Automation', href: '/business-process-automation' },
+      { label: 'Decision Intelligence', href: '/decision-intelligence' },
+    ]
+  },
   { label: 'Security', href: '/#security' },
   { label: 'Blog', href: '/blog' },
 ]
@@ -21,8 +33,12 @@ const AuthOverlay = dynamic(() => import('./AuthOverlay'), { ssr: false });
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false)
   const [authMode, setAuthMode] = useState(null) // null | 'login' | 'signup' | 'forgot'
   const navRef = useRef(null)
+  const dropdownRef = useRef(null)
+  const dropdownTimeout = useRef(null)
 
   // Global event listener for modal
   useEffect(() => {
@@ -42,13 +58,22 @@ export default function Navbar() {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuOpen && navRef.current && !navRef.current.contains(event.target)) setMenuOpen(false)
+      if (dropdownOpen && dropdownRef.current && !dropdownRef.current.contains(event.target)) setDropdownOpen(false)
     }
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [menuOpen])
+  }, [menuOpen, dropdownOpen])
 
   const openAuth = useCallback((mode) => { setMenuOpen(false); setAuthMode(mode) }, [])
   const closeAuth = useCallback(() => setAuthMode(null), [])
+
+  const handleDropdownEnter = () => {
+    clearTimeout(dropdownTimeout.current)
+    setDropdownOpen(true)
+  }
+  const handleDropdownLeave = () => {
+    dropdownTimeout.current = setTimeout(() => setDropdownOpen(false), 150)
+  }
 
   return (
     <>
@@ -74,11 +99,58 @@ export default function Navbar() {
           {/* Desktop Nav Links */}
           <div className="hidden md:flex items-center gap-7">
             {navLinks.map((link) => (
-              <a key={link.label} href={link.href}
-                className="flex items-center gap-1 text-sm text-white/55 hover:text-white transition-colors duration-200 group">
-                {link.label}
-                {link.hasDropdown && <ChevronDown size={12} className="group-hover:text-orange-500 transition-colors" />}
-              </a>
+              link.hasDropdown ? (
+                <div 
+                  key={link.label} 
+                  className="relative"
+                  ref={dropdownRef}
+                  onMouseEnter={handleDropdownEnter}
+                  onMouseLeave={handleDropdownLeave}
+                >
+                  <button
+                    className="flex items-center gap-1 text-sm text-white/55 hover:text-white transition-colors duration-200 group"
+                    onClick={() => setDropdownOpen(!dropdownOpen)}
+                  >
+                    {link.label}
+                    <ChevronDown size={12} className={`transition-transform duration-200 ${dropdownOpen ? 'rotate-180 text-white' : 'text-white/40'}`} />
+                  </button>
+
+                  <AnimatePresence>
+                    {dropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                        transition={{ duration: 0.18, ease: 'easeOut' }}
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 rounded-xl border border-white/8 bg-[#111111]/95 backdrop-blur-xl shadow-2xl overflow-hidden z-50"
+                      >
+                        <div className="p-1.5">
+                          {link.children.map((child) => (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              onClick={() => setDropdownOpen(false)}
+                              className="block px-3.5 py-2.5 rounded-lg text-sm text-white/60 hover:text-white hover:bg-white/5 transition-all duration-150"
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
+                        <div className="border-t border-white/5 px-4 py-2.5">
+                          <Link href="/#industries" onClick={() => setDropdownOpen(false)} className="text-[11px] text-white/30 hover:text-white/60 transition-colors">
+                            View All Modules →
+                          </Link>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <a key={link.label} href={link.href}
+                  className="flex items-center gap-1 text-sm text-white/55 hover:text-white transition-colors duration-200 group">
+                  {link.label}
+                </a>
+              )
             ))}
           </div>
 
@@ -118,11 +190,46 @@ export default function Navbar() {
                 className="absolute top-full left-0 right-0 mt-2 mx-4 rounded-2xl glass border border-white/8 px-6 py-4 flex flex-col gap-3 md:hidden overflow-hidden z-10"
               >
                 {navLinks.map((link) => (
-                  <a key={link.label} href={link.href}
-                    className="text-white/70 hover:text-white text-sm py-2 border-b border-white/5"
-                    onClick={() => setMenuOpen(false)}>
-                    {link.label}
-                  </a>
+                  link.hasDropdown ? (
+                    <div key={link.label} className="flex flex-col">
+                      <button
+                        className="text-white/70 hover:text-white text-sm py-2 border-b border-white/5 flex items-center justify-between w-full text-left"
+                        onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
+                      >
+                        {link.label}
+                        <ChevronDown size={14} className={`transition-transform duration-200 ${mobileDropdownOpen ? 'rotate-180' : ''}`} />
+                      </button>
+                      <AnimatePresence>
+                        {mobileDropdownOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden"
+                          >
+                            <div className="pl-4 py-1 flex flex-col gap-0.5">
+                              {link.children.map((child) => (
+                                <Link
+                                  key={child.href}
+                                  href={child.href}
+                                  onClick={() => { setMenuOpen(false); setMobileDropdownOpen(false) }}
+                                  className="text-white/50 hover:text-white text-sm py-1.5 transition-colors"
+                                >
+                                  {child.label}
+                                </Link>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  ) : (
+                    <a key={link.label} href={link.href}
+                      className="text-white/70 hover:text-white text-sm py-2 border-b border-white/5"
+                      onClick={() => setMenuOpen(false)}>
+                      {link.label}
+                    </a>
+                  )
                 ))}
                 <div className="flex gap-3 pt-2">
                   <button onClick={() => openAuth('login')}
