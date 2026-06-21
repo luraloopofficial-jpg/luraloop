@@ -30,7 +30,7 @@ const GitHubIcon = () => (
 const footerLinks = {
   Platform: ['Architecture', 'Integration Adapters', 'API Reference', 'Changelog'],
   'Partner Program': ['Reseller Model', 'SLA Framework', 'Partner Enablement', 'Apply as Partner'],
-  'Industry Modules': ['ZIYA Healthcare', 'ZIYA Education', 'ZIYA Commerce', 'ZIYA Property'],
+  'Platform Capabilities': ['AI Employees', 'AI Operating Layer', 'Multi-Agent Infrastructure', 'Business Process Automation', 'Decision Intelligence'],
   Security: ['Data Governance', 'Zero-Retention Policy', 'Access Isolation', 'Trust Center'],
   Company: ['About', 'Blog', 'Contact Us', 'R&D'],
 }
@@ -42,6 +42,7 @@ const socialLinks = [
 ]
 
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 const RdModal = dynamic(() => import('./RdModal'), { ssr: false });
 // ─────────────────────────────────────────────
 // Main Footer Component
@@ -111,18 +112,31 @@ export default function Footer() {
                     }
 
                     let href = '/#'
+                    let isNextLink = false
+
                     if (link === 'Blog') href = '/blog'
                     else if (link === 'About') href = '/#about'
                     else if (link === 'Contact Us') href = 'mailto:luraloop.official@gmail.com'
                     else if (link === 'Apply as Partner') href = '/#partners'
                     else if (link === 'Architecture') href = '/#architecture'
-                    else if (link === 'ZIYA Healthcare') href = '/#industries'
-                    else if (link === 'ZIYA Education') href = '/#industries'
-                    else if (link === 'ZIYA Commerce') href = '/#industries'
-                    else if (link === 'ZIYA Property') href = '/#industries'
+                    else if (link === 'AI Employees') { href = '/ai-employees'; isNextLink = true; }
+                    else if (link === 'AI Operating Layer') { href = '/ai-operating-systems'; isNextLink = true; }
+                    else if (link === 'Multi-Agent Infrastructure') { href = '/multi-agent-infrastructure'; isNextLink = true; }
+                    else if (link === 'Business Process Automation') { href = '/business-process-automation'; isNextLink = true; }
+                    else if (link === 'Decision Intelligence') { href = '/decision-intelligence'; isNextLink = true; }
                     else if (link === 'Trust Center') href = 'mailto:luraloop.official@gmail.com?subject=Trust Center Request'
                     else if (link === 'Zero-Retention Policy') href = '/#security'
                     else if (link === 'Data Governance') href = '/#security'
+
+                    if (isNextLink) {
+                      return (
+                        <li key={link}>
+                          <Link href={href} className="text-white/60 text-sm hover:text-orange-400 transition-colors duration-200">
+                            {link}
+                          </Link>
+                        </li>
+                      )
+                    }
 
                     return (
                       <li key={link}>
