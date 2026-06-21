@@ -60,9 +60,9 @@ function ArchitectureFlow() {
               transition={{ delay: 0.55 + i * 0.1 }}
               className="flex flex-col items-center py-px"
             >
-              <div className="w-px h-3 bg-gradient-to-b from-zinc-700/40 to-zinc-800/20" />
-              <div className="w-1 h-1 rounded-full bg-zinc-700/30" />
-              <div className="w-px h-3 bg-gradient-to-b from-zinc-800/20 to-transparent" />
+              <div className="w-px h-3 bg-gradient-to-b from-orange-500/30 to-orange-500/10" />
+              <div className="w-1 h-1 rounded-full bg-orange-500/40" />
+              <div className="w-px h-3 bg-gradient-to-b from-orange-500/10 to-transparent" />
             </motion.div>
           )}
         </div>
@@ -83,10 +83,10 @@ export default function Hero() {
           <Image src="/hero-bg.jpg" alt="" fill priority quality={80} className="object-contain object-center" />
         </div>
         <div className="absolute inset-0 bg-black/55" />
-        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 55% 50% at 70% 50%, rgba(255,107,0,0.05) 0%, transparent 60%)' }} />
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 55% 50% at 70% 50%, rgba(255,107,0,0.07) 0%, transparent 60%)' }} />
         <div className="absolute inset-0 grid-overlay" />
       </motion.div>
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-700/30 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/35 to-transparent" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -96,9 +96,9 @@ export default function Hero() {
 
             {/* Eyebrow */}
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, delay: 0.15 }}>
-              <span className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-zinc-500 mb-5">
-                <Zap size={10} className="text-zinc-500" />
-                White-Label Enterprise Automation Infrastructure
+              <span className="section-tag mb-5">
+                <Zap size={10} />
+                Enterprise Automation Infrastructure
               </span>
             </motion.div>
 
@@ -110,7 +110,7 @@ export default function Hero() {
               className="text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.25rem] font-bold tracking-tight text-white leading-[1.12] mb-7"
             >
               White-Label Automation <br />
-              Infrastructure for <br />
+              <span className="gradient-text">Infrastructure</span> for <br />
               Enterprise Delivery Partners
             </motion.h1>
 
@@ -131,13 +131,12 @@ export default function Hero() {
               transition={{ duration: 0.45, delay: 0.42 }}
               className="flex flex-wrap items-center gap-4 mb-6"
             >
-              <a href="#cta" id="hero-book-call"
-                className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-lg font-semibold text-sm hover:scale-[1.02] hover:bg-zinc-100 transition-all duration-200 shadow-sm">
+              <a href="#cta" id="hero-book-call" className="btn-primary">
                 Book Partner Call <ArrowRight size={15} />
               </a>
               <a href="/#architecture" id="hero-view-platform"
-                className="inline-flex items-center gap-2 border border-zinc-700 text-zinc-300 px-6 py-3 rounded-lg font-semibold text-sm hover:border-zinc-500 hover:text-white transition-all duration-200">
-                View Platform <ArrowRight size={15} className="text-zinc-500" />
+                className="btn-secondary">
+                View Platform <ArrowRight size={15} className="text-orange-400" />
               </a>
             </motion.div>
 
@@ -149,17 +148,17 @@ export default function Hero() {
               className="flex flex-wrap gap-3 mb-6"
             >
               <a href="/#partners" id="hero-path-agency"
-                className="inline-flex items-center gap-2 text-[11px] text-zinc-500 hover:text-zinc-300 transition-colors duration-200 group">
-                <Users size={11} className="text-zinc-600 group-hover:text-zinc-400" />
-                For Agencies & Consultants
-                <ArrowRight size={10} className="text-zinc-700 group-hover:text-zinc-400 transition-colors" />
+                className="inline-flex items-center gap-2 text-[11px] text-white/35 hover:text-white/70 transition-colors duration-200 group">
+                <Users size={11} className="text-orange-500/60 group-hover:text-orange-400" />
+                For Agencies &amp; Consultants
+                <ArrowRight size={10} className="text-white/15 group-hover:text-orange-400 transition-colors" />
               </a>
-              <span className="text-zinc-800">·</span>
+              <span className="text-white/10">·</span>
               <a href="/#architecture" id="hero-path-si"
-                className="inline-flex items-center gap-2 text-[11px] text-zinc-500 hover:text-zinc-300 transition-colors duration-200 group">
-                <Building2 size={11} className="text-zinc-600 group-hover:text-zinc-400" />
+                className="inline-flex items-center gap-2 text-[11px] text-white/35 hover:text-white/70 transition-colors duration-200 group">
+                <Building2 size={11} className="text-orange-500/60 group-hover:text-orange-400" />
                 For System Integrators
-                <ArrowRight size={10} className="text-zinc-700 group-hover:text-zinc-400 transition-colors" />
+                <ArrowRight size={10} className="text-white/15 group-hover:text-orange-400 transition-colors" />
               </a>
             </motion.div>
 
@@ -171,9 +170,9 @@ export default function Hero() {
               className="grid grid-cols-2 sm:grid-cols-4 gap-2.5"
             >
               {trustBadges.map((badge, i) => (
-                <div key={i} className="rounded-lg border border-zinc-800/60 bg-zinc-900/30 px-3 py-2.5 flex items-center gap-2">
-                  <badge.icon size={11} className="text-zinc-500 shrink-0" />
-                  <span className="text-zinc-500 text-[10px] leading-tight font-medium">{badge.label}</span>
+                <div key={i} className="glass rounded-xl px-3 py-2.5 flex items-center gap-2">
+                  <badge.icon size={12} className="text-orange-500 shrink-0" />
+                  <span className="text-white/45 text-[11px] leading-tight">{badge.label}</span>
                 </div>
               ))}
             </motion.div>
@@ -186,12 +185,12 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="lg:col-span-6 flex justify-center lg:justify-end lg:mt-6"
           >
-            <div className="w-full max-w-[340px] lg:max-w-[360px] rounded-xl border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-md p-5 space-y-1">
-              <p className="text-zinc-500 text-[10px] font-semibold uppercase tracking-[0.18em] mb-3 px-0.5">
+            <div className="w-full max-w-[340px] lg:max-w-[360px] rounded-xl border border-white/5 bg-[#111111]/70 backdrop-blur-md p-5 space-y-1">
+              <p className="text-white/30 text-[10px] font-semibold uppercase tracking-[0.18em] mb-3 px-0.5">
                 Operational Layer Architecture
               </p>
               <ArchitectureFlow />
-              <p className="text-zinc-600 text-[9px] text-center lg:text-left pt-3 px-0.5 leading-relaxed">
+              <p className="text-white/15 text-[9px] text-center lg:text-left pt-3 px-0.5 leading-relaxed">
                 LuraLoop sits between your client&apos;s end users and their existing enterprise systems — processing all intelligence ephemerally with zero data persistence.
               </p>
             </div>
