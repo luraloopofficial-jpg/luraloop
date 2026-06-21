@@ -77,7 +77,7 @@ export default function Hero() {
   const scale = useTransform(scrollY, [0, 400], [1, 0.96])
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center pt-32 pb-24 md:pt-40 md:pb-28 overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center pt-36 pb-24 md:pt-44 md:pb-28 overflow-hidden">
       <motion.div style={{ opacity, scale }} className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none transform-gpu">
         <div className="relative w-full h-full max-w-6xl max-h-[80vh] opacity-15 mix-blend-screen">
           <Image src="/hero-bg.jpg" alt="" fill priority quality={80} className="object-contain object-center" />
@@ -96,21 +96,21 @@ export default function Hero() {
 
             {/* Eyebrow */}
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, delay: 0.15 }}>
-              <span className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500 mt-4 mb-5">
+              <span className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-zinc-500 mb-5">
                 <Zap size={10} className="text-zinc-500" />
                 White-Label Enterprise Automation Infrastructure
               </span>
             </motion.div>
 
-            {/* Headline */}
+            {/* Headline — strict 3-line structure */}
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.24 }}
-              className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-[1.1] mb-7"
+              className="text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.25rem] font-bold tracking-tight text-white leading-[1.12] mb-7"
             >
-              White-Label Automation <br className="hidden md:block" />
-              Infrastructure for <br className="hidden md:block" />
+              White-Label Automation <br />
+              Infrastructure for <br />
               Enterprise Delivery Partners
             </motion.h1>
 
@@ -119,9 +119,9 @@ export default function Hero() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.33 }}
-              className="text-zinc-400 text-base md:text-lg leading-relaxed tracking-wide max-w-md mb-8"
+              className="text-zinc-400 text-[15px] md:text-base leading-relaxed tracking-wide max-w-[380px] mb-8"
             >
-              LuraLoop helps agencies, consultants, and system integrators deploy AI agents, workflow orchestration, and operational automation across regulated industries — without replacing client systems.
+              LuraLoop helps agencies, consultants, and system integrators deploy AI agents and workflow automation across regulated industries — without replacing client systems.
             </motion.p>
 
             {/* Primary + Secondary CTA Row */}
