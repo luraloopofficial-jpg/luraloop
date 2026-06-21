@@ -5,39 +5,28 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  metadataBase: new URL('https://luraloopofficial.vercel.app'),
   title: 'LuraLoop — White-Label Enterprise Automation Infrastructure',
-  description: 'The Intelligent Operational Layer Behind Modern Automation Providers.',
-  verification: {
-    google: 'K-ZmHpU-hx-_4TvJ7sI5v3PuCmIRYQN1c3rXAn66wPs',
+  description: 'Deploy role-specific AI agents, workflow orchestration, and operational automation layers.',
+  // Explicitly tell search engines the actual brand name
+  applicationName: 'LuraLoop',
+  authors: [{ name: 'LuraLoop' }],
+  generator: 'Next.js',
+  // Strict icons mapping
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/apple-icon.svg',
   },
-  keywords: 'Enterprise AI Automation, LuraLoop ZIYA, WhatsApp AI Agent, Business Workflow Automation India, Budget-friendly AI consulting',
-  alternates: {
-    canonical: 'https://luraloopofficial.vercel.app',
-  },
+  // OpenGraph registry for Google metadata indexing
   openGraph: {
-    title: 'LuraLoop — Intelligent AI Automation Layer for Modern Enterprises',
-    description: 'LuraLoop engineers advanced, budget-friendly enterprise AI workflows and 24/7 custom virtual agents (ZIYA AI). 100% secure processing with zero permanent data storage.',
-    url: 'https://luraloopofficial.vercel.app',
+    title: 'LuraLoop',
+    description: 'White-Label Enterprise Automation Infrastructure',
+    url: 'https://luraloop.vercel.app',
     siteName: 'LuraLoop',
-    images: [
-      {
-        url: '/hero-bg.jpg', // Placeholder for OG image
-        width: 1200,
-        height: 630,
-        alt: 'LuraLoop AI Automation Platform',
-      },
-    ],
     locale: 'en_US',
     type: 'website',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'LuraLoop — Enterprise AI Automation',
-    description: 'Budget friendly custom business workflow automation & WhatsApp AI Agents.',
-    images: ['/hero-bg.jpg'],
-  },
-}
+};
 
 export default function RootLayout({ children }) {
   // Advanced JSON-LD Structured Data Schema for AEO/GEO Optimization
