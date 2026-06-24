@@ -126,7 +126,7 @@ body {
 
 .luxury-ambient-bg {
   background: radial-gradient(circle at 10% 20%, rgba(30, 58, 138, 0.15) 0%, transparent 40%),
-              radial-gradient(circle at 90% 80%, rgba(234, 88, 12, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 90% 80%, rgba(234, 88, 12, 0.03) 0%, transparent 50%),
               #030712;
   background-size: 200% 200%;
   animation: slowGlow 25s ease infinite;
