@@ -124,6 +124,8 @@ body {
     linear-gradient(rgba(255, 107, 0, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 107, 0, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
 /* Hero gradient background */
@@ -132,6 +134,8 @@ body {
     radial-gradient(ellipse 80% 60% at 70% 50%, rgba(255, 107, 0, 0.08) 0%, transparent 60%),
     radial-gradient(ellipse 50% 80% at 20% 80%, rgba(255, 107, 0, 0.05) 0%, transparent 50%),
     #0B0B0B;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
 /* Particle */

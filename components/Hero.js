@@ -80,7 +80,7 @@ export default function Hero() {
     <section id="hero" className="relative min-h-screen flex items-center pt-36 pb-24 md:pt-44 md:pb-28 overflow-hidden">
       <motion.div style={{ opacity, scale }} className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none transform-gpu">
         <div className="relative w-full h-full max-w-6xl max-h-[80vh] opacity-15 mix-blend-screen">
-          <Image src="/hero-bg.jpg" alt="" fill priority quality={80} className="object-contain object-center" />
+          <Image src="/hero-bg.jpg" alt="" fill priority sizes="100vw" quality={80} className="object-contain object-center" />
         </div>
         <div className="absolute inset-0 bg-black/55" />
         <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 55% 50% at 70% 50%, rgba(255,107,0,0.07) 0%, transparent 60%)' }} />
