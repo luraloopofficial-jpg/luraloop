@@ -52,8 +52,10 @@ export default function Footer() {
 
   return (
     <>
-      <footer id="footer" className="bg-[#111111] border-t border-white/5 py-16">
-        <div className="max-w-7xl mx-auto px-6">
+      <footer id="footer" className="bg-transparent border-t border-white/5 py-16 relative overflow-hidden">
+        {/* Ambient bottom-docked linear contrast bleed */}
+        <div className="absolute inset-x-0 bottom-0 h-96 bg-gradient-to-t from-[#1e3a8a]/20 to-transparent pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10 mb-14">
             {/* Brand */}
             <div className="col-span-2">

@@ -7,8 +7,8 @@
   --orange: #FF6B00;
   --orange-glow: rgba(255, 107, 0, 0.4);
   --orange-subtle: rgba(255, 107, 0, 0.1);
-  --black: #0B0B0B;
-  --dark: #111111;
+  --black: #030712;
+  --dark: #050b18;
   --white: #FFFFFF;
 }
 
@@ -39,7 +39,7 @@ html {
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #0B0B0B;
+  background-color: #030712;
   color: #FFFFFF;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -116,6 +116,22 @@ body {
     transform: translateY(-8px);
     box-shadow: 0 20px 60px rgba(255, 107, 0, 0.2), 0 0 0 1px rgba(255, 107, 0, 0.3);
   }
+}
+
+@keyframes slowGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.luxury-ambient-bg {
+  background: radial-gradient(circle at 10% 20%, rgba(30, 58, 138, 0.15) 0%, transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(234, 88, 12, 0.08) 0%, transparent 50%),
+              #030712;
+  background-size: 200% 200%;
+  animation: slowGlow 25s ease infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
 /* Grid overlay */

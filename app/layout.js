@@ -174,7 +174,7 @@ export default function RootLayout({ children }) {
           </>
         )}
       </head>
-      <body className={`${inter.className} bg-[#0B0B0B] text-white antialiased overflow-x-hidden`}>
+      <body className={`${inter.className} bg-[#030712] luxury-ambient-bg text-white antialiased overflow-x-hidden`}>
         {children}
         <Chatbot />
         <SpeedInsights />

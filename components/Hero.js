@@ -82,8 +82,8 @@ export default function Hero() {
         <div className="relative w-full h-full max-w-6xl max-h-[80vh] opacity-15 mix-blend-screen">
           <Image src="/hero-bg.jpg" alt="" fill priority sizes="100vw" quality={80} className="object-contain object-center" />
         </div>
-        <div className="absolute inset-0 bg-black/55" />
-        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 55% 50% at 70% 50%, rgba(255,107,0,0.07) 0%, transparent 60%)' }} />
+        <div className="absolute inset-0 bg-[#030712]/55" />
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at 100% 0%, rgba(234,88,12,0.15) 0%, transparent 50%), radial-gradient(circle at 0% 100%, rgba(30,58,138,0.2) 0%, transparent 50%)' }} />
         <div className="absolute inset-0 grid-overlay" />
       </motion.div>
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/35 to-transparent" />
@@ -197,7 +197,7 @@ export default function Hero() {
           </motion.div>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0B0B0B] to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#030712] to-transparent pointer-events-none" />
     </section>
   )
 }

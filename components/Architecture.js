@@ -23,7 +23,7 @@ export default function Architecture() {
     <section id="architecture" className="py-28 relative overflow-hidden">
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,107,0,0.04) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(ellipse 80% 50% at 50% 50%, rgba(30,58,138,0.15) 0%, transparent 70%)' }}
       />
 
       <div className="max-w-7xl mx-auto px-6">

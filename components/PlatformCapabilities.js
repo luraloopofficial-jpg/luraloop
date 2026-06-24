@@ -11,8 +11,8 @@ export default function PlatformCapabilities() {
   const [showRd, setShowRd] = useState(false)
 
   return (
-    <section id="platform" className="py-24 bg-[#0D0D0D] border-y border-white/5 relative overflow-hidden flex justify-center items-center">
-      <div className="absolute inset-0 grid-overlay opacity-50 pointer-events-none" />
+    <section id="platform" className="py-24 bg-transparent border-y border-white/5 relative overflow-hidden flex justify-center items-center">
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(circle at 50% 50%, rgba(234,88,12,0.12) 0%, transparent 35%)' }} />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/10 to-transparent" />
       
       <div className="max-w-2xl mx-auto px-6 relative z-10 w-full flex justify-center">
