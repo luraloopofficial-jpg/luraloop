@@ -76,10 +76,10 @@ export default function Navbar() {
 
   return (
     <>
-      <header className={`sticky top-0 z-50 flex justify-center transition-all duration-500 ${
+      <header className={`sticky top-0 z-50 flex justify-center transition-all duration-300 ${
         scrolled 
           ? 'pt-4 bg-transparent border-transparent w-full' 
-          : 'backdrop-blur-md bg-zinc-950/70 border-b border-zinc-900 w-full'
+          : 'bg-zinc-950/20 backdrop-blur-md border-b border-white/5 w-full shadow-2xl'
       }`}>
         <motion.nav
           ref={navRef}
