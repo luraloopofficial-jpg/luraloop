@@ -1,22 +1,20 @@
-export default function sitemap() {
-  const baseUrl = 'https://luraloop.vercel.app'
-  const lastModified = new Date()
+export default async function sitemap() {
+  const baseUrl = 'https://luraloop.vercel.app';
 
-  // Base routes
   const routes = [
     '',
+    '/blog',
     '/ai-employees',
     '/ai-operating-systems',
     '/multi-agent-infrastructure',
     '/business-process-automation',
     '/decision-intelligence',
-    '/blog',
-  ]
-
-  return routes.map((route) => ({
+  ].map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified,
-    changeFrequency: route === '' ? 'daily' : 'weekly',
-    priority: route === '' ? 1 : 0.8,
-  }))
+    lastModified: new Date().toISOString(),
+    changeFrequency: 'daily',
+    priority: route === '' ? 1.0 : 0.8,
+  }));
+
+  return [...routes];
 }

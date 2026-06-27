@@ -7,26 +7,23 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'LuraLoop — White-Label Enterprise Automation Infrastructure',
-  description: 'Deploy role-specific AI agents, workflow orchestration, and operational automation layers.',
-  // Explicitly tell search engines the actual brand name
-  applicationName: 'LuraLoop',
-  authors: [{ name: 'LuraLoop' }],
-  generator: 'Next.js',
-  // Strict icons mapping
-  icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/apple-icon.svg',
+  metadataBase: new URL('https://luraloop.vercel.app'),
+  title: {
+    default: 'LuraLoop | Enterprise AI Automation & White-Label Infrastructure',
+    template: '%s | LuraLoop'
   },
-  // OpenGraph registry for Google metadata indexing
-  openGraph: {
-    title: 'LuraLoop',
-    description: 'White-Label Enterprise Automation Infrastructure',
-    url: 'https://luraloop.vercel.app',
-    siteName: 'LuraLoop',
-    locale: 'en_US',
-    type: 'website',
+  description: 'Deploy role-specific AI employees, multi-agent infrastructure, and automated business workflows under a secure, white-label enterprise partner delivery model.',
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
@@ -44,7 +41,7 @@ export default function RootLayout({ children }) {
         "url": "https://luraloop.com",
         "logo": "https://luraloop.com/Logo.svg",
         "email": "luraloop.official@gmail.com",
-        "description": "LuraLoop operates as an institutional B2B2B White-Label AI Automation Studio and technical execution layer, engineering custom AI workflows, 24/7 Virtual AI Receptionists (ZIYA AI), and full-stack backend node architectures under white-label terms for partner agencies, IT consultants, and modern enterprises worldwide.",
+        "description": "White-Label AI Agents and Operational Automation Infrastructure for Enterprise Partners.",
         "sameAs": [
           "https://x.com/LURALOOP",
           "https://github.com/luraloopofficial-jpg",
@@ -81,7 +78,7 @@ export default function RootLayout({ children }) {
         "name": "LuraLoop White-Label Automation Studio",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Web, WhatsApp, API",
-        "description": "LuraLoop operates as an institutional B2B2B White-Label AI Automation Studio and technical execution layer, engineering custom AI workflows, 24/7 Virtual AI Receptionists (ZIYA AI), and full-stack backend node architectures under white-label terms for partner agencies, IT consultants, and modern enterprises worldwide.",
+        "description": "White-Label AI Agents and Operational Automation Infrastructure for Enterprise Partners.",
         "audience": {
           "@type": "BusinessAudience",
           "audienceType": "Automation Agencies, Consulting Firms, Software Companies, Enterprise Clients"
