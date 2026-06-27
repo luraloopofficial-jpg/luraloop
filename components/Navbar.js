@@ -81,17 +81,20 @@ export default function Navbar() {
           ? 'pt-4 bg-transparent border-transparent w-full' 
           : 'bg-zinc-950/20 backdrop-blur-md border-b border-white/5 w-full shadow-2xl'
       }`}>
-        <motion.nav
-          ref={navRef}
-          initial={{ y: -80, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className={`transition-all duration-500 px-6 flex items-center justify-between transform-gpu ${
-            scrolled 
-              ? 'bg-black/80 backdrop-blur-md rounded-full py-3 w-[95%] max-w-7xl animate-aurora-border shadow-[0_0_40px_rgba(255,107,0,0.1)]' 
-              : 'bg-transparent py-4 w-full max-w-7xl'
-          }`}
-        >
+        <div className={`transition-all duration-500 ${
+          scrolled ? 'p-[1px] rounded-full animate-aurora-border w-[95%] max-w-7xl mx-auto shadow-[0_0_40px_rgba(255,107,0,0.15)]' : 'w-full max-w-7xl mx-auto'
+        }`}>
+          <motion.nav
+            ref={navRef}
+            initial={{ y: -80, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className={`transition-all duration-500 px-6 flex items-center justify-between transform-gpu ${
+              scrolled 
+                ? 'bg-zinc-950/40 backdrop-blur-xl rounded-full py-3 w-full' 
+                : 'bg-transparent py-4 w-full'
+            }`}
+          >
           {/* Logo */}
           <a href="/" className="flex items-center group" aria-label="LuraLoop Home">
             <img src="/Logo.svg" alt="LuraLoop Official Corporate Logo"
@@ -286,6 +289,7 @@ export default function Navbar() {
             )}
           </AnimatePresence>
         </motion.nav>
+        </div>
       </header>
 
       {/* Modal logic removed to favor dedicated auth pages */}
