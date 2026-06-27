@@ -26,8 +26,6 @@ const navLinks = [
   { label: 'Blog', href: '/blog' },
 ]
 
-import dynamic from 'next/dynamic';
-const AuthOverlay = dynamic(() => import('./AuthOverlay'), { ssr: false });
 // ─── Navbar ───────────────────────────────────────────────────────
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -78,13 +76,21 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 backdrop-blur-md bg-zinc-950/70 border-b border-zinc-900 w-full transition-all duration-500">
+      <header className={`sticky top-0 z-50 flex justify-center transition-all duration-500 ${
+        scrolled 
+          ? 'pt-4 bg-transparent border-transparent w-full' 
+          : 'backdrop-blur-md bg-zinc-950/70 border-b border-zinc-900 w-full'
+      }`}>
         <motion.nav
           ref={navRef}
           initial={{ y: -80, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="w-full max-w-7xl mx-auto px-6 py-4 flex items-center justify-between"
+          className={`transition-all duration-500 px-6 flex items-center justify-between transform-gpu ${
+            scrolled 
+              ? 'bg-black/80 backdrop-blur-md rounded-full py-3 w-[95%] max-w-7xl animate-aurora-border shadow-[0_0_40px_rgba(255,107,0,0.1)]' 
+              : 'bg-transparent py-4 w-full max-w-7xl'
+          }`}
         >
           {/* Logo */}
           <a href="/" className="flex items-center group" aria-label="LuraLoop Home">
@@ -166,21 +172,21 @@ export default function Navbar() {
               </div>
             ) : (
               <>
-                <button
-                  onClick={() => openAuth('login')}
+                <Link
+                  href="/login"
                   className="text-sm text-white/60 hover:text-white transition-colors px-3 py-2 rounded-lg hover:bg-white/5"
                   id="nav-login-btn"
                 >
                   Login
-                </button>
-                <button
-                  onClick={() => openAuth('signup')}
+                </Link>
+                <Link
+                  href="/signup"
                   id="nav-signup-btn"
                   className="text-sm font-semibold text-[#0B0B0B] px-5 py-2 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,107,0,0.35)]"
                   style={{ background: '#FF6B00' }}
                 >
                   Sign Up
-                </button>
+                </Link>
               </>
             )}
           </div>
@@ -264,15 +270,15 @@ export default function Navbar() {
                     </div>
                   ) : (
                     <>
-                      <button onClick={() => openAuth('login')}
-                        className="flex-1 py-2.5 rounded-xl text-sm text-white/60 border border-white/10 hover:bg-white/5 transition-colors">
+                      <Link href="/login"
+                        className="flex-1 py-2.5 rounded-xl text-sm text-center text-white/60 border border-white/10 hover:bg-white/5 transition-colors">
                         Login
-                      </button>
-                      <button onClick={() => openAuth('signup')}
-                        className="flex-1 py-2.5 rounded-xl text-sm font-semibold text-[#0B0B0B] transition-all"
+                      </Link>
+                      <Link href="/signup"
+                        className="flex-1 py-2.5 rounded-xl text-sm text-center font-semibold text-[#0B0B0B] transition-all"
                         style={{ background: '#FF6B00' }}>
                         Sign Up
-                      </button>
+                      </Link>
                     </>
                   )}
                 </div>
@@ -282,12 +288,7 @@ export default function Navbar() {
         </motion.nav>
       </header>
 
-      {/* ─── Auth Overlay State Machine ─── */}
-      <AnimatePresence>
-        {authMode && (
-          <AuthOverlay key="auth" mode={authMode} onClose={closeAuth} onSwitch={setAuthMode} />
-        )}
-      </AnimatePresence>
+      {/* Modal logic removed to favor dedicated auth pages */}
     </>
   )
 }
