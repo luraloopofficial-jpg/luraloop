@@ -4,11 +4,12 @@ import Link from 'next/link';
 export const metadata = {
   title: 'AI Operating Layer | LuraLoop Enterprise Infrastructure',
   description: 'Add an intelligent AI-driven operating layer across enterprise environments without forcing core software replacement.',
+  robots: { index: true, follow: true },
 };
 
 export default function AIOperatingLayerPage() {
   return (
-    <div className="luxury-ambient-bg min-h-screen text-zinc-100 selection:bg-orange-600/30 overflow-x-hidden pt-24 pb-16">
+    <main className="luxury-ambient-bg min-h-screen text-zinc-100 selection:bg-orange-600/30 overflow-x-hidden pt-24 pb-16">
       
       {/* 🚀 HERO SECTION */}
       <section className="max-w-7xl mx-auto px-6 md:px-8 py-20 lg:py-28">
@@ -123,6 +124,6 @@ export default function AIOperatingLayerPage() {
         </div>
       </section>
 
-    </div>
+    </main>
   );
 }

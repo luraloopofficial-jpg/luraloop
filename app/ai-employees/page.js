@@ -4,11 +4,12 @@ import Link from 'next/link';
 export const metadata = {
   title: 'AI Employees | LuraLoop Enterprise Infrastructure',
   description: 'Deploy role-specific AI employees across customer-facing and internal workflows under your own white-label delivery model.',
+  robots: { index: true, follow: true },
 };
 
 export default function AIEmployeesPage() {
   return (
-    <div className="luxury-ambient-bg min-h-screen text-zinc-100 selection:bg-orange-600/30 overflow-x-hidden pt-24 pb-16">
+    <main className="luxury-ambient-bg min-h-screen text-zinc-100 selection:bg-orange-600/30 overflow-x-hidden pt-24 pb-16">
       
       {/* 🚀 HERO SECTION (Large) */}
       <section className="max-w-7xl mx-auto px-6 md:px-8 py-20 lg:py-28">
@@ -328,6 +329,6 @@ export default function AIEmployeesPage() {
         </p>
       </section>
 
-    </div>
+    </main>
   );
 }
