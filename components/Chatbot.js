@@ -104,11 +104,11 @@ export default function Chatbot() {
   }
 
   return (
-    <>
+    <div className="fixed bottom-6 right-6 z-[9999] pointer-events-auto">
       {/* Floating Action Button Container */}
       <div 
         ref={buttonRef}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14"
+        className="absolute bottom-0 right-0 z-50 w-14 h-14"
       >
         {/* Subtle Orbiting Leaf Particles */}
         <AnimatePresence>
@@ -149,7 +149,7 @@ export default function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="fixed bottom-24 right-6 z-50 w-[350px] sm:w-[380px] h-[550px] max-h-[80vh] bg-[#0B0B0B]/90 backdrop-blur-md rounded-2xl flex flex-col overflow-hidden shadow-2xl"
+            className="absolute bottom-20 right-0 z-50 w-[350px] sm:w-[380px] h-[550px] max-h-[80vh] bg-[#0B0B0B]/90 backdrop-blur-md rounded-2xl flex flex-col overflow-hidden shadow-2xl"
             style={{ border: '1px solid rgba(255,107,0,0.2)' }}
           >
             {/* Header */}
@@ -236,6 +236,6 @@ export default function Chatbot() {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </div>
   )
 }
