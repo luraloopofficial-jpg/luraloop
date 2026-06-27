@@ -1,6 +1,5 @@
 // Server Component — assembles all sections.
 // Each section component has 'use client' where Framer Motion is needed.
-import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import Architecture from '@/components/Architecture'
 import ForPartners from '@/components/ForPartners'
@@ -14,7 +13,6 @@ import AboutModal from '@/components/AboutModal'
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#0B0B0B] text-white">
-      <Navbar />
       <Hero />
       <Architecture />
       <ForPartners />

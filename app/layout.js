@@ -3,6 +3,8 @@ import Chatbot from '@/components/Chatbot'
 import { Inter } from 'next/font/google'
 import Script from 'next/script'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import AuthProvider from '@/components/AuthProvider'
+import Navbar from '@/components/Navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -172,9 +174,12 @@ export default function RootLayout({ children }) {
         )}
       </head>
       <body className={`${inter.className} bg-[#030712] luxury-ambient-bg text-white antialiased overflow-x-hidden`}>
-        {children}
-        <Chatbot />
-        <SpeedInsights />
+        <AuthProvider>
+          <Navbar />
+          {children}
+          <Chatbot />
+          <SpeedInsights />
+        </AuthProvider>
       </body>
     </html>
   )

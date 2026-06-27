@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Eye, EyeOff, ArrowLeft, Loader2, CheckCircle } from 'lucide-react'
 import { EMAIL_REGEX, URL_REGEX, sanitize } from '../lib/authUtils'
+import { signIn } from 'next-auth/react'
 
 // ─── Input Field ──────────────────────────────────────────────────
 function AuthInput({ id, label, type = 'text', value, onChange, error, placeholder, autoComplete }) {
@@ -175,8 +176,7 @@ function LoginForm({ onSwitch }) {
   const handleGoogleAuth = async () => {
     try {
       setGoogleLoading(true)
-      await new Promise(resolve => setTimeout(resolve, 1500))
-      setGoogleLoading(false)
+      await signIn('google', { callbackUrl: '/' })
     } catch (error) {
       setErrors({ form: 'Google authentication failed. Please try again.' })
       setGoogleLoading(false)
@@ -279,9 +279,7 @@ function SignupForm({ onSwitch }) {
   const handleGoogleAuth = async () => {
     try {
       setGoogleLoading(true)
-      await new Promise(resolve => setTimeout(resolve, 1500))
-      setGoogleLoading(false)
-      setSubmitted(true)
+      await signIn('google', { callbackUrl: '/' })
     } catch (error) {
       setErrors({ form: 'Google authentication failed. Please try again.' })
       setGoogleLoading(false)

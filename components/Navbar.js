@@ -5,8 +5,7 @@ import Link from 'next/link'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ChevronDown } from 'lucide-react'
-
-
+import { useSession, signOut } from 'next-auth/react'
 // ─── Nav Links ────────────────────────────────────────────────────
 const navLinks = [
   { label: 'Platform', href: '/#architecture' },
@@ -39,6 +38,8 @@ export default function Navbar() {
   const navRef = useRef(null)
   const dropdownRef = useRef(null)
   const dropdownTimeout = useRef(null)
+  
+  const { data: session } = useSession()
 
   // Global event listener for modal
   useEffect(() => {
@@ -77,17 +78,13 @@ export default function Navbar() {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 flex justify-center mt-4 transition-all duration-500 ${
-        scrolled ? 'p-[1px] rounded-full animate-aurora-border w-[95%] max-w-7xl mx-auto' : 'w-full'
-      }`}>
+      <header className="sticky top-0 z-50 backdrop-blur-md bg-zinc-950/70 border-b border-zinc-900 w-full transition-all duration-500">
         <motion.nav
           ref={navRef}
           initial={{ y: -80, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          className={`w-full transition-all duration-500 px-6 flex items-center justify-between transform-gpu ${
-            scrolled ? 'bg-black/80 backdrop-blur-md rounded-full py-3' : 'bg-transparent py-5 w-[95%] max-w-7xl mx-auto'
-          }`}
+          className="w-full max-w-7xl mx-auto px-6 py-4 flex items-center justify-between"
         >
           {/* Logo */}
           <a href="/" className="flex items-center group" aria-label="LuraLoop Home">
@@ -156,21 +153,36 @@ export default function Navbar() {
 
           {/* Desktop Auth CTAs */}
           <div className="hidden md:flex items-center gap-3">
-            <button
-              onClick={() => openAuth('login')}
-              className="text-sm text-white/60 hover:text-white transition-colors px-3 py-2 rounded-lg hover:bg-white/5"
-              id="nav-login-btn"
-            >
-              Login
-            </button>
-            <button
-              onClick={() => openAuth('signup')}
-              id="nav-signup-btn"
-              className="text-sm font-semibold text-[#0B0B0B] px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95"
-              style={{ background: '#FF6B00', boxShadow: '0 0 20px rgba(255,107,0,0.35)' }}
-            >
-              Sign Up
-            </button>
+            {session ? (
+              <div className="flex items-center gap-3 pl-4 border-l border-white/10">
+                <span className="text-white/80 text-sm hidden lg:block font-mono text-[11px] truncate max-w-[120px]">{session.user.email}</span>
+                <img 
+                  src={session.user.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(session.user.name || session.user.email)}&background=111&color=fff`} 
+                  alt="Avatar" 
+                  className="w-8 h-8 rounded-full border border-orange-500/50 object-cover cursor-pointer hover:scale-105 transition-transform shadow-[0_0_10px_rgba(255,107,0,0.2)]"
+                  onClick={() => signOut()}
+                  title="Sign Out"
+                />
+              </div>
+            ) : (
+              <>
+                <button
+                  onClick={() => openAuth('login')}
+                  className="text-sm text-white/60 hover:text-white transition-colors px-3 py-2 rounded-lg hover:bg-white/5"
+                  id="nav-login-btn"
+                >
+                  Login
+                </button>
+                <button
+                  onClick={() => openAuth('signup')}
+                  id="nav-signup-btn"
+                  className="text-sm font-semibold text-[#0B0B0B] px-5 py-2 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,107,0,0.35)]"
+                  style={{ background: '#FF6B00' }}
+                >
+                  Sign Up
+                </button>
+              </>
+            )}
           </div>
 
           {/* Mobile Hamburger */}
@@ -232,15 +244,37 @@ export default function Navbar() {
                   )
                 ))}
                 <div className="flex gap-3 pt-2">
-                  <button onClick={() => openAuth('login')}
-                    className="flex-1 py-2.5 rounded-xl text-sm text-white/60 border border-white/10 hover:bg-white/5 transition-colors">
-                    Login
-                  </button>
-                  <button onClick={() => openAuth('signup')}
-                    className="flex-1 py-2.5 rounded-xl text-sm font-semibold text-[#0B0B0B] transition-all"
-                    style={{ background: '#FF6B00' }}>
-                    Sign Up
-                  </button>
+                  {session ? (
+                    <div className="flex flex-col w-full gap-3 pt-2 border-t border-white/10 mt-2">
+                      <div className="flex items-center gap-3 px-2">
+                        <img 
+                          src={session.user.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(session.user.name || session.user.email)}&background=111&color=fff`} 
+                          alt="Avatar" 
+                          className="w-10 h-10 rounded-full border border-orange-500/50 shadow-[0_0_10px_rgba(255,107,0,0.2)]"
+                        />
+                        <div className="flex flex-col overflow-hidden">
+                          <span className="text-white text-sm font-medium">{session.user.name || 'Enterprise User'}</span>
+                          <span className="text-white/50 text-xs truncate font-mono">{session.user.email}</span>
+                        </div>
+                      </div>
+                      <button onClick={() => signOut()}
+                        className="w-full py-2.5 rounded-xl text-sm font-medium text-red-400 border border-red-500/20 hover:bg-red-500/10 transition-colors">
+                        Sign Out
+                      </button>
+                    </div>
+                  ) : (
+                    <>
+                      <button onClick={() => openAuth('login')}
+                        className="flex-1 py-2.5 rounded-xl text-sm text-white/60 border border-white/10 hover:bg-white/5 transition-colors">
+                        Login
+                      </button>
+                      <button onClick={() => openAuth('signup')}
+                        className="flex-1 py-2.5 rounded-xl text-sm font-semibold text-[#0B0B0B] transition-all"
+                        style={{ background: '#FF6B00' }}>
+                        Sign Up
+                      </button>
+                    </>
+                  )}
                 </div>
               </motion.div>
             )}
