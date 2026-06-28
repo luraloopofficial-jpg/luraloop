@@ -11,10 +11,41 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   metadataBase: new URL('https://luraloop.vercel.app'),
   title: {
-    default: 'LuraLoop | Enterprise AI Automation & White-Label Infrastructure',
-    template: '%s | LuraLoop'
+    default: "LuraLoop | Enterprise AI Automation & White-Label Infrastructure",
+    template: "%s | LuraLoop"
   },
-  description: 'Deploy role-specific AI employees, multi-agent infrastructure, and automated business workflows under a secure, white-label enterprise partner delivery model.',
+  description: "Deploy role-specific AI employees, multi-agent infrastructure, and automated business workflows under a secure, white-label enterprise partner delivery model.",
+  alternates: {
+    canonical: "https://luraloop.vercel.app",
+  },
+  openGraph: {
+    title: "LuraLoop | Enterprise AI Automation & White-Label Infrastructure",
+    description: "Deploy role-specific AI employees, multi-agent infrastructure, and automated business workflows under a secure, white-label enterprise partner delivery model.",
+    url: "https://luraloop.vercel.app",
+    siteName: "LuraLoop",
+    images: [{
+      url: "https://luraloop.vercel.app/hero-bg.jpg",
+      width: 1200,
+      height: 630,
+      alt: "LuraLoop Enterprise AI Automation",
+    }],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "LuraLoop | Enterprise AI Automation & White-Label Infrastructure",
+    description: "Deploy role-specific AI employees, multi-agent infrastructure, and automated business workflows.",
+    images: ["https://luraloop.vercel.app/hero-bg.jpg"],
+  },
+  keywords: [
+    "white-label AI automation",
+    "enterprise AI infrastructure",
+    "AI agent orchestration",
+    "business process automation",
+    "multi-agent AI systems",
+    "AI for IT agencies India"
+  ],
   robots: {
     index: true,
     follow: true,

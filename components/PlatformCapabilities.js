@@ -43,6 +43,14 @@ export default function PlatformCapabilities() {
               Real-time ecosystem monitoring and dynamic integration architecture for deploying advanced reasoning agents across the enterprise. Explore the frontier platforms powering LuraLoop.
             </p>
             
+            <div className="flex flex-wrap justify-center gap-2 mb-8">
+              {['GPT-5', 'Claude', 'Gemini', 'Llama', 'DeepSeek'].map((model) => (
+                <span key={model} className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/70">
+                  {model}
+                </span>
+              ))}
+            </div>
+            
             <div className="flex items-center gap-2 text-sm font-semibold text-white/50 group-hover:text-orange-400 transition-colors">
               <span>Explore Architecture &amp; Index</span>
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
