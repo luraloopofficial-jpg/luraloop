@@ -2,26 +2,28 @@ import React from 'react';
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'AI Employees | LuraLoop Enterprise Infrastructure',
-  description: 'Deploy role-specific AI employees across customer-facing and internal workflows under your own white-label delivery model.',
-  robots: { index: true, follow: true },
-  alternates: { canonical: 'https://luraloop.vercel.app/ai-employees' },
+  title: "AI Employees | LuraLoop White-Label Agents",
+  description: "Deploy role-specific AI employees that handle enquiries, scheduling, and operational tasks across enterprise channels.",
+  alternates: {
+    canonical: "https://luraloop.vercel.app/ai-employees",
+  },
   openGraph: {
-    title: 'AI Employees | LuraLoop',
-    description: 'Deploy role-specific AI employees across customer-facing and internal workflows under your own white-label delivery model.',
-    url: 'https://luraloop.vercel.app/ai-employees',
-    siteName: 'LuraLoop',
-    images: [{ url: 'https://luraloop.vercel.app/og-default.jpg', width: 1200, height: 630 }],
-    locale: 'en_US',
-    type: 'website',
+    title: "AI Employees | LuraLoop",
+    description: "Deploy role-specific AI employees that handle enquiries, scheduling, and operational tasks across enterprise channels.",
+    url: "https://luraloop.vercel.app/ai-employees",
+    siteName: "LuraLoop",
+    images: [{ url: "https://luraloop.vercel.app/hero-bg.jpg", width: 1200, height: 630 }],
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'AI Employees | LuraLoop',
-    description: 'Deploy role-specific AI employees across customer-facing and internal workflows under your own white-label delivery model.',
-    images: ['https://luraloop.vercel.app/og-default.jpg'],
+    card: "summary_large_image",
+    title: "AI Employees | LuraLoop",
+    description: "Deploy role-specific AI employees across enterprise channels.",
+    images: ["https://luraloop.vercel.app/hero-bg.jpg"],
   },
 };
+
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -29,27 +31,46 @@ const jsonLd = {
     {
       '@type': 'Service',
       name: 'AI Employees',
-      provider: { '@type': 'Organization', name: 'LuraLoop', url: 'https://luraloop.vercel.app' },
-      description: 'Deploy role-specific AI employees across customer-facing and internal workflows under your own white-label delivery model.',
+      provider: {
+        '@type': 'Organization',
+        name: 'LuraLoop',
+        url: 'https://luraloop.vercel.app'
+      },
+      description: 'Deploy role-specific AI employees that handle enquiries, scheduling, and operational tasks across enterprise channels.',
       areaServed: 'Worldwide',
-      audience: { '@type': 'Audience', audienceType: 'IT Agencies, System Integrators, Enterprise Consultants' },
+      audience: {
+        '@type': 'Audience',
+        audienceType: 'IT Agencies, System Integrators, Enterprise Consultants'
+      }
     },
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://luraloop.vercel.app' },
-        { '@type': 'ListItem', position: 2, name: 'AI Employees', item: 'https://luraloop.vercel.app/ai-employees' },
-      ],
+        { '@type': 'ListItem', position: 2, name: 'AI Employees', item: 'https://luraloop.vercel.app/ai-employees' }
+      ]
     },
     {
       '@type': 'FAQPage',
       mainEntity: [
-        { '@type': 'Question', name: 'What are AI employees?', acceptedAnswer: { '@type': 'Answer', text: 'AI employees are role-specific AI agents that handle enquiries, scheduling, routing, and repetitive tasks across customer-facing and internal workflows, operating like a digital team member.' } },
-        { '@type': 'Question', name: 'Can AI employees be white-labeled?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Partners can deploy AI employees under their own brand identity with full margin control on pricing.' } },
-        { '@type': 'Question', name: 'What channels do AI employees work across?', acceptedAnswer: { '@type': 'Answer', text: 'WhatsApp Business API, client portals, IVR voice systems, and embedded web chat — all simultaneously.' } },
-      ],
-    },
-  ],
+        {
+          '@type': 'Question',
+          name: 'What are AI employees?',
+          acceptedAnswer: { '@type': 'Answer', text: 'AI employees are role-specific AI agents that handle enquiries, scheduling, routing, and repetitive tasks across customer-facing and internal workflows, operating like a digital team member.' }
+        },
+        {
+          '@type': 'Question',
+          name: 'Can AI employees be white-labeled?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Yes. Partners can deploy AI employees under their own brand identity with full margin control on pricing.' }
+        },
+        {
+          '@type': 'Question',
+          name: 'What channels do AI employees work across?',
+          acceptedAnswer: { '@type': 'Answer', text: 'WhatsApp Business API, client portals, IVR voice systems, and embedded web chat — all simultaneously.' }
+        }
+      ]
+    }
+  ]
 };
 
 export default function AIEmployeesPage() {
@@ -72,9 +93,9 @@ export default function AIEmployeesPage() {
               Across Enterprise Operations
             </h1>
             {/* AEO Answer Paragraph */}
-            <p className="text-orange-100/60 text-sm font-mono leading-relaxed mb-5 border-l-2 border-orange-600/40 pl-4 max-w-[64ch]">
-              AI employees are role-specific AI agents configured to handle enquiries, scheduling, support, and coordination across customer-facing and internal workflows — operating as digital team members that integrate with existing systems and scale service capacity without expanding headcount.
-            </p>
+              <p className="text-orange-100/60 text-sm font-mono leading-relaxed mb-5 border-l-2 border-orange-600/40 pl-4 max-w-[64ch]">
+                AI employees are role-specific AI agents that handle enquiries, scheduling, routing, and repetitive operational tasks across customer-facing and internal workflows — functioning like a digital team member available 24/7.
+              </p>
             <p className="text-zinc-300 text-lg sm:text-xl font-medium leading-relaxed mb-[18px] max-w-[64ch]">
               Role-specific AI employees that handle enquiries, scheduling, support, coordination, routing, and repetitive operational tasks across customer-facing and internal workflows.
             </p>
@@ -338,16 +359,12 @@ export default function AIEmployeesPage() {
       </section>
 
       {/* 🔗 RELATED CAPABILITIES */}
-      <section className="max-w-7xl mx-auto px-6 md:px-8 py-12 border-t border-zinc-900">
-        <span className="text-orange-500 font-mono tracking-widest text-xs font-semibold uppercase block mb-3">Related Capabilities</span>
-        <p className="text-zinc-400 text-sm leading-relaxed max-w-3xl">
-          Explore how this connects with our{' '}
-          <Link href="/ai-operating-systems" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">AI Operating Layer</Link>,{' '}
-          <Link href="/multi-agent-infrastructure" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Multi-Agent Infrastructure</Link>,{' '}
-          <Link href="/business-process-automation" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Business Process Automation</Link>, and{' '}
-          <Link href="/decision-intelligence" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Decision Intelligence</Link> modules.
-        </p>
-      </section>
+        <section className="max-w-7xl mx-auto px-6 md:px-8 py-12 border-t border-zinc-900">
+          <span className="text-orange-500 font-mono tracking-widest text-xs font-semibold uppercase block mb-3">Related Capabilities</span>
+          <p className="text-zinc-400 text-sm leading-relaxed max-w-3xl">
+            Explore how this connects with our <Link href="/multi-agent-infrastructure" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Multi-Agent Infrastructure</Link>, <Link href="/business-process-automation" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Business Process Automation</Link>, and <Link href="/decision-intelligence" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Decision Intelligence</Link> modules, or see how <Link href="/ai-operating-systems" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">AI Operating Layer</Link> power the front-line of these workflows.
+          </p>
+        </section>
 
       {/* ❓ FAQ SECTION */}
       <section className="max-w-4xl mx-auto px-6 py-16 border-t border-zinc-900">

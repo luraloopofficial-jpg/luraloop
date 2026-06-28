@@ -2,26 +2,28 @@ import React from 'react';
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'AI Operating Layer | LuraLoop Enterprise Infrastructure',
-  description: 'Add an intelligent AI-driven operating layer across enterprise environments — connecting workflows, routing actions, and coordinating systems without replacing existing software.',
-  robots: { index: true, follow: true },
-  alternates: { canonical: 'https://luraloop.vercel.app/ai-operating-systems' },
+  title: "AI Operating Layer | LuraLoop Enterprise Infrastructure",
+  description: "Add an intelligent AI-driven operating layer across enterprise environments without forcing core software replacement.",
+  alternates: {
+    canonical: "https://luraloop.vercel.app/ai-operating-systems",
+  },
   openGraph: {
-    title: 'AI Operating Layer | LuraLoop',
-    description: 'Add an intelligent AI-driven operating layer across enterprise environments — connecting workflows, routing actions, and coordinating systems without replacing existing software.',
-    url: 'https://luraloop.vercel.app/ai-operating-systems',
-    siteName: 'LuraLoop',
-    images: [{ url: 'https://luraloop.vercel.app/og-default.jpg', width: 1200, height: 630 }],
-    locale: 'en_US',
-    type: 'website',
+    title: "AI Operating Layer | LuraLoop",
+    description: "Add an intelligent AI-driven operating layer across enterprise environments without forcing core software replacement.",
+    url: "https://luraloop.vercel.app/ai-operating-systems",
+    siteName: "LuraLoop",
+    images: [{ url: "https://luraloop.vercel.app/hero-bg.jpg", width: 1200, height: 630 }],
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'AI Operating Layer | LuraLoop',
-    description: 'Add an intelligent AI-driven operating layer across enterprise environments — connecting workflows, routing actions, and coordinating systems without replacing existing software.',
-    images: ['https://luraloop.vercel.app/og-default.jpg'],
+    card: "summary_large_image",
+    title: "AI Operating Layer | LuraLoop",
+    description: "Add an intelligent AI-driven operating layer across enterprise environments.",
+    images: ["https://luraloop.vercel.app/hero-bg.jpg"],
   },
 };
+
 
 const cards = [
   { title: 'Workflow Coordination', desc: 'Connects disparate business workflows into a single coordinated execution layer without requiring any changes to underlying systems.' },
@@ -44,27 +46,46 @@ const jsonLd = {
     {
       '@type': 'Service',
       name: 'AI Operating Layer',
-      provider: { '@type': 'Organization', name: 'LuraLoop', url: 'https://luraloop.vercel.app' },
-      description: 'Add an intelligent AI-driven operating layer across enterprise environments — connecting workflows, routing actions, and coordinating systems without replacing existing software.',
+      provider: {
+        '@type': 'Organization',
+        name: 'LuraLoop',
+        url: 'https://luraloop.vercel.app'
+      },
+      description: 'Add an intelligent AI-driven operating layer across enterprise environments without forcing core software replacement.',
       areaServed: 'Worldwide',
-      audience: { '@type': 'Audience', audienceType: 'IT Agencies, System Integrators, Enterprise Consultants' },
+      audience: {
+        '@type': 'Audience',
+        audienceType: 'IT Agencies, System Integrators, Enterprise Consultants'
+      }
     },
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://luraloop.vercel.app' },
-        { '@type': 'ListItem', position: 2, name: 'AI Operating Layer', item: 'https://luraloop.vercel.app/ai-operating-systems' },
-      ],
+        { '@type': 'ListItem', position: 2, name: 'AI Operating Layer', item: 'https://luraloop.vercel.app/ai-operating-systems' }
+      ]
     },
     {
       '@type': 'FAQPage',
-      mainEntity: faqs.map(({ q, a }) => ({
-        '@type': 'Question',
-        name: q,
-        acceptedAnswer: { '@type': 'Answer', text: a },
-      })),
-    },
-  ],
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'What is an AI operating layer?',
+          acceptedAnswer: { '@type': 'Answer', text: 'An AI operating layer is a coordination layer that connects existing business systems, routes actions, and triggers workflows without requiring replacement of underlying software.' }
+        },
+        {
+          '@type': 'Question',
+          name: 'How does this integrate with our existing systems?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Through secure API adapters connecting to HMS, ERP, CRM, LMS, or custom internal platforms — with zero disruption to current operations.' }
+        },
+        {
+          '@type': 'Question',
+          name: 'Is this only for large enterprises?',
+          acceptedAnswer: { '@type': 'Answer', text: 'No. The operating layer is designed to scale from single-department deployments to full enterprise-wide coordination.' }
+        }
+      ]
+    }
+  ]
 };
 
 export default function AIOperatingLayerPage() {
@@ -83,7 +104,7 @@ export default function AIOperatingLayerPage() {
               </h1>
               {/* AEO Answer Paragraph */}
               <p className="text-orange-100/60 text-sm font-mono leading-relaxed mb-5 border-l-2 border-orange-600/40 pl-4 max-w-[64ch]">
-                An AI operating layer sits above existing enterprise software — connecting business workflows, routing actions to the correct systems, and triggering automated responses without requiring any changes to or replacement of the underlying technology stack.
+                An AI operating layer is a coordination system that connects existing business software — HMS, ERP, CRM, or LMS — routing actions and triggering workflows across departments without requiring replacement of any underlying system.
               </p>
               <p className="text-zinc-300 text-lg sm:text-xl font-medium leading-relaxed mb-4 max-w-[64ch]">
                 LuraLoop adds a coordinated AI-driven operating layer across enterprise environments, connecting workflows, agents, and business systems without forcing software replacement.
@@ -190,11 +211,7 @@ export default function AIOperatingLayerPage() {
         <section className="max-w-7xl mx-auto px-6 md:px-8 py-12 border-t border-zinc-900">
           <span className="text-orange-500 font-mono tracking-widest text-xs font-semibold uppercase block mb-3">Related Capabilities</span>
           <p className="text-zinc-400 text-sm leading-relaxed max-w-3xl">
-            Explore how this connects with our{' '}
-            <Link href="/ai-employees" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">AI Employees</Link>,{' '}
-            <Link href="/multi-agent-infrastructure" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Multi-Agent Infrastructure</Link>,{' '}
-            <Link href="/business-process-automation" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Business Process Automation</Link>, and{' '}
-            <Link href="/decision-intelligence" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Decision Intelligence</Link> modules.
+            Explore how this connects with our <Link href="/multi-agent-infrastructure" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Multi-Agent Infrastructure</Link>, <Link href="/business-process-automation" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Business Process Automation</Link>, and <Link href="/decision-intelligence" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Decision Intelligence</Link> modules, or see how <Link href="/ai-employees" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">AI Employees</Link> power the front-line of these workflows.
           </p>
         </section>
 

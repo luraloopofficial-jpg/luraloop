@@ -2,26 +2,28 @@ import React from 'react';
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Business Process Automation | LuraLoop Workflow Logic',
-  description: 'Automate repetitive, recurring operational processes through end-to-end system-connected workflow logic without replacing existing enterprise software.',
-  robots: { index: true, follow: true },
-  alternates: { canonical: 'https://luraloop.vercel.app/business-process-automation' },
+  title: "Business Process Automation | LuraLoop Workflow Logic",
+  description: "Automate repetitive, recurring operational processes through end-to-end system-connected workflow logic.",
+  alternates: {
+    canonical: "https://luraloop.vercel.app/business-process-automation",
+  },
   openGraph: {
-    title: 'Business Process Automation | LuraLoop',
-    description: 'Automate repetitive, recurring operational processes through end-to-end system-connected workflow logic without replacing existing enterprise software.',
-    url: 'https://luraloop.vercel.app/business-process-automation',
-    siteName: 'LuraLoop',
-    images: [{ url: 'https://luraloop.vercel.app/og-default.jpg', width: 1200, height: 630 }],
-    locale: 'en_US',
-    type: 'website',
+    title: "Business Process Automation | LuraLoop",
+    description: "Automate repetitive, recurring operational processes through end-to-end system-connected workflow logic.",
+    url: "https://luraloop.vercel.app/business-process-automation",
+    siteName: "LuraLoop",
+    images: [{ url: "https://luraloop.vercel.app/hero-bg.jpg", width: 1200, height: 630 }],
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Business Process Automation | LuraLoop',
-    description: 'Automate repetitive, recurring operational processes through end-to-end system-connected workflow logic without replacing existing enterprise software.',
-    images: ['https://luraloop.vercel.app/og-default.jpg'],
+    card: "summary_large_image",
+    title: "Business Process Automation | LuraLoop",
+    description: "Automate repetitive, recurring operational processes through workflow logic.",
+    images: ["https://luraloop.vercel.app/hero-bg.jpg"],
   },
 };
+
 
 const cards = [
   { title: 'Task Routing', desc: 'Incoming requests are automatically classified and routed to the correct department, queue, or agent based on configurable business rules.' },
@@ -44,27 +46,46 @@ const jsonLd = {
     {
       '@type': 'Service',
       name: 'Business Process Automation',
-      provider: { '@type': 'Organization', name: 'LuraLoop', url: 'https://luraloop.vercel.app' },
-      description: 'Automate repetitive, recurring operational processes through end-to-end system-connected workflow logic without replacing existing enterprise software.',
+      provider: {
+        '@type': 'Organization',
+        name: 'LuraLoop',
+        url: 'https://luraloop.vercel.app'
+      },
+      description: 'Automate repetitive, recurring operational processes through end-to-end system-connected workflow logic.',
       areaServed: 'Worldwide',
-      audience: { '@type': 'Audience', audienceType: 'IT Agencies, System Integrators, Enterprise Consultants' },
+      audience: {
+        '@type': 'Audience',
+        audienceType: 'IT Agencies, System Integrators, Enterprise Consultants'
+      }
     },
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://luraloop.vercel.app' },
-        { '@type': 'ListItem', position: 2, name: 'Business Process Automation', item: 'https://luraloop.vercel.app/business-process-automation' },
-      ],
+        { '@type': 'ListItem', position: 2, name: 'Business Process Automation', item: 'https://luraloop.vercel.app/business-process-automation' }
+      ]
     },
     {
       '@type': 'FAQPage',
-      mainEntity: faqs.map(({ q, a }) => ({
-        '@type': 'Question',
-        name: q,
-        acceptedAnswer: { '@type': 'Answer', text: a },
-      })),
-    },
-  ],
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'What is business process automation?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Business process automation uses workflow logic and connected systems to execute repetitive, multi-step operational tasks automatically, reducing manual workload while keeping processes traceable.' }
+        },
+        {
+          '@type': 'Question',
+          name: 'Does this require replacing our existing software?',
+          acceptedAnswer: { '@type': 'Answer', text: 'No. LuraLoop\'s automation layer connects to existing HMS, ERP, CRM, or LMS systems through API adapters without requiring any replacement.' }
+        },
+        {
+          '@type': 'Question',
+          name: 'How fast can a process automation be deployed?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Standard automation modules deploy within 48 hours of integration mapping being completed.' }
+        }
+      ]
+    }
+  ]
 };
 
 export default function BusinessProcessAutomationPage() {
@@ -83,7 +104,7 @@ export default function BusinessProcessAutomationPage() {
               </h1>
               {/* AEO Answer Paragraph */}
               <p className="text-orange-100/60 text-sm font-mono leading-relaxed mb-5 border-l-2 border-orange-600/40 pl-4 max-w-[64ch]">
-                Business process automation uses AI-driven workflow logic and connected systems to execute repetitive, multi-step operational tasks automatically — reducing manual workload, accelerating delivery timelines, and keeping every process traceable without replacing existing software.
+                Business process automation uses workflow logic and connected systems to execute repetitive, multi-step operational tasks automatically — from intake and routing to approvals and notifications — without requiring manual coordination at every step.
               </p>
               <p className="text-zinc-300 text-lg sm:text-xl font-medium leading-relaxed mb-4 max-w-[64ch]">
                 LuraLoop helps delivery partners automate repetitive, multi-step operational processes through workflow logic, connected systems, and controlled AI-driven execution.
@@ -157,11 +178,7 @@ export default function BusinessProcessAutomationPage() {
         <section className="max-w-7xl mx-auto px-6 md:px-8 py-12 border-t border-zinc-900">
           <span className="text-orange-500 font-mono tracking-widest text-xs font-semibold uppercase block mb-3">Related Capabilities</span>
           <p className="text-zinc-400 text-sm leading-relaxed max-w-3xl">
-            Explore how this connects with our{' '}
-            <Link href="/ai-employees" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">AI Employees</Link>,{' '}
-            <Link href="/ai-operating-systems" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">AI Operating Layer</Link>,{' '}
-            <Link href="/multi-agent-infrastructure" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Multi-Agent Infrastructure</Link>, and{' '}
-            <Link href="/decision-intelligence" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Decision Intelligence</Link> modules.
+            Explore how this connects with our <Link href="/multi-agent-infrastructure" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Multi-Agent Infrastructure</Link>, <Link href="/decision-intelligence" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Decision Intelligence</Link>, and <Link href="/ai-operating-systems" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">AI Operating Layer</Link> modules, or see how <Link href="/ai-employees" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">AI Employees</Link> power the front-line of these workflows.
           </p>
         </section>
 

@@ -2,26 +2,28 @@ import React from 'react';
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Decision Intelligence | LuraLoop Operational Context',
-  description: 'Turn live workflow signals into structured, faster operational decisions with AI-assisted recommendations, priority detection, and escalation guidance.',
-  robots: { index: true, follow: true },
-  alternates: { canonical: 'https://luraloop.vercel.app/decision-intelligence' },
+  title: "Decision Intelligence | LuraLoop Operational Context",
+  description: "Turn live workflow signals into structured, faster operational decisions with AI-assisted recommendations.",
+  alternates: {
+    canonical: "https://luraloop.vercel.app/decision-intelligence",
+  },
   openGraph: {
-    title: 'Decision Intelligence | LuraLoop',
-    description: 'Turn live workflow signals into structured, faster operational decisions with AI-assisted recommendations, priority detection, and escalation guidance.',
-    url: 'https://luraloop.vercel.app/decision-intelligence',
-    siteName: 'LuraLoop',
-    images: [{ url: 'https://luraloop.vercel.app/og-default.jpg', width: 1200, height: 630 }],
-    locale: 'en_US',
-    type: 'website',
+    title: "Decision Intelligence | LuraLoop",
+    description: "Turn live workflow signals into structured, faster operational decisions with AI-assisted recommendations.",
+    url: "https://luraloop.vercel.app/decision-intelligence",
+    siteName: "LuraLoop",
+    images: [{ url: "https://luraloop.vercel.app/hero-bg.jpg", width: 1200, height: 630 }],
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Decision Intelligence | LuraLoop',
-    description: 'Turn live workflow signals into structured, faster operational decisions with AI-assisted recommendations, priority detection, and escalation guidance.',
-    images: ['https://luraloop.vercel.app/og-default.jpg'],
+    card: "summary_large_image",
+    title: "Decision Intelligence | LuraLoop",
+    description: "Turn live workflow signals into faster operational decisions.",
+    images: ["https://luraloop.vercel.app/hero-bg.jpg"],
   },
 };
+
 
 const cards = [
   { title: 'Recommendation Engines', desc: 'AI analyzes live workflow data to surface the next best action for operational teams, reducing decision fatigue during high-volume periods.' },
@@ -44,27 +46,46 @@ const jsonLd = {
     {
       '@type': 'Service',
       name: 'Decision Intelligence',
-      provider: { '@type': 'Organization', name: 'LuraLoop', url: 'https://luraloop.vercel.app' },
-      description: 'Turn live workflow signals into structured, faster operational decisions with AI-assisted recommendations, priority detection, and escalation guidance.',
+      provider: {
+        '@type': 'Organization',
+        name: 'LuraLoop',
+        url: 'https://luraloop.vercel.app'
+      },
+      description: 'Turn live workflow signals into structured, faster operational decisions with AI-assisted recommendations.',
       areaServed: 'Worldwide',
-      audience: { '@type': 'Audience', audienceType: 'IT Agencies, System Integrators, Enterprise Consultants' },
+      audience: {
+        '@type': 'Audience',
+        audienceType: 'IT Agencies, System Integrators, Enterprise Consultants'
+      }
     },
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://luraloop.vercel.app' },
-        { '@type': 'ListItem', position: 2, name: 'Decision Intelligence', item: 'https://luraloop.vercel.app/decision-intelligence' },
-      ],
+        { '@type': 'ListItem', position: 2, name: 'Decision Intelligence', item: 'https://luraloop.vercel.app/decision-intelligence' }
+      ]
     },
     {
       '@type': 'FAQPage',
-      mainEntity: faqs.map(({ q, a }) => ({
-        '@type': 'Question',
-        name: q,
-        acceptedAnswer: { '@type': 'Answer', text: a },
-      })),
-    },
-  ],
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'What is decision intelligence?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Decision intelligence uses live workflow data to surface recommendations, detect priorities, and support faster operational decisions through AI-assisted analysis.' }
+        },
+        {
+          '@type': 'Question',
+          name: 'Does decision intelligence replace human judgment?',
+          acceptedAnswer: { '@type': 'Answer', text: 'No. It provides structured context and recommendations to support human decision-makers, particularly for cases requiring escalation.' }
+        },
+        {
+          '@type': 'Question',
+          name: 'What kind of data does this analyze?',
+          acceptedAnswer: { '@type': 'Answer', text: 'It analyzes live workflow signals such as request volume, urgency markers, and operational patterns — without storing personal or client data.' }
+        }
+      ]
+    }
+  ]
 };
 
 export default function DecisionIntelligencePage() {
@@ -83,7 +104,7 @@ export default function DecisionIntelligencePage() {
               </h1>
               {/* AEO Answer Paragraph */}
               <p className="text-orange-100/60 text-sm font-mono leading-relaxed mb-5 border-l-2 border-orange-600/40 pl-4 max-w-[64ch]">
-                Decision intelligence uses live workflow data and AI-assisted analysis to surface actionable recommendations, detect operational priorities, and support faster decisions — reducing manual interpretation and enabling teams to respond with context and confidence.
+                Decision intelligence uses live workflow data to surface recommendations, detect priorities, and support faster operational decisions through AI-assisted analysis, helping teams act on high-volume signals without manual review of every case.
               </p>
               <p className="text-zinc-300 text-lg sm:text-xl font-medium leading-relaxed mb-4 max-w-[64ch]">
                 LuraLoop helps teams interpret live workflow context, surface recommendations, and support high-volume operational decisions through connected AI-driven intelligence.
@@ -157,11 +178,7 @@ export default function DecisionIntelligencePage() {
         <section className="max-w-7xl mx-auto px-6 md:px-8 py-12 border-t border-zinc-900">
           <span className="text-orange-500 font-mono tracking-widest text-xs font-semibold uppercase block mb-3">Related Capabilities</span>
           <p className="text-zinc-400 text-sm leading-relaxed max-w-3xl">
-            Explore how this connects with our{' '}
-            <Link href="/ai-employees" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">AI Employees</Link>,{' '}
-            <Link href="/ai-operating-systems" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">AI Operating Layer</Link>,{' '}
-            <Link href="/multi-agent-infrastructure" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Multi-Agent Infrastructure</Link>, and{' '}
-            <Link href="/business-process-automation" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Business Process Automation</Link> modules.
+            Explore how this connects with our <Link href="/multi-agent-infrastructure" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Multi-Agent Infrastructure</Link>, <Link href="/business-process-automation" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Business Process Automation</Link>, and <Link href="/ai-operating-systems" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">AI Operating Layer</Link> modules, or see how <Link href="/ai-employees" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">AI Employees</Link> power the front-line of these workflows.
           </p>
         </section>
 

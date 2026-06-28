@@ -2,26 +2,28 @@ import React from 'react';
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Multi-Agent Infrastructure | LuraLoop Orchestration',
-  description: 'Orchestrate multiple specialized AI agents across business functions with secure delegation, shared context, and controlled escalation logic.',
-  robots: { index: true, follow: true },
-  alternates: { canonical: 'https://luraloop.vercel.app/multi-agent-infrastructure' },
+  title: "Multi-Agent Infrastructure | LuraLoop Orchestration",
+  description: "Orchestrate multiple specialized AI agents across business functions with secure delegation and shared context.",
+  alternates: {
+    canonical: "https://luraloop.vercel.app/multi-agent-infrastructure",
+  },
   openGraph: {
-    title: 'Multi-Agent Infrastructure | LuraLoop',
-    description: 'Orchestrate multiple specialized AI agents across business functions with secure delegation, shared context, and controlled escalation logic.',
-    url: 'https://luraloop.vercel.app/multi-agent-infrastructure',
-    siteName: 'LuraLoop',
-    images: [{ url: 'https://luraloop.vercel.app/og-default.jpg', width: 1200, height: 630 }],
-    locale: 'en_US',
-    type: 'website',
+    title: "Multi-Agent Infrastructure | LuraLoop",
+    description: "Orchestrate multiple specialized AI agents across business functions with secure delegation and shared context.",
+    url: "https://luraloop.vercel.app/multi-agent-infrastructure",
+    siteName: "LuraLoop",
+    images: [{ url: "https://luraloop.vercel.app/hero-bg.jpg", width: 1200, height: 630 }],
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Multi-Agent Infrastructure | LuraLoop',
-    description: 'Orchestrate multiple specialized AI agents across business functions with secure delegation, shared context, and controlled escalation logic.',
-    images: ['https://luraloop.vercel.app/og-default.jpg'],
+    card: "summary_large_image",
+    title: "Multi-Agent Infrastructure | LuraLoop",
+    description: "Orchestrate multiple specialized AI agents across business functions.",
+    images: ["https://luraloop.vercel.app/hero-bg.jpg"],
   },
 };
+
 
 const cards = [
   { title: 'Specialized Agent Roles', desc: 'Each agent is configured with domain-specific training — intake, scheduling, support, or operations — ensuring focused, accurate execution for every task type.' },
@@ -44,27 +46,46 @@ const jsonLd = {
     {
       '@type': 'Service',
       name: 'Multi-Agent Infrastructure',
-      provider: { '@type': 'Organization', name: 'LuraLoop', url: 'https://luraloop.vercel.app' },
-      description: 'Orchestrate multiple specialized AI agents across business functions with secure delegation, shared context, and controlled escalation logic.',
+      provider: {
+        '@type': 'Organization',
+        name: 'LuraLoop',
+        url: 'https://luraloop.vercel.app'
+      },
+      description: 'Coordinated multi-agent environments where specialized AI workers handle tasks, delegate actions, and execute workflows across enterprise operations.',
       areaServed: 'Worldwide',
-      audience: { '@type': 'Audience', audienceType: 'IT Agencies, System Integrators, Enterprise Consultants' },
+      audience: {
+        '@type': 'Audience',
+        audienceType: 'IT Agencies, System Integrators, Enterprise Consultants'
+      }
     },
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://luraloop.vercel.app' },
-        { '@type': 'ListItem', position: 2, name: 'Multi-Agent Infrastructure', item: 'https://luraloop.vercel.app/multi-agent-infrastructure' },
-      ],
+        { '@type': 'ListItem', position: 2, name: 'Multi-Agent Infrastructure', item: 'https://luraloop.vercel.app/multi-agent-infrastructure' }
+      ]
     },
     {
       '@type': 'FAQPage',
-      mainEntity: faqs.map(({ q, a }) => ({
-        '@type': 'Question',
-        name: q,
-        acceptedAnswer: { '@type': 'Answer', text: a },
-      })),
-    },
-  ],
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'What is multi-agent AI infrastructure?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Multi-agent AI infrastructure is a system where multiple specialized AI agents work together, each handling a specific role like intake, scheduling, or support, while sharing context and delegating tasks automatically.' }
+        },
+        {
+          '@type': 'Question',
+          name: 'How does LuraLoop handle data in multi-agent systems?',
+          acceptedAnswer: { '@type': 'Answer', text: 'LuraLoop processes all agent coordination ephemerally with zero data retention. No conversation context or operational data is stored after a session ends.' }
+        },
+        {
+          '@type': 'Question',
+          name: 'Who is this designed for?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Multi-agent infrastructure is designed for agencies, consultants, and system integrators delivering enterprise automation to clients in regulated industries.' }
+        }
+      ]
+    }
+  ]
 };
 
 export default function MultiAgentInfrastructurePage() {
@@ -176,11 +197,7 @@ export default function MultiAgentInfrastructurePage() {
         <section className="max-w-7xl mx-auto px-6 md:px-8 py-12 border-t border-zinc-900">
           <span className="text-orange-500 font-mono tracking-widest text-xs font-semibold uppercase block mb-3">Related Capabilities</span>
           <p className="text-zinc-400 text-sm leading-relaxed max-w-3xl">
-            Explore how this connects with our{' '}
-            <Link href="/ai-operating-systems" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">AI Operating Layer</Link>,{' '}
-            <Link href="/ai-employees" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">AI Employees</Link>,{' '}
-            <Link href="/business-process-automation" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Business Process Automation</Link>, and{' '}
-            <Link href="/decision-intelligence" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Decision Intelligence</Link> modules.
+            Explore how this connects with our <Link href="/business-process-automation" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Business Process Automation</Link>, <Link href="/decision-intelligence" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Decision Intelligence</Link>, and <Link href="/ai-operating-systems" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">AI Operating Layer</Link> modules, or see how <Link href="/ai-employees" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">AI Employees</Link> power the front-line of these workflows.
           </p>
         </section>
 
