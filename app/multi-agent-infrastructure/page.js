@@ -160,9 +160,9 @@ export default function MultiAgentInfrastructurePage() {
         <section className="max-w-7xl mx-auto px-6 md:px-8 py-12 border-t border-zinc-900">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
-              { title: 'Role-Aware Agent Boundaries', desc: 'Each agent operates within strict permission scopes, preventing unauthorized data access or task execution across workflow boundaries.' },
-              { title: 'Controlled Workflow Escalation', desc: 'Escalation paths are pre-defined and auditable, ensuring critical requests always reach the correct authority level without manual routing.' },
-              { title: 'Zero-Retention Coordination', desc: 'All inter-agent context is processed ephemerally. No conversation state or operational data is retained after a session concludes.' },
+              { title: 'Role-Aware Agent Boundaries', desc: 'Each agent operates within explicitly defined permission scopes, preventing unauthorized access to data or systems outside its role.' },
+              { title: 'Controlled Workflow Escalation', desc: 'Escalation paths are pre-configured per workflow, ensuring exceptions reach the correct team without delay or ambiguity.' },
+              { title: 'Zero-Retention Coordination', desc: 'Agent-to-agent context sharing occurs in memory only during active sessions — no coordination data is persisted afterward.' },
             ].map((sec, idx) => (
               <div key={idx} className="bg-zinc-950/20 border border-zinc-900/60 p-5 rounded-lg">
                 <h4 className="text-white font-semibold text-sm mb-1">{sec.title}</h4>

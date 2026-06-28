@@ -174,9 +174,9 @@ export default function AIOperatingLayerPage() {
         <section className="max-w-7xl mx-auto px-6 md:px-8 py-12 border-t border-zinc-900">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
-              { title: 'Zero-Retention Processing', desc: 'All workflow coordination runs ephemerally. No operational data from routing or triggering actions is stored after processing completes.' },
-              { title: 'Scoped Access Logic', desc: 'The operating layer only touches the systems and data explicitly permitted in the integration configuration — no unscoped access.' },
-              { title: 'Client System Alignment', desc: 'Connects above existing systems via API adapters, preserving current data governance models and compliance boundaries intact.' },
+              { title: 'Zero-Retention Processing', desc: 'Every request through the operating layer is processed in real-time with no data persisted after the action completes.' },
+              { title: 'Scoped Access Logic', desc: 'The operating layer only accesses the specific systems and data fields required for each individual workflow action.' },
+              { title: 'Client System Alignment', desc: 'Permission structures mirror the client\'s existing governance model, so no new access policies need to be created.' },
             ].map((sec, idx) => (
               <div key={idx} className="bg-zinc-950/20 border border-zinc-900/60 p-5 rounded-lg">
                 <h4 className="text-white font-semibold text-sm mb-1">{sec.title}</h4>

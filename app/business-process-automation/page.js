@@ -141,9 +141,9 @@ export default function BusinessProcessAutomationPage() {
         <section className="max-w-7xl mx-auto px-6 md:px-8 py-12 border-t border-zinc-900">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
-              { title: 'Controlled Processing', desc: 'Every automated action runs within defined boundaries, preventing unauthorized system calls or data exposure during workflow execution.' },
-              { title: 'Workflow Traceability', desc: 'All automated steps are logged and auditable, giving compliance teams full visibility into what executed, when, and why.' },
-              { title: 'Client System Governance', desc: 'Automation sits above existing systems without modifying underlying data models, ensuring full alignment with client-side governance policies.' },
+              { title: 'Controlled Processing', desc: 'Every automated action follows pre-approved business rules, with no process executing outside its defined scope.' },
+              { title: 'Workflow Traceability', desc: 'Each step in an automated process is logged in real-time within the client\'s own system for full auditability.' },
+              { title: 'Client System Governance', desc: 'Automation respects existing role-based access controls already configured in the client\'s ERP or CRM environment.' },
             ].map((sec, idx) => (
               <div key={idx} className="bg-zinc-950/20 border border-zinc-900/60 p-5 rounded-lg">
                 <h4 className="text-white font-semibold text-sm mb-1">{sec.title}</h4>

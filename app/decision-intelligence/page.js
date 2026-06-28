@@ -141,9 +141,9 @@ export default function DecisionIntelligencePage() {
         <section className="max-w-7xl mx-auto px-6 md:px-8 py-12 border-t border-zinc-900">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
-              { title: 'Access-Scoped Intelligence', desc: 'Recommendations and insights are generated within access boundaries, ensuring no cross-department data leakage during operational analysis.' },
-              { title: 'Controlled Recommendation Logic', desc: 'AI-generated guidance is constrained by configurable business rules, preventing out-of-scope suggestions that could disrupt governance models.' },
-              { title: 'Enterprise-Aligned Data Handling', desc: 'All workflow signal analysis is processed ephemerally. No analytical data is retained after a session ends, maintaining zero-retention compliance.' },
+              { title: 'Access-Scoped Intelligence', desc: 'Recommendations are generated using only data the requesting team is authorized to view, respecting existing access boundaries.' },
+              { title: 'Controlled Recommendation Logic', desc: 'AI suggestions follow pre-approved decision frameworks rather than open-ended reasoning, ensuring consistency and compliance.' },
+              { title: 'Enterprise-Aligned Data Handling', desc: 'All decision signals are processed in real-time and discarded after the recommendation is delivered — nothing is stored.' },
             ].map((sec, idx) => (
               <div key={idx} className="bg-zinc-950/20 border border-zinc-900/60 p-5 rounded-lg">
                 <h4 className="text-white font-semibold text-sm mb-1">{sec.title}</h4>
