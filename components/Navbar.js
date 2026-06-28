@@ -194,71 +194,89 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Mobile Hamburger */}
-          <button className="md:hidden text-white/70 hover:text-white"
+          <button
+            className="md:hidden text-white/70 hover:text-white p-2 rounded-lg hover:bg-white/5 transition-colors"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle navigation menu">
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
 
-          {/* Mobile Dropdown */}
+          {/* Mobile Full-Screen Overlay */}
           <AnimatePresence>
             {menuOpen && (
               <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                className="absolute top-full left-0 right-0 mt-2 mx-4 rounded-2xl glass border border-white/8 px-6 py-4 flex flex-col gap-3 md:hidden overflow-hidden z-10"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="fixed inset-0 z-50 bg-zinc-950/85 backdrop-blur-xl border-b border-zinc-900 transition-all duration-300 flex flex-col md:hidden"
               >
-                {navLinks.map((link) => (
-                  link.hasDropdown ? (
-                    <div key={link.label} className="flex flex-col">
-                      <button
-                        className="text-white/70 hover:text-white text-sm py-2 border-b border-white/5 flex items-center justify-between w-full text-left"
-                        onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
-                      >
+                {/* Close Button Row */}
+                <div className="flex items-center justify-between px-6 py-5 border-b border-white/5">
+                  <img src="/Logo.svg" alt="LuraLoop" className="h-7 w-auto" />
+                  <button
+                    onClick={() => setMenuOpen(false)}
+                    className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-colors"
+                    aria-label="Close menu"
+                  >
+                    <X size={22} />
+                  </button>
+                </div>
+
+                {/* Nav Links */}
+                <div className="flex-1 overflow-y-auto px-6 py-6 flex flex-col gap-1">
+                  {navLinks.map((link) => (
+                    link.hasDropdown ? (
+                      <div key={link.label} className="flex flex-col">
+                        <button
+                          className="text-white/80 hover:text-white text-base py-4 border-b border-white/5 flex items-center justify-between w-full text-left font-medium"
+                          onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
+                        >
+                          {link.label}
+                          <ChevronDown size={16} className={`transition-transform duration-200 text-white/40 ${mobileDropdownOpen ? 'rotate-180 text-orange-500' : ''}`} />
+                        </button>
+                        <AnimatePresence>
+                          {mobileDropdownOpen && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="pl-4 py-2 flex flex-col gap-1 bg-white/3 rounded-xl my-1">
+                                {link.children.map((child) => (
+                                  <Link
+                                    key={child.href}
+                                    href={child.href}
+                                    onClick={() => { setMenuOpen(false); setMobileDropdownOpen(false) }}
+                                    className="text-white/55 hover:text-white text-sm py-3 px-2 transition-colors border-b border-white/5 last:border-0"
+                                  >
+                                    {child.label}
+                                  </Link>
+                                ))}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ) : (
+                      <a key={link.label} href={link.href}
+                        className="text-white/80 hover:text-white text-base font-medium py-4 border-b border-white/5 block transition-colors"
+                        onClick={() => setMenuOpen(false)}>
                         {link.label}
-                        <ChevronDown size={14} className={`transition-transform duration-200 ${mobileDropdownOpen ? 'rotate-180' : ''}`} />
-                      </button>
-                      <AnimatePresence>
-                        {mobileDropdownOpen && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: 'auto', opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            className="overflow-hidden"
-                          >
-                            <div className="pl-4 py-1 flex flex-col gap-0.5">
-                              {link.children.map((child) => (
-                                <Link
-                                  key={child.href}
-                                  href={child.href}
-                                  onClick={() => { setMenuOpen(false); setMobileDropdownOpen(false) }}
-                                  className="text-white/50 hover:text-white text-sm py-1.5 transition-colors"
-                                >
-                                  {child.label}
-                                </Link>
-                              ))}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  ) : (
-                    <a key={link.label} href={link.href}
-                      className="text-white/70 hover:text-white text-sm py-2 border-b border-white/5"
-                      onClick={() => setMenuOpen(false)}>
-                      {link.label}
-                    </a>
-                  )
-                ))}
-                <div className="flex gap-3 pt-2">
+                      </a>
+                    )
+                  ))}
+                </div>
+
+                {/* Auth CTA Row */}
+                <div className="px-6 pb-8 pt-4 border-t border-white/5">
                   {session ? (
-                    <div className="flex flex-col w-full gap-3 pt-2 border-t border-white/10 mt-2">
-                      <div className="flex items-center gap-3 px-2">
-                        <img 
-                          src={session.user.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(session.user.name || session.user.email)}&background=111&color=fff`} 
-                          alt="Avatar" 
+                    <div className="flex flex-col gap-3">
+                      <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5">
+                        <img
+                          src={session.user.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(session.user.name || session.user.email)}&background=111&color=fff`}
+                          alt="Avatar"
                           className="w-10 h-10 rounded-full border border-orange-500/50 shadow-[0_0_10px_rgba(255,107,0,0.2)]"
                         />
                         <div className="flex flex-col overflow-hidden">
@@ -267,22 +285,24 @@ export default function Navbar() {
                         </div>
                       </div>
                       <button onClick={() => signOut()}
-                        className="w-full py-2.5 rounded-xl text-sm font-medium text-red-400 border border-red-500/20 hover:bg-red-500/10 transition-colors">
+                        className="w-full py-3 rounded-xl text-sm font-medium text-red-400 border border-red-500/20 hover:bg-red-500/10 transition-colors">
                         Sign Out
                       </button>
                     </div>
                   ) : (
-                    <>
+                    <div className="flex gap-3">
                       <Link href="/login"
-                        className="flex-1 py-2.5 rounded-xl text-sm text-center text-white/60 border border-white/10 hover:bg-white/5 transition-colors">
+                        onClick={() => setMenuOpen(false)}
+                        className="flex-1 py-3.5 rounded-xl text-sm text-center text-white/70 border border-white/10 hover:bg-white/5 transition-colors font-medium">
                         Login
                       </Link>
                       <Link href="/signup"
-                        className="flex-1 py-2.5 rounded-xl text-sm text-center font-semibold text-[#0B0B0B] transition-all"
+                        onClick={() => setMenuOpen(false)}
+                        className="flex-1 py-3.5 rounded-xl text-sm text-center font-bold text-[#0B0B0B] transition-all hover:scale-[1.02]"
                         style={{ background: '#FF6B00' }}>
                         Sign Up
                       </Link>
-                    </>
+                    </div>
                   )}
                 </div>
               </motion.div>
