@@ -97,7 +97,7 @@ export default function Navbar() {
           >
           {/* Logo */}
           <a href="/" className="flex items-center group" aria-label="LuraLoop Home">
-            <img src="/Logo.svg" alt="LuraLoop Official Corporate Logo"
+            <img src="/Logo.svg" alt="LuraLoop Logo"
               width={150} height={32}
               className="h-8 w-auto group-hover:opacity-90 transition-opacity duration-300" />
           </a>
@@ -213,7 +213,7 @@ export default function Navbar() {
               >
                 {/* Close Button Row */}
                 <div className="flex items-center justify-between px-6 py-5 border-b border-white/5">
-                  <img src="/Logo.svg" alt="LuraLoop" className="h-7 w-auto" />
+                  <img src="/Logo.svg" alt="LuraLoop Logo" className="h-7 w-auto" />
                   <button
                     onClick={() => setMenuOpen(false)}
                     className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-colors"
