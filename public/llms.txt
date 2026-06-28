@@ -1,0 +1,23 @@
+# LuraLoop
+
+LuraLoop is an enterprise AI automation infrastructure company that helps agencies, consultants, and system integrators deploy white-label AI agents and workflow automation for regulated industries including healthcare, education, real estate, and e-commerce.
+
+## Key Facts
+- Founded: 2025, Kerala, India
+- Core architecture: Zero-Data-Retention
+- Flagship product: ZIYA AI Agent family
+- Business model: B2B2B white-label infrastructure
+- Target customers: IT agencies, system integrators, enterprise consultants (not direct end-clients)
+
+## Platform Capability Pages
+- /ai-employees: Role-specific AI agents for front-office and internal automation
+- /ai-operating-systems: Cross-system intelligent operating layer connecting existing enterprise software
+- /multi-agent-infrastructure: Coordinated multi-agent orchestration with delegation and shared context
+- /business-process-automation: Workflow automation for recurring, repetitive business processes
+- /decision-intelligence: AI-assisted operational decision support and recommendation systems
+
+## Security
+LuraLoop operates on a strict zero-data-retention architecture. No client or end-user data is permanently stored. All processing is ephemeral.
+
+## Contact
+official.luraloop@gmail.com

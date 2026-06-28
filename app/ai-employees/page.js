@@ -5,11 +5,58 @@ export const metadata = {
   title: 'AI Employees | LuraLoop Enterprise Infrastructure',
   description: 'Deploy role-specific AI employees across customer-facing and internal workflows under your own white-label delivery model.',
   robots: { index: true, follow: true },
+  alternates: { canonical: 'https://luraloop.vercel.app/ai-employees' },
+  openGraph: {
+    title: 'AI Employees | LuraLoop',
+    description: 'Deploy role-specific AI employees across customer-facing and internal workflows under your own white-label delivery model.',
+    url: 'https://luraloop.vercel.app/ai-employees',
+    siteName: 'LuraLoop',
+    images: [{ url: 'https://luraloop.vercel.app/og-default.jpg', width: 1200, height: 630 }],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AI Employees | LuraLoop',
+    description: 'Deploy role-specific AI employees across customer-facing and internal workflows under your own white-label delivery model.',
+    images: ['https://luraloop.vercel.app/og-default.jpg'],
+  },
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      name: 'AI Employees',
+      provider: { '@type': 'Organization', name: 'LuraLoop', url: 'https://luraloop.vercel.app' },
+      description: 'Deploy role-specific AI employees across customer-facing and internal workflows under your own white-label delivery model.',
+      areaServed: 'Worldwide',
+      audience: { '@type': 'Audience', audienceType: 'IT Agencies, System Integrators, Enterprise Consultants' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://luraloop.vercel.app' },
+        { '@type': 'ListItem', position: 2, name: 'AI Employees', item: 'https://luraloop.vercel.app/ai-employees' },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        { '@type': 'Question', name: 'What are AI employees?', acceptedAnswer: { '@type': 'Answer', text: 'AI employees are role-specific AI agents that handle enquiries, scheduling, routing, and repetitive tasks across customer-facing and internal workflows, operating like a digital team member.' } },
+        { '@type': 'Question', name: 'Can AI employees be white-labeled?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Partners can deploy AI employees under their own brand identity with full margin control on pricing.' } },
+        { '@type': 'Question', name: 'What channels do AI employees work across?', acceptedAnswer: { '@type': 'Answer', text: 'WhatsApp Business API, client portals, IVR voice systems, and embedded web chat — all simultaneously.' } },
+      ],
+    },
+  ],
 };
 
 export default function AIEmployeesPage() {
   return (
-    <main className="luxury-ambient-bg min-h-screen text-zinc-100 selection:bg-orange-600/30 overflow-x-hidden pt-24 pb-16">
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <div className="luxury-ambient-bg min-h-screen text-zinc-100 selection:bg-orange-600/30 overflow-x-hidden pt-24 pb-16">
       
       {/* 🚀 HERO SECTION (Large) */}
       <section className="max-w-7xl mx-auto px-6 md:px-8 py-20 lg:py-28">
@@ -20,10 +67,14 @@ export default function AIEmployeesPage() {
             <span className="text-orange-500 font-mono tracking-widest text-xs font-semibold uppercase mb-4">
               AI EMPLOYEES
             </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1] mb-6 max-w-[11 words]">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1] mb-4 max-w-[11 words]">
               Deploy AI Employees <br />
               Across Enterprise Operations
             </h1>
+            {/* AEO Answer Paragraph */}
+            <p className="text-orange-100/60 text-sm font-mono leading-relaxed mb-5 border-l-2 border-orange-600/40 pl-4 max-w-[64ch]">
+              AI employees are role-specific AI agents configured to handle enquiries, scheduling, support, and coordination across customer-facing and internal workflows — operating as digital team members that integrate with existing systems and scale service capacity without expanding headcount.
+            </p>
             <p className="text-zinc-300 text-lg sm:text-xl font-medium leading-relaxed mb-[18px] max-w-[64ch]">
               Role-specific AI employees that handle enquiries, scheduling, support, coordination, routing, and repetitive operational tasks across customer-facing and internal workflows.
             </p>
@@ -286,23 +337,32 @@ export default function AIEmployeesPage() {
         </div>
       </section>
 
-      {/* ❓ FAQ SECTION (Medium) */}
+      {/* 🔗 RELATED CAPABILITIES */}
+      <section className="max-w-7xl mx-auto px-6 md:px-8 py-12 border-t border-zinc-900">
+        <span className="text-orange-500 font-mono tracking-widest text-xs font-semibold uppercase block mb-3">Related Capabilities</span>
+        <p className="text-zinc-400 text-sm leading-relaxed max-w-3xl">
+          Explore how this connects with our{' '}
+          <Link href="/ai-operating-systems" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">AI Operating Layer</Link>,{' '}
+          <Link href="/multi-agent-infrastructure" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Multi-Agent Infrastructure</Link>,{' '}
+          <Link href="/business-process-automation" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Business Process Automation</Link>, and{' '}
+          <Link href="/decision-intelligence" className="text-white hover:text-orange-400 underline underline-offset-4 transition-colors">Decision Intelligence</Link> modules.
+        </p>
+      </section>
+
+      {/* ❓ FAQ SECTION */}
       <section className="max-w-4xl mx-auto px-6 py-16 border-t border-zinc-900">
         <div className="text-left mb-10">
           <span className="text-orange-500 font-mono tracking-widest text-xs font-semibold uppercase block mb-2">Common Questions</span>
           <h2 className="text-2xl md:text-3xl font-bold text-white">Frequently Asked Inquiries</h2>
         </div>
-
         <div className="space-y-4">
           {[
-            { q: 'What is an AI Employee?', a: 'A role-specific AI-driven operational worker configured to handle tasks, responses, routing, and system-connected actions within defined workflow boundaries.' },
-            { q: 'Can AI Employees connect to our client’s current systems?', a: 'Yes. LuraLoop is designed to operate above current enterprise software through integration adapters and custom API layers.' },
-            { q: 'Do AI Employees replace human teams?', a: 'No. They reduce repetitive work, accelerate workflows, and support teams through automation and controlled escalation.' },
-            { q: 'Can this be delivered under our brand?', a: 'Yes. LuraLoop is structured for white-label partner delivery models.' },
-            { q: 'How is data handled?', a: 'AI Employees run within LuraLoop’s zero-retention, access-scoped architecture, aligned to enterprise workflow controls.' }
+            { q: 'What are AI employees?', a: 'AI employees are role-specific AI agents that handle enquiries, scheduling, routing, and repetitive tasks across customer-facing and internal workflows, operating like a digital team member.' },
+            { q: 'Can AI employees be white-labeled?', a: 'Yes. Partners can deploy AI employees under their own brand identity with full margin control on pricing.' },
+            { q: 'What channels do AI employees work across?', a: 'WhatsApp Business API, client portals, IVR voice systems, and embedded web chat — all simultaneously.' },
           ].map((faq, idx) => (
             <div key={idx} className="bg-zinc-950/40 border border-zinc-900 rounded-lg p-5 text-left">
-              <h4 className="text-white font-semibold text-sm mb-2">{faq.q}</h4>
+              <h3 className="text-white font-semibold text-sm mb-2">{faq.q}</h3>
               <p className="text-zinc-400 text-xs leading-relaxed">{faq.a}</p>
             </div>
           ))}
@@ -329,6 +389,7 @@ export default function AIEmployeesPage() {
         </p>
       </section>
 
-    </main>
+    </div>
+    </>
   );
 }

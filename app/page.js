@@ -1,3 +1,24 @@
+export const metadata = {
+  title: 'LuraLoop | Enterprise AI Automation & White-Label Infrastructure',
+  description: 'Deploy role-specific AI employees, multi-agent infrastructure, and automated business workflows under a secure, white-label enterprise partner delivery model.',
+  alternates: { canonical: 'https://luraloop.vercel.app' },
+  openGraph: {
+    title: 'LuraLoop | Enterprise AI Automation & White-Label Infrastructure',
+    description: 'Deploy role-specific AI employees, multi-agent infrastructure, and automated business workflows under a secure, white-label enterprise partner delivery model.',
+    url: 'https://luraloop.vercel.app',
+    siteName: 'LuraLoop',
+    images: [{ url: 'https://luraloop.vercel.app/og-default.jpg', width: 1200, height: 630 }],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'LuraLoop | Enterprise AI Automation & White-Label Infrastructure',
+    description: 'Deploy role-specific AI employees, multi-agent infrastructure, and automated business workflows under a secure, white-label enterprise partner delivery model.',
+    images: ['https://luraloop.vercel.app/og-default.jpg'],
+  },
+};
+
 // Server Component — assembles all sections.
 // Each section component has 'use client' where Framer Motion is needed.
 import Hero from '@/components/Hero'

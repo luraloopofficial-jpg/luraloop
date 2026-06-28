@@ -121,6 +121,13 @@ export default function Footer() {
                     else if (link === 'Contact Us') href = 'mailto:luraloop.official@gmail.com'
                     else if (link === 'Apply as Partner') href = '/#partners'
                     else if (link === 'Architecture') href = '/#architecture'
+                    else if (link === 'Integration Adapters') href = '/#architecture'
+                    else if (link === 'API Reference') href = '/blog'
+                    else if (link === 'Changelog') href = '/blog'
+                    else if (link === 'Reseller Model') href = '/#partners'
+                    else if (link === 'SLA Framework') href = '/#partners'
+                    else if (link === 'Partner Enablement') href = '/#partners'
+                    else if (link === 'Access Isolation') href = '/#security'
                     else if (link === 'AI Employees') { href = '/ai-employees'; isNextLink = true; }
                     else if (link === 'AI Operating Layer') { href = '/ai-operating-systems'; isNextLink = true; }
                     else if (link === 'Multi-Agent Infrastructure') { href = '/multi-agent-infrastructure'; isNextLink = true; }
@@ -162,10 +169,10 @@ export default function Footer() {
           <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-white/20 text-xs">© 2025 LuraLoop. All rights reserved. White-Label Automation Infrastructure for Enterprise Delivery Partners.</p>
             <div className="flex items-center gap-6">
-              {['Terms of Service', 'Privacy Policy', 'Cookie Policy'].map((item) => (
-                <a key={item} href="/#" className="text-white/25 text-xs hover:text-white/50 transition-colors">
+              {[['Terms of Service', '/terms'], ['Privacy Policy', '/privacy-policy'], ['Cookie Policy', '/cookie-policy']].map(([item, href]) => (
+                <Link key={item} href={href} className="text-white/25 text-xs hover:text-white/50 transition-colors">
                   {item}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
