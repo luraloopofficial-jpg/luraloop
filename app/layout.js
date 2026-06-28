@@ -38,11 +38,11 @@ export default function RootLayout({ children }) {
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://luraloop.com/#organization",
+        "@id": "https://luraloop.vercel.app/#organization",
         "name": "LuraLoop",
-        "url": "https://luraloop.com",
-        "logo": "https://luraloop.com/Logo.svg",
-        "email": "luraloop.official@gmail.com",
+        "url": "https://luraloop.vercel.app",
+        "logo": "https://luraloop.vercel.app/Logo.svg",
+        "email": "official.luraloop@gmail.com",
         "description": "White-Label AI Agents and Operational Automation Infrastructure for Enterprise Partners.",
         "sameAs": [
           "https://x.com/LURALOOP",
@@ -53,8 +53,24 @@ export default function RootLayout({ children }) {
         "contactPoint": {
           "@type": "ContactPoint",
           "contactType": "customer support",
-          "email": "luraloop.official@gmail.com",
+          "email": "official.luraloop@gmail.com",
           "availableLanguage": ["English", "Malayalam"]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://luraloop.vercel.app/#website",
+        "url": "https://luraloop.vercel.app",
+        "name": "LuraLoop",
+        "description": "Enterprise AI Automation & White-Label Infrastructure for Agencies and System Integrators.",
+        "publisher": { "@id": "https://luraloop.vercel.app/#organization" },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://luraloop.vercel.app/blog?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
         }
       },
       {
