@@ -146,7 +146,7 @@ export default function FAQ() {
           className="text-center text-white/25 text-sm mt-10"
         >
           Have a specific technical question?{' '}
-          <a href="mailto:luraloop.official@gmail.com" className="text-orange-400 hover:text-orange-300 transition-colors">
+          <a href="mailto:legal@luraloop.com" className="text-orange-400 hover:text-orange-300 transition-colors">
             Contact our architecture team directly.
           </a>
         </motion.p>

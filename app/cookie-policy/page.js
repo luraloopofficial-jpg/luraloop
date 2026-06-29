@@ -40,7 +40,7 @@ export default function CookiePolicyPage() {
 
           <section>
             <h2 className="text-white font-semibold text-xl mb-3">5. Contact</h2>
-            <p><a href="mailto:official.luraloop@gmail.com" className="text-orange-400 hover:text-orange-300 transition-colors">official.luraloop@gmail.com</a></p>
+            <p><a href="mailto:legal@luraloop.com" className="text-orange-400 hover:text-orange-300 transition-colors">legal@luraloop.com</a></p>
           </section>
         </div>
       </article>

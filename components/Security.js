@@ -169,7 +169,7 @@ export default function Security() {
 
         {/* Trust Center CTA */}
         <motion.div initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.5 }} className="flex justify-center">
-          <a href="mailto:luraloop.official@gmail.com?subject=Trust Center &amp; Data Governance Request" id="trust-center-link"
+          <a href="mailto:trust@luraloop.com?subject=Trust Center &amp; Data Governance Request" id="trust-center-link"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-orange-500/22 bg-orange-500/7 text-orange-400 text-sm font-medium hover:border-orange-500/45 hover:bg-orange-500/10 transition-all duration-200">
             <ShieldCheck size={13} />
             Request LuraLoop Data Governance Documentation

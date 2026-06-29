@@ -51,7 +51,7 @@ export async function POST(req) {
       },
       body: JSON.stringify({
         from: 'no-reply@luraloop.com', // must be verified in Resend dashboard
-        to: ['luraloop.official@gmail.com'],
+        to: ['legal@luraloop.com'],
         subject: 'Agency Partner Registration – LuraLoop',
         html,
       }),

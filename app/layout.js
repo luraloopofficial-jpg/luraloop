@@ -6,7 +6,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import AuthProvider from '@/components/AuthProvider'
 import Navbar from '@/components/Navbar'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'], display: 'swap' })
 
 export const metadata = {
   metadataBase: new URL('https://luraloop.vercel.app'),
@@ -15,13 +15,9 @@ export const metadata = {
     template: "%s | LuraLoop"
   },
   description: "Deploy role-specific AI employees, multi-agent infrastructure, and automated business workflows under a secure, white-label enterprise partner delivery model.",
-  alternates: {
-    canonical: "https://luraloop.vercel.app",
-  },
   openGraph: {
     title: "LuraLoop | Enterprise AI Automation & White-Label Infrastructure",
     description: "Deploy role-specific AI employees, multi-agent infrastructure, and automated business workflows under a secure, white-label enterprise partner delivery model.",
-    url: "https://luraloop.vercel.app",
     siteName: "LuraLoop",
     images: [{
       url: "https://luraloop.vercel.app/hero-bg.jpg",
@@ -72,7 +68,7 @@ export default function RootLayout({ children }) {
         "name": "LuraLoop",
         "url": "https://luraloop.vercel.app",
         "logo": "https://luraloop.vercel.app/Logo.svg",
-        "email": "official.luraloop@gmail.com",
+        "email": "legal@luraloop.com",
         "description": "White-Label AI Agents and Operational Automation Infrastructure for Enterprise Partners.",
         "sameAs": [
           "https://x.com/LURALOOP",
@@ -83,7 +79,7 @@ export default function RootLayout({ children }) {
         "contactPoint": {
           "@type": "ContactPoint",
           "contactType": "customer support",
-          "email": "official.luraloop@gmail.com",
+          "email": "legal@luraloop.com",
           "availableLanguage": ["English", "Malayalam"]
         }
       },

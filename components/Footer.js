@@ -118,7 +118,7 @@ export default function Footer() {
 
                     if (link === 'Blog') href = '/blog'
                     else if (link === 'About') href = '/#about'
-                    else if (link === 'Contact Us') href = 'mailto:luraloop.official@gmail.com'
+                    else if (link === 'Contact Us') href = 'mailto:legal@luraloop.com'
                     else if (link === 'Apply as Partner') href = '/#partners'
                     else if (link === 'Architecture') href = '/#architecture'
                     else if (link === 'Integration Adapters') href = '/#architecture'
@@ -133,7 +133,7 @@ export default function Footer() {
                     else if (link === 'Multi-Agent Infrastructure') { href = '/multi-agent-infrastructure'; isNextLink = true; }
                     else if (link === 'Business Process Automation') { href = '/business-process-automation'; isNextLink = true; }
                     else if (link === 'Decision Intelligence') { href = '/decision-intelligence'; isNextLink = true; }
-                    else if (link === 'Trust Center') href = 'mailto:luraloop.official@gmail.com?subject=Trust Center Request'
+                    else if (link === 'Trust Center') href = 'mailto:trust@luraloop.com?subject=Trust Center Request'
                     else if (link === 'Zero-Retention Policy') href = '/#security'
                     else if (link === 'Data Governance') href = '/#security'
 
