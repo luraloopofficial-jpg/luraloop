@@ -9,7 +9,7 @@ import Navbar from '@/components/Navbar'
 const inter = Inter({ subsets: ['latin'], display: 'swap' })
 
 export const metadata = {
-  metadataBase: new URL('https://luraloop.vercel.app'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://luraloop.vercel.app'),
   title: {
     default: "LuraLoop | Enterprise AI Automation & White-Label Infrastructure",
     template: "%s | LuraLoop"

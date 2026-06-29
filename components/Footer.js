@@ -28,11 +28,11 @@ const GitHubIcon = () => (
 // Static data
 // ─────────────────────────────────────────────
 const footerLinks = {
-  Platform: ['Architecture', 'Integration Adapters', 'API Reference', 'Changelog'],
+  Platform: ['Architecture', 'Integration Adapters'],
   'Partner Program': ['Reseller Model', 'SLA Framework', 'Partner Enablement', 'Apply as Partner'],
   'Platform Capabilities': ['AI Employees', 'AI Operating Layer', 'Multi-Agent Infrastructure', 'Business Process Automation', 'Decision Intelligence'],
   Security: ['Data Governance', 'Zero-Retention Policy', 'Access Isolation', 'Trust Center'],
-  Company: ['About', 'Blog', 'Contact Us', 'R&D'],
+  Company: ['About', 'Contact Us', 'R&D'],
 }
 
 const socialLinks = [

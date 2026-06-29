@@ -23,7 +23,7 @@ const navLinks = [
     ]
   },
   { label: 'Security', href: '/#security' },
-  { label: 'Blog', href: '/blog' },
+  // { label: 'Blog', href: '/blog' },
 ]
 
 // ─── Navbar ───────────────────────────────────────────────────────
