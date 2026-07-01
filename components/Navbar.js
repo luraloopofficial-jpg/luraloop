@@ -77,7 +77,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className={`sticky top-0 z-50 flex justify-center transition-all duration-300 ${
+      <header ref={navRef} className={`sticky top-0 z-50 flex justify-center transition-all duration-300 ${
         scrolled 
           ? 'pt-4 bg-transparent border-transparent w-full' 
           : 'bg-zinc-950/20 backdrop-blur-md border-b border-white/5 w-full shadow-2xl'
@@ -86,7 +86,6 @@ export default function Navbar() {
           scrolled ? 'p-[1px] rounded-full animate-aurora-border w-[95%] max-w-7xl mx-auto shadow-[0_0_40px_rgba(255,107,0,0.15)]' : 'w-full max-w-7xl mx-auto'
         }`}>
           <motion.nav
-            ref={navRef}
             initial={{ y: -80, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -195,115 +194,115 @@ export default function Navbar() {
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
 
-          {/* Mobile Full-Screen Overlay */}
-          <AnimatePresence>
-            {menuOpen && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="fixed inset-0 z-50 bg-zinc-950/85 backdrop-blur-xl border-b border-zinc-900 transition-all duration-300 flex flex-col md:hidden"
-              >
-                {/* Close Button Row */}
-                <div className="flex items-center justify-between px-6 py-5 border-b border-white/5">
-                  <img src="/Logo.svg" alt="LuraLoop Logo" className="h-7 w-auto" />
-                  <button
-                    onClick={() => setMenuOpen(false)}
-                    className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-colors"
-                    aria-label="Close menu"
-                  >
-                    <X size={22} />
-                  </button>
-                </div>
+          </motion.nav>
+        </div>
+        {/* Mobile Full-Screen Overlay */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-50 bg-zinc-950 backdrop-blur-md border-b border-zinc-900 transition-all duration-300 flex flex-col md:hidden"
+            >
+              {/* Close Button Row */}
+              <div className="flex items-center justify-between px-6 py-5 border-b border-white/5 absolute top-0 left-0 w-full">
+                <img src="/Logo.svg" alt="LuraLoop Logo" className="h-7 w-auto" />
+                <button
+                  onClick={() => setMenuOpen(false)}
+                  className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-colors"
+                  aria-label="Close menu"
+                >
+                  <X size={22} />
+                </button>
+              </div>
 
-                {/* Nav Links */}
-                <div className="flex-1 overflow-y-auto px-6 py-6 flex flex-col gap-1">
-                  {navLinks.map((link) => (
-                    link.hasDropdown ? (
-                      <div key={link.label} className="flex flex-col">
-                        <button
-                          className="text-white/80 hover:text-white text-base py-4 border-b border-white/5 flex items-center justify-between w-full text-left font-medium"
-                          onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
-                        >
-                          {link.label}
-                          <ChevronDown size={16} className={`transition-transform duration-200 text-white/40 ${mobileDropdownOpen ? 'rotate-180 text-orange-500' : ''}`} />
-                        </button>
-                        <AnimatePresence>
-                          {mobileDropdownOpen && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: 'auto', opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              className="overflow-hidden"
-                            >
-                              <div className="pl-4 py-2 flex flex-col gap-1 bg-white/3 rounded-xl my-1">
-                                {link.children.map((child) => (
-                                  <Link
-                                    key={child.href}
-                                    href={child.href}
-                                    onClick={() => { setMenuOpen(false); setMobileDropdownOpen(false) }}
-                                    className="text-white/55 hover:text-white text-sm py-3 px-2 transition-colors border-b border-white/5 last:border-0"
-                                  >
-                                    {child.label}
-                                  </Link>
-                                ))}
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    ) : (
-                      <a key={link.label} href={link.href}
-                        className="text-white/80 hover:text-white text-base font-medium py-4 border-b border-white/5 block transition-colors"
-                        onClick={() => setMenuOpen(false)}>
+              {/* Nav Links */}
+              <div className="flex-1 overflow-y-auto flex flex-col pt-24 px-6 gap-4">
+                {navLinks.map((link) => (
+                  link.hasDropdown ? (
+                    <div key={link.label} className="flex flex-col">
+                      <button
+                        className="text-white/80 hover:text-white text-base py-4 border-b border-white/5 flex items-center justify-between w-full text-left font-medium"
+                        onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
+                      >
                         {link.label}
-                      </a>
-                    )
-                  ))}
-                </div>
-
-                {/* Auth CTA Row */}
-                <div className="px-6 pb-8 pt-4 border-t border-white/5">
-                  {session ? (
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5">
-                        <img
-                          src={session.user.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(session.user.name || session.user.email)}&background=111&color=fff`}
-                          alt="Avatar"
-                          className="w-10 h-10 rounded-full border border-orange-500/50 shadow-[0_0_10px_rgba(255,107,0,0.2)]"
-                        />
-                        <div className="flex flex-col overflow-hidden">
-                          <span className="text-white text-sm font-medium">{session.user.name || 'Enterprise User'}</span>
-                          <span className="text-white/50 text-xs truncate font-mono">{session.user.email}</span>
-                        </div>
-                      </div>
-                      <button onClick={() => signOut()}
-                        className="w-full py-3 rounded-xl text-sm font-medium text-red-400 border border-red-500/20 hover:bg-red-500/10 transition-colors">
-                        Sign Out
+                        <ChevronDown size={16} className={`transition-transform duration-200 text-white/40 ${mobileDropdownOpen ? 'rotate-180 text-orange-500' : ''}`} />
                       </button>
+                      <AnimatePresence>
+                        {mobileDropdownOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden"
+                          >
+                            <div className="pl-4 py-2 flex flex-col gap-1 bg-white/3 rounded-xl my-1">
+                              {link.children.map((child) => (
+                                <Link
+                                  key={child.href}
+                                  href={child.href}
+                                  onClick={() => { setMenuOpen(false); setMobileDropdownOpen(false) }}
+                                  className="text-white/55 hover:text-white text-sm py-3 px-2 transition-colors border-b border-white/5 last:border-0"
+                                >
+                                  {child.label}
+                                </Link>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   ) : (
-                    <div className="flex gap-3">
-                      <Link href="/login"
-                        onClick={() => setMenuOpen(false)}
-                        className="flex-1 py-3.5 rounded-xl text-sm text-center text-white/70 border border-white/10 hover:bg-white/5 transition-colors font-medium">
-                        Login
-                      </Link>
-                      <Link href="/signup"
-                        onClick={() => setMenuOpen(false)}
-                        className="flex-1 py-3.5 rounded-xl text-sm text-center font-bold text-[#0B0B0B] transition-all hover:scale-[1.02]"
-                        style={{ background: '#FF6B00' }}>
-                        Sign Up
-                      </Link>
+                    <a key={link.label} href={link.href}
+                      className="text-white/80 hover:text-white text-base font-medium py-4 border-b border-white/5 block transition-colors"
+                      onClick={() => setMenuOpen(false)}>
+                      {link.label}
+                    </a>
+                  )
+                ))}
+              </div>
+
+              {/* Auth CTA Row */}
+              <div className="px-6 pb-8 pt-4 border-t border-white/5 mt-auto">
+                {session ? (
+                  <div className="flex flex-col gap-3">
+                    <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5">
+                      <img
+                        src={session.user.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(session.user.name || session.user.email)}&background=111&color=fff`}
+                        alt="Avatar"
+                        className="w-10 h-10 rounded-full border border-orange-500/50 shadow-[0_0_10px_rgba(255,107,0,0.2)]"
+                      />
+                      <div className="flex flex-col overflow-hidden">
+                        <span className="text-white text-sm font-medium">{session.user.name || 'Enterprise User'}</span>
+                        <span className="text-white/50 text-xs truncate font-mono">{session.user.email}</span>
+                      </div>
                     </div>
-                  )}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.nav>
-        </div>
+                    <button onClick={() => signOut()}
+                      className="w-full py-3 rounded-xl text-sm font-medium text-red-400 border border-red-500/20 hover:bg-red-500/10 transition-colors">
+                      Sign Out
+                    </button>
+                  </div>
+                ) : (
+                  <div className="flex gap-3">
+                    <Link href="/login"
+                      onClick={() => setMenuOpen(false)}
+                      className="flex-1 py-3.5 rounded-xl text-sm text-center text-white/70 border border-white/10 hover:bg-white/5 transition-colors font-medium">
+                      Login
+                    </Link>
+                    <Link href="/signup"
+                      onClick={() => setMenuOpen(false)}
+                      className="flex-1 py-3.5 rounded-xl text-sm text-center font-bold text-[#0B0B0B] transition-all hover:scale-[1.02]"
+                      style={{ background: '#FF6B00' }}>
+                      Sign Up
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       {/* Modal logic removed to favor dedicated auth pages */}
