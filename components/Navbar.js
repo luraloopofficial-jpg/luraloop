@@ -75,6 +75,16 @@ export default function Navbar() {
     dropdownTimeout.current = setTimeout(() => setDropdownOpen(false), 150)
   }
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
+
   return (
     <>
       <header ref={navRef} className={`sticky top-0 z-50 flex justify-center transition-all duration-300 ${
@@ -196,30 +206,33 @@ export default function Navbar() {
 
           </motion.nav>
         </div>
-        {/* Mobile Full-Screen Overlay */}
-        <AnimatePresence>
-          {menuOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-50 bg-zinc-950 backdrop-blur-md border-b border-zinc-900 transition-all duration-300 flex flex-col md:hidden"
-            >
-              {/* Close Button Row */}
-              <div className="flex items-center justify-between px-6 py-5 border-b border-white/5 absolute top-0 left-0 w-full">
-                <img src="/Logo.svg" alt="LuraLoop Logo" className="h-7 w-auto" />
-                <button
-                  onClick={() => setMenuOpen(false)}
-                  className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-colors"
-                  aria-label="Close menu"
-                >
-                  <X size={22} />
-                </button>
-              </div>
+      </header>
 
-              {/* Nav Links */}
-              <div className="flex-1 overflow-y-auto flex flex-col pt-24 px-6 gap-4">
+      {/* ─── Mobile Full-Screen Overlay ─────────────────────────────────── */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            style={{ backgroundColor: '#030712' }}
+            className="fixed inset-0 z-[9999] flex flex-col md:hidden"
+          >
+            {/* Close Button Row */}
+            <div className="flex items-center justify-between px-6 py-5 border-b border-white/10" style={{ backgroundColor: '#030712' }}>
+              <img src="/Logo.svg" alt="LuraLoop Logo" className="h-7 w-auto" />
+              <button
+                onClick={() => setMenuOpen(false)}
+                className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-colors"
+                aria-label="Close menu"
+              >
+                <X size={22} />
+              </button>
+            </div>
+
+            {/* Nav Links */}
+            <div className="flex-1 overflow-y-auto flex flex-col pt-8 px-6 gap-2">
                 {navLinks.map((link) => (
                   link.hasDropdown ? (
                     <div key={link.label} className="flex flex-col">
@@ -262,10 +275,10 @@ export default function Navbar() {
                     </a>
                   )
                 ))}
-              </div>
+            </div>
 
-              {/* Auth CTA Row */}
-              <div className="px-6 pb-8 pt-4 border-t border-white/5 mt-auto">
+            {/* Auth CTA Row */}
+            <div className="px-6 pb-10 pt-4 border-t border-white/10">
                 {session ? (
                   <div className="flex flex-col gap-3">
                     <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5">
@@ -299,11 +312,10 @@ export default function Navbar() {
                     </Link>
                   </div>
                 )}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </header>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Modal logic removed to favor dedicated auth pages */}
     </>
