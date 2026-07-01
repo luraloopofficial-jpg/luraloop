@@ -232,7 +232,7 @@ export default function Navbar() {
             </div>
 
             {/* Nav Links */}
-            <div className="flex-1 overflow-y-auto flex flex-col pt-8 px-6 gap-2">
+            <div className="overflow-y-auto flex flex-col px-6 py-4 gap-2">
                 {navLinks.map((link) => (
                   link.hasDropdown ? (
                     <div key={link.label} className="flex flex-col">
@@ -277,8 +277,8 @@ export default function Navbar() {
                 ))}
             </div>
 
-            {/* Auth CTA Row */}
-            <div className="px-6 pb-10 pt-4 border-t border-white/10">
+            {/* Auth CTA Row — always pinned to bottom */}
+            <div className="px-6 pb-10 pt-4 mt-auto border-t border-white/10">
                 {session ? (
                   <div className="flex flex-col gap-3">
                     <div className="flex items-center gap-3 p-3 rounded-xl bg-white/5">
