@@ -6,6 +6,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { useSession, signOut } from 'next-auth/react'
+import ProfileDropdown from '@/components/ProfileDropdown'
 // ─── Nav Links ────────────────────────────────────────────────────
 const navLinks = [
   { label: 'Platform', href: '/#architecture' },
@@ -163,15 +164,8 @@ export default function Navbar() {
           {/* Desktop Auth CTAs */}
           <div className="hidden md:flex items-center gap-3">
             {session ? (
-              <div className="flex items-center gap-3 pl-4 border-l border-white/10">
-                <span className="text-white/80 text-sm hidden lg:block font-mono text-[11px] truncate max-w-[120px]">{session.user.email}</span>
-                <img 
-                  src={session.user.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(session.user.name || session.user.email)}&background=111&color=fff`} 
-                  alt="Avatar" 
-                  className="w-8 h-8 rounded-full border border-orange-500/50 object-cover cursor-pointer hover:scale-105 transition-transform shadow-[0_0_10px_rgba(255,107,0,0.2)]"
-                  onClick={() => signOut()}
-                  title="Sign Out"
-                />
+              <div className="pl-2 border-l border-white/10 ml-2">
+                <ProfileDropdown session={session} />
               </div>
             ) : (
               <>
